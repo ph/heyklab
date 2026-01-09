@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [
     ../../modules/roles/deployable.nix
@@ -21,6 +21,8 @@
       "cifs"
     ];
   };
+
+  ennvironment.systemPackages = with pkgs; [ wget vim tree ];
 
   # Disable root login
   users.users.root.initialHashedPassword = lib.mkForce "!";
