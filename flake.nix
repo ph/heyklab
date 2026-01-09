@@ -54,7 +54,6 @@
               remotes = [{
                 name = "origin";
                 url = "https://github.com/ph/heyklab.git";
-                branches.main.name = "main";
               }];
             };
           })
