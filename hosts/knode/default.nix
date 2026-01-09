@@ -22,7 +22,7 @@
     ];
   };
 
-  ennvironment.systemPackages = with pkgs; [ wget vim tree ];
+  environment.systemPackages = with pkgs; [ wget vim tree ];
 
   # Disable root login
   users.users.root.initialHashedPassword = lib.mkForce "!";
