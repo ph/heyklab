@@ -16,13 +16,10 @@
       "ext4"
       "zfs"
       "vfat"
-      "xfs"
-      "ntfs"
-      "cifs"
     ];
   };
 
-  environment.systemPackages = with pkgs; [ wget vim tree ];
+  environment.systemPackages = with pkgs; [ wget vim ];
 
   # Disable root login
   users.users.root.initialHashedPassword = lib.mkForce "!";
