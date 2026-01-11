@@ -37,8 +37,8 @@
 
       k8sMachines = [
         { hostName = "k1"; ip = "10.10.2.1"; }
-        { hostName = "k2"; ip = "10.10.2.3"; }
-        { hostName = "k3"; ip = "10.10.2.2"; }
+        { hostName = "k2"; ip = "10.10.2.2"; }
+        { hostName = "k3"; ip = "10.10.2.5"; }
       ];
 
       kubernetes = { hostName, ip }:
