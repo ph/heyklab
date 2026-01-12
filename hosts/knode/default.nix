@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/roles/deployable.nix
+    ../../modules/roles/virtualization.nix
     ../../modules/roles/vm.nix
   ];
 
@@ -19,7 +20,7 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [ wget vim ];
+  environment.systemPackages = with pkgs; [ wget vim tree ];
 
   # Disable root login
   users.users.root.initialHashedPassword = lib.mkForce "!";
