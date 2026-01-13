@@ -60,7 +60,10 @@
                 address = ip;
                 prefixLength = 24;
               }];
-              defaultGateway = "10.10.0.1";
+              defaultGateway = {
+                interface = "ens18";
+                address = "10.10.0.1";
+              };
               nameservers = ["8.8.8.8"];
             };
 
