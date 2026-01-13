@@ -8,6 +8,6 @@
   };
 
   config = {
-
+    services.k3s.enable = true;
   };
 }
