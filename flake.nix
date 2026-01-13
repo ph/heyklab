@@ -44,7 +44,7 @@
           }
         );
 
-      k = { hostName, ip, primate ? false }: nixpkgs.lib.nixosSystem {
+      k = { hostName, ip, primary ? false }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
