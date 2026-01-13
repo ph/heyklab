@@ -1,5 +1,5 @@
 {
   services = {
-    qemuGuest.enable = true; 
+    qemuGuest.enable = true;
   };
 }

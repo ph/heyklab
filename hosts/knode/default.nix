@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ../../modules/roles/deployable.nix
@@ -9,7 +14,7 @@
   config = {
     boot = {
       loader = {
-        systemd-boot.enable = true; 
+        systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
       zfs.forceImportRoot = false;
@@ -21,7 +26,11 @@
       ];
     };
 
-    environment.systemPackages = with pkgs; [ wget vim tree ];
+    environment.systemPackages = with pkgs; [
+      wget
+      vim
+      tree
+    ];
 
     # Disable root login
     users.users.root.initialHashedPassword = lib.mkForce "!";

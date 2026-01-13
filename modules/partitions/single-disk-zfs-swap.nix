@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   disko.devices = {
-    disk  = {
+    disk = {
       x = {
         type = "disk";
         device = lib.mkDefault "/dev/sda";

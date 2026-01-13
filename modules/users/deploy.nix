@@ -16,11 +16,11 @@
 
   security.sudo.extraRules = [
     {
-      users = ["deploy"];
+      users = [ "deploy" ];
       commands = [
         {
           command = "ALL";
-          options = ["NOPASSWD"];
+          options = [ "NOPASSWD" ];
         }
       ];
     }

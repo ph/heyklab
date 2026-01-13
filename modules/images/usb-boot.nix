@@ -6,7 +6,7 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true; 
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     zfs.forceImportRoot = false;
@@ -23,7 +23,6 @@
 
   # Disable root login
   users.users.root.initialHashedPassword = lib.mkForce "!";
-
 
   system.stateVersion = config.system.nixos.release;
 }

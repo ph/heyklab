@@ -1,4 +1,9 @@
-{ pkgs, lib, disko, ... }:
+{
+  pkgs,
+  lib,
+  disko,
+  ...
+}:
 {
   modules = [
     disko.nixosModules.disko
@@ -7,7 +12,14 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = lib.mkForce ["btrfs" "zfs" "vfat" "xfs" "ntfs" "cifs"];
+    supportedFilesystems = lib.mkForce [
+      "btrfs"
+      "zfs"
+      "vfat"
+      "xfs"
+      "ntfs"
+      "cifs"
+    ];
   };
 
   networking = {
