@@ -44,14 +44,7 @@
           }
         );
 
-      forAllSystems = forSystems supportedSystems;
-    in
-    {
-      # Machines
-      # - leviathan
-      # - neferu
-      # - nimue
-      nixosConfigurations.k1 = nixpkgs.lib.nixosSystem {
+      k = { hostName, ip, primate ? false }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
@@ -59,7 +52,19 @@
           disko.nixosModules.disko
           ./modules/partitions/single-disk-zfs-swap.nix
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
-          { networking.hostName = "k1"; }
+          {
+            networking = {
+              useDHCP = false;
+              hostName = "k1";
+              interfaces.ens18.ipv4.addresses = [{
+                address = ip;
+                prefixLength = 24;
+              }];
+              defaultGateway = "10.10.0.1";
+              nameservers = ["8.8.8.8"];
+            };
+
+          }
           comin.nixosModules.comin
           ({
             services.comin = {
@@ -76,6 +81,19 @@
           agenix.nixosModules.default
         ];
       };
+
+      forAllSystems = forSystems supportedSystems;
+    in
+    {
+      # Machines
+      # - leviathan
+      # - neferu
+      # - nimue
+
+
+      nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.2.1"; };
+      nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.2.2"; };
+      nixosConfigurations.k3 = k { hostName = "k3"; ip = "10.10.2.3"; };
 
       # Minimal Bootable ISO
       packages = forAllSystems (
