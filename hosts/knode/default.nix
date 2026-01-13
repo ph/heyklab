@@ -14,13 +14,10 @@
       };
       zfs.forceImportRoot = false;
       supportedFilesystems = lib.mkForce [
-        "btrfs"
         "ext4"
         "zfs"
         "vfat"
-        "xfs"
         "ntfs"
-        "cifs"
       ];
     };
 
