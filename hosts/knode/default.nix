@@ -30,6 +30,8 @@
       wget
       vim
       tree
+      emacs
+      rsync
     ];
 
     # Disable root login
