@@ -10,10 +10,21 @@
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, disko, nixpkgs, nixos-facter-modules, comin, ... }@inputs:
+    { self,
+      disko,
+      nixpkgs,
+      nixos-facter-modules,
+      comin,
+      agenix,
+      ... }@inputs:
     let
       supportedSystems = [
         "x86_64-linux"
@@ -57,6 +68,7 @@
                 }];
               };
             })
+            agenix.nixosModules.default
           ];
         };
 
