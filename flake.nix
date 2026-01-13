@@ -105,6 +105,10 @@
             default = pkgs.mkShell {
               packages = with pkgs; [
                 nil
+                age
+                agenix
+                jq
+                kubectl
               ];
             };
           }
