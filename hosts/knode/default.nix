@@ -28,6 +28,9 @@
   users.users.root.initialHashedPassword = lib.mkForce "!";
 
   networking = {
+    useNetworkd = true;
+    nftables.enable = true;
+    firewall.filterForward = true;
     hostId = lib.mkDefault "deadbeef";
     hostName = lib.mkDefault "vm-boot";
   };
