@@ -63,6 +63,7 @@
           comin.nixosModules.comin
           ({
             services.comin = {
+              debug = true;
               enable = true;
               remotes = [
                 {
