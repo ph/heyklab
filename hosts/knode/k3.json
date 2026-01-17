@@ -574,16 +574,16 @@
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 32768,
-            "heads": 64,
-            "sectors": 32,
+            "cylinders": 13054,
+            "heads": 255,
+            "sectors": 63,
             "size": "0x0",
             "geo_type": "logical"
           },
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 67108864,
+            "value_1": 209715200,
             "value_2": 512
           }
         ],
@@ -1099,6 +1099,28 @@
     "network_interface": [
       {
         "index": 25,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 26,
         "attached_to": 17,
         "class_list": [
           "network_interface"
@@ -1136,28 +1158,6 @@
         ],
         "driver_modules": [
           "virtio_net"
-        ]
-      },
-      {
-        "index": 26,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -1709,7 +1709,7 @@
           "name": "Multi-bit",
           "value": 6
         },
-        "max_size": "0x5dc000",
+        "max_size": "0x5e8000",
         "error_handle": 65534,
         "slots": 1
       }
@@ -1726,7 +1726,7 @@
         "handle": 4865,
         "array_handle": 4096,
         "start_address": "0x100000000",
-        "end_address": "0x1b7000000",
+        "end_address": "0x1ba000000",
         "part_width": 1
       }
     ],
@@ -1741,7 +1741,7 @@
         "error_handle": 65534,
         "width": 0,
         "ecc_bits": 0,
-        "size": 6144000,
+        "size": 6193152,
         "form_factor": {
           "hex": "0009",
           "name": "DIMM",
