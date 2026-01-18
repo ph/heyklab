@@ -55,7 +55,7 @@
           {
             networking = {
               useDHCP = false;
-              hostName = "k1";
+              hostName = hostName;
               interfaces.ens18.ipv4.addresses = [{
                 address = ip;
                 prefixLength = 24;
