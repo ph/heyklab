@@ -4,7 +4,7 @@ let
 in {
   options.custom.k8s = {
     primary = lib.mkOption {
-      type = lib.types.boolean;
+      type = lib.types.bool;
       default = false;
     };
   };
