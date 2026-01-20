@@ -2,7 +2,7 @@
 let
   cfg = config.custom.k8s;
 in {
-  options.k8s = {
+  options.custom.k8s = {
     primary = lib.mkOption {
       type = lib.types.boolean;
       default = false;
