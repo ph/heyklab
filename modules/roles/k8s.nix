@@ -9,7 +9,7 @@ in {
     };
 
     mainServer = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
     };
 
     token = lib.mkOption {
