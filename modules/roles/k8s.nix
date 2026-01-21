@@ -34,9 +34,9 @@ in {
         token = cfg.token;
         role = "server";
         clusterInit = cfg.primary;
-        extraFlags = toString [
-          "--debug" # Optionally add additional args to k3s
-        ];
+        # extraFlags = toString [
+        #   "--debug" # Optionally add additional args to k3s
+        # ];
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";

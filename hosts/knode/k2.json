@@ -499,7 +499,7 @@
         "power_management": [
           ""
         ],
-        "bogo": 8016,
+        "bogo": 6383,
         "cache": 16384,
         "page_size": 4096,
         "physical_id": 0,
@@ -782,7 +782,7 @@
         "resources": [
           {
             "type": "phys_mem",
-            "range": 8053063680
+            "range": 5905580032
           }
         ]
       }
@@ -1709,7 +1709,7 @@
           "name": "Multi-bit",
           "value": 6
         },
-        "max_size": "0x7dc000",
+        "max_size": "0x5e8000",
         "error_handle": 65534,
         "slots": 1
       }
@@ -1726,7 +1726,7 @@
         "handle": 4865,
         "array_handle": 4096,
         "start_address": "0x100000000",
-        "end_address": "0x237000000",
+        "end_address": "0x1ba000000",
         "part_width": 1
       }
     ],
@@ -1741,7 +1741,7 @@
         "error_handle": 65534,
         "width": 0,
         "ecc_bits": 0,
-        "size": 8241152,
+        "size": 6193152,
         "form_factor": {
           "hex": "0009",
           "name": "DIMM",
