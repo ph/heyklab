@@ -30,7 +30,6 @@
       wget
       vim
       tree
-      emacs
     ];
 
     # Disable root login
