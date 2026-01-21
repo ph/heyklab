@@ -38,7 +38,7 @@ in {
           "--debug" # Optionally add additional args to k3s
         ];
       }
-      (lib.mkIf cfg.mainServer {
+      (lib.mkIf (cfg.mainServer != "") {
         serverAddr = "https://${cfg.mainServer}:6443";
       })
     ];
