@@ -33,6 +33,19 @@
       tree
     ];
 
+    services.avahi = {
+      nssmdns = true;
+      enable = true;
+      ipv4 = true;
+      ipv6 = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
+    };
+
+
     # Disable root login
     users.users.root.initialHashedPassword = lib.mkForce "!";
 
