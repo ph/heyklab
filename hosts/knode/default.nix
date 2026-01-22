@@ -45,6 +45,12 @@
       };
     };
 
+    services.resolved = {
+      enable = true;
+      fallbackDns = [
+        "8.8.8.8"
+      ];
+    };
 
     # Disable root login
     users.users.root.initialHashedPassword = lib.mkForce "!";
