@@ -1,7 +1,7 @@
 { ... }:
 {
   config = {
-    boot.supportedFilesystems = "nfs";
+    boot.supportedFilesystems = [ "nfs" ];
     services.rpcbind.enable = true;
 
     systemd.mounts = [{
