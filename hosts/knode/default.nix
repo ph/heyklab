@@ -9,6 +9,7 @@
     ../../modules/roles/deployable.nix
     ../../modules/roles/k8s.nix
     ../../modules/roles/vm.nix
+    ../../modules/roles/nfs-ogdru-jahad.nix
   ];
 
   config = {
@@ -31,6 +32,11 @@
       vim
       tree
     ];
+
+    fileSystems."/mnt/ogdru-jahad" = {
+      device = "192.168.1.245:/DATA";
+      fsType = "nfs";
+    };
 
     # Disable root login
     users.users.root.initialHashedPassword = lib.mkForce "!";
