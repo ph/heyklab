@@ -15,8 +15,7 @@
       automountConfig = {
         TimeoutIdleSec = "600";
       };
+      where = "/mnt/ogdru-jahad";
     }];
-
-    where = "/mnt/ogdru-jahad";
   };
 }
