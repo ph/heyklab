@@ -2,7 +2,6 @@
 {
   config = {
     boot.supportedFilesystems = [ "nfs" ];
-    services.rpcbind.enable = true;
 
     systemd.mounts = [{
       type = "nfs";
