@@ -31,6 +31,7 @@
       wget
       vim
       tree
+      nfs-utils
     ];
 
     services.avahi = {
