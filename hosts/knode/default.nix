@@ -30,7 +30,6 @@
     environment.systemPackages = with pkgs; [
       wget
       vim
-      tree
       nfs-utils
     ];
 
