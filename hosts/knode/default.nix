@@ -56,6 +56,10 @@
     users.users.root.initialHashedPassword = lib.mkForce "!";
 
     networking = {
+      hosts = {
+        "192.168.1.152" = [ "ogdru-jahad" "ogdru-jahad.local" ];
+      };
+
       useNetworkd = true;
       nftables.enable = true;
       firewall.filterForward = true;

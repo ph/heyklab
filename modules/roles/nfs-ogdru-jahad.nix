@@ -6,7 +6,7 @@
 
     systemd.mounts = [{
       type = "nfs";
-      what = "ogdru-jahad.local:/volume1/leviathan";
+      what = "ogdru-jahad:/volume1/leviathan";
       where = "/mnt/ogdru-jahad";
     }];
 
