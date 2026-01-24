@@ -9,7 +9,6 @@
       options = [
         "defaults"
         "nofail"
-        "vers=4.2"
       ];
     };
   };
