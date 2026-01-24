@@ -4,8 +4,8 @@
     environment.systemPackages = with pkgs; [ nfs-utils ];
     boot.supportedFilesystems = [ "nfs" ];
 
-    fileSystems."/mnt/ogdru-jahad/leviathan" = {
-      device = "ogdru-jahad:/volume1/leviathan";
+    fileSystems."/mnt/ogdru-jahad/servers" = {
+      device = "ogdru-jahad:/volume1/servers";
       fsType = "nfs4";
       options = [
         "x-systemd.automount"
