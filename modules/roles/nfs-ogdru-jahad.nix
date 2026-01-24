@@ -3,20 +3,17 @@
   config = {
     environment.systemPackages = with pkgs; [ nfs-utils ];
     boot.supportedFilesystems = [ "nfs" ];
-    fileSystems."/mnt/ogdru-jahad" = {
+
+    fileSystems."/mnt/ogdru-jahad/leviathan" = {
       device = "ogdru-jahad:/volume1/leviathan";
-      fsType = "nfs4";
+      fsType = "nfs";
       options = [
-        "defaults"
-        "nofail"
+        "x-systemd.automount"
+        "noauto"
+        "x-systemd.idle-timeout=60"
+        "x-systemd.device-timeout=5s"
+        "x-systemd.mount-timeout=5s"
       ];
     };
   };
 }
-
-    #   options = [
-    #     "x-systemd.automount"
-    #     "noauto"
-    #     "x-systemd.idle-timeout=600"
-    #   ];
-    # };
