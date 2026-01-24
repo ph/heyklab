@@ -1,21 +1,15 @@
 { ... }:
 {
   config = {
+    fileSystems."/mnt/ogdru-jahad" = {
+      device = "ogdru-jahad:/volume1/leviathan";
+      fsType = "nfs";
+    };
     boot.supportedFilesystems = [ "nfs" ];
-    services.rpcbind.enable = true;
-
-    systemd.mounts = [{
-      type = "nfs";
-      what = "ogdru-jahad:/volume1/leviathan";
-      where = "/mnt/ogdru-jahad";
-    }];
-
-    systemd.automounts = [{
-      wantedBy = [ "multi-user.target" ];
-      automountConfig = {
-        TimeoutIdleSec = "600";
-      };
-      where = "/mnt/ogdru-jahad";
-    }];
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
   };
 }
