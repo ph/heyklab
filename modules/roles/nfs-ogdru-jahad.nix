@@ -6,7 +6,7 @@
 
     fileSystems."/mnt/ogdru-jahad/leviathan" = {
       device = "ogdru-jahad:/volume1/leviathan";
-      fsType = "nfs";
+      fsType = "nfs4";
       options = [
         "x-systemd.automount"
         "noauto"
