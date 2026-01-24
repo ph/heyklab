@@ -7,7 +7,7 @@
 {
   imports = [
     ../../modules/roles/deployable.nix
-    ../../modules/roles/k8s.nix
+    # ../../modules/roles/k8s.nix
     ../../modules/roles/vm.nix
     ../../modules/roles/nfs-ogdru-jahad.nix
   ];
