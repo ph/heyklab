@@ -49,12 +49,12 @@
 
         modules = [
           ./hosts/knode
-          # {
-          #   custom.k8s = {
-          #     primary = primary; 
-          #     mainServer = "10.10.0.11";
-          #   };
-          # }
+          {
+            custom.k8s = {
+              primary = primary; 
+              mainServer = "10.10.0.11";
+            };
+          }
           disko.nixosModules.disko
           ./modules/partitions/single-disk-zfs-swap.nix
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
@@ -68,16 +68,7 @@
               }];
               defaultGateway = { address = "10.10.0.1"; interface = "ens18"; };
               nameservers = ["8.8.8.8"];
-
-              routes = [
-                {
-                  address = "192.168.1.0";
-                  prefixLength = 24;
-                  interface = "ens18";
-                }
-              ];
             };
-
           }
           comin.nixosModules.comin
           ({
