@@ -68,6 +68,14 @@
               }];
               defaultGateway = { address = "10.10.0.1"; interface = "ens18"; };
               nameservers = ["8.8.8.8"];
+
+              routes = [
+                {
+                  address = "192.168.1.0";
+                  prefixLength = 24;
+                  interface = "ens18";
+                }
+              ];
             };
 
           }

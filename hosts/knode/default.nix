@@ -60,6 +60,7 @@
       hosts = {
         "192.168.1.152" = [ "ogdru-jahad" "ogdru-jahad.local" ];
       };
+
       nftables.enable = true;
       firewall.filterForward = true;
       hostId = lib.mkDefault "deadbeef";
