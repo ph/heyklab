@@ -7,6 +7,7 @@
 {
   imports = [
     ../../modules/roles/deployable.nix
+    ../../modules/roles/nix-background-tasks.nix
     ../../modules/roles/k8s.nix
     ../../modules/roles/vm.nix
     ../../modules/roles/nfs-ogdru-jahad.nix
