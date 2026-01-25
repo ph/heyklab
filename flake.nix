@@ -97,9 +97,9 @@
       # - nimue
 
 
-      nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.2.1"; primary = true; };
-      nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.2.2"; };
-      nixosConfigurations.k3 = k { hostName = "k3"; ip = "10.10.2.3"; };
+      nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.2.11"; primary = true; };
+      nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.2.12"; };
+      nixosConfigurations.k3 = k { hostName = "k3"; ip = "10.10.2.13"; };
 
       # Minimal Bootable ISO
       packages = forAllSystems (
