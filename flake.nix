@@ -49,12 +49,12 @@
 
         modules = [
           ./hosts/knode
-          {
-            custom.k8s = {
-              primary = primary; 
-              mainServer = "10.10.0.11";
-            };
-          }
+          # {
+          #   custom.k8s = {
+          #     primary = primary; 
+          #     mainServer = "10.10.0.11";
+          #   };
+          # }
           disko.nixosModules.disko
           ./modules/partitions/single-disk-zfs-swap.nix
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
