@@ -60,7 +60,7 @@
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
           {
             networking = {
-              dhcpcd.enable = false;
+              #dhcpcd.enable = false;
               hostName = hostName;
               interfaces.ens18.ipv4.addresses = [{
                 address = ip;
