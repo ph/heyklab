@@ -499,7 +499,7 @@
         "power_management": [
           ""
         ],
-        "bogo": 8016,
+        "bogo": 8015,
         "cache": 16384,
         "page_size": 4096,
         "physical_id": 0,

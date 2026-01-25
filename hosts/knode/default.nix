@@ -10,7 +10,7 @@
     ../../modules/roles/nix-background-tasks.nix
     ../../modules/roles/k8s.nix
     ../../modules/roles/vm.nix
-    # ../../modules/roles/nfs-ogdru-jahad.nix
+    ../../modules/roles/nfs-ogdru-jahad.nix
   ];
 
   config = {
