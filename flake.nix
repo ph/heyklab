@@ -49,12 +49,12 @@
 
         modules = [
           ./hosts/knode
-          # {
-          #   custom.k8s = {
-          #     primary = primary; 
-          #     mainServer = "10.10.2.1";
-          #   };
-          # }
+          {
+            custom.k8s = {
+              primary = primary; 
+              mainServer = "10.10.0.11";
+            };
+          }
           disko.nixosModules.disko
           ./modules/partitions/single-disk-zfs-swap.nix
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
@@ -150,4 +150,3 @@
 # nix --extra-experimental-features nix-command --extra-experimental-features flakes run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-facter ./hosts/knode/facter.json  --flake .#knode-bootstrap --target-host deploy@10.10.229.88
 #
 # nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-facter ./hosts/knode/k1.json  --flake .#k1 --target-host deploy@10.10.229.88
-
