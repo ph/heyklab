@@ -60,7 +60,7 @@
           { hardware.facter.reportPath = ./hosts/knode/facter.json; }
           {
             networking = {
-              dhcpcd.enable = false;
+              # dhcpcd.enable = false;
               hostName = hostName;
               interfaces.ens18.ipv4.addresses = [{
                 address = ip;
@@ -95,7 +95,6 @@
       # - leviathan
       # - neferu
       # - nimue
-
 
       nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.10.11"; primary = true; };
       nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.10.12"; };
