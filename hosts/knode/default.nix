@@ -32,6 +32,7 @@
       wget
       vim
       nfs-utils
+      fluxcd
     ];
 
     services.avahi = {
