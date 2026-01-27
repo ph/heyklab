@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.custom.k8s;
 in {
@@ -19,6 +19,15 @@ in {
   };
 
   config = {
+    environment.variables = rec {
+      KUBECONFIG = "/etc/rancher/k3s.yaml";
+    };
+
+    environment.systemPackages = with pkgs; [
+      kubectl
+      fluxcd
+    ];
+    
     networking.nftables.enable = true;
     networking.firewall = {
       allowedTCPPorts = [

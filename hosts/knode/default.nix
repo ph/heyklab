@@ -31,8 +31,6 @@
     environment.systemPackages = with pkgs; [
       wget
       vim
-      nfs-utils
-      fluxcd
     ];
 
     services.avahi = {
