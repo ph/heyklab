@@ -19,8 +19,8 @@ in {
   };
 
   config = {
-    environment.variables = rec {
-      KUBECONFIG = "/etc/rancher/k3s.yaml";
+    environment.variables = {
+      KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };
 
     environment.systemPackages = with pkgs; [
