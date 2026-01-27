@@ -40,9 +40,10 @@ in {
         8472 # k3s, flannel: required if using multi-node for inter-node networking
       ];
     };
-
     services.k3s = lib.mkMerge [
       {
+        # manifests.nginx.source = ../../manifests/fluxcd.yaml;
+
         enable = true; 
         token = cfg.token;
         role = "server";
