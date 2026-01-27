@@ -24,7 +24,7 @@
       nixpkgs,
       nixos-facter-modules,
       comin,
-      agenix,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -49,6 +49,7 @@
 
         modules = [
           ./hosts/knode
+          sops-nix.nixosModules.sops
           {
             custom.k8s = {
               primary = primary; 
@@ -83,7 +84,6 @@
               ];
             };
           })
-          agenix.nixosModules.default
         ];
       };
 
