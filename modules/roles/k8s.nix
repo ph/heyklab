@@ -49,11 +49,11 @@ in {
       ];
     };
 
-    systemd.services.k3s = {
-      wants = [ "network-online.target" "sops-nix.service" ];
-      after = [ "network-online.target" "sops-nix.service" ];
-      requires = [ "sops-nix.service" ];
-    };
+    # systemd.services.k3s = {
+    #   wants = [ "network-online.target" "sops-nix.service" ];
+    #   after = [ "network-online.target" "sops-nix.service" ];
+    #   requires = [ "sops-nix.service" ];
+    # };
 
     services.k3s = lib.mkMerge [
       {
