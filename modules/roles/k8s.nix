@@ -50,8 +50,8 @@ in {
     };
 
     systemd.services.k3s = {
-      wants = [ "network-online.target" ] ++ "sops-nix.service";
-      after = [ "network-online.target" ] ++ "sops-nix.service";
+      wants = [ "network-online.target" "sops-nix.service" ];
+      after = [ "network-online.target" "sops-nix.service" ];
       requires = "sops-nix.service";
     };
 
