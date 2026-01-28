@@ -59,7 +59,7 @@
           }
           {
             custom.k8s = {
-              tokenPath = "/var/secrets/token";
+              tokenPath = "/run/secrets/token";
               primary = primary; 
               mainServer = "10.10.0.11";
             };
