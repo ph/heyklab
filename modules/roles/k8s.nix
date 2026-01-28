@@ -48,7 +48,7 @@ in {
         8472 # k3s, flannel: required if using multi-node for inter-node networking
       ];
     };
-    systemd.user.services.k3s.Unit.After = [ "sops-nix.service" ];
+    systemd.services.k3s.Unit.After = [ "sops-nix.service" ];
     services.k3s = lib.mkMerge [
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
