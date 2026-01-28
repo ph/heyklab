@@ -32,14 +32,6 @@
         "x86_64-linux"
       ];
 
-      sops.defaultSopsFile = ./secrets/k8s.yaml;
-      sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      sops.secrets.token = {
-        mode = "0400";
-        owner = "root";
-        path = "/var/lib/rancher/k3s/server/token";
-      };
-
       forSystems =
         s: f:
         inputs.nixpkgs.lib.genAttrs s (
@@ -58,6 +50,15 @@
         modules = [
           ./hosts/knode
           sops-nix.nixosModules.sops
+          {
+            sops.defaultSopsFile = ./secrets/k8s.yaml;
+            sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+            sops.secrets.token = {
+              mode = "0400";
+              owner = "root";
+              path = "/var/lib/rancher/k3s/server/token";
+            };
+          }
           {
             custom.k8s = {
               tokenPath = "/var/lib/rancher/k3s/server/token";
