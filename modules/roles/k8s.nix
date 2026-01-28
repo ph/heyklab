@@ -21,7 +21,7 @@ in {
   config = {
     assertions = [
       {
-        assertion = tokenPath != null && tokenPath != "";
+        assertion = cfg.tokenPath != null && cfg.tokenPath != "";
         message = "k3s token path secret must be configured";
       }
     ];
@@ -55,9 +55,10 @@ in {
         token = cfg.token;
         role = "server";
         clusterInit = cfg.primary;
-        # extraFlags = toString [
-        #   "--debug" # Optionally add additional args to k3s
-        # ];
+        extraFlags = toString [
+          "--token-file ${cfg.tokenPath}"
+          #   "--debug" # Optionally add additional args to k3s
+        ];
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
