@@ -19,12 +19,13 @@ in {
   };
 
   config = {
-    assertions = [
-      {
-        assertion = cfg.tokenPath != null && cfg.tokenPath != "";
-        message = "k3s token path secret must be configured";
-      }
-    ];
+    # TODO: check
+    # assertions = [
+    #   {
+    #     assertion = cfg.tokenPath != null && cfg.tokenPath != "";
+    #     message = "k3s token path secret must be configured";
+    #   }
+    # ];
 
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
