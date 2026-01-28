@@ -14,7 +14,7 @@ in {
 
     tokenPath = lib.mkOption {
       type = lib.types.str;
-      default = "/var/lib/rancher/k3s/server/token";
+      default = "/run/secrets/token";
     };
   };
 
