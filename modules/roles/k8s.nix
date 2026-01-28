@@ -59,7 +59,7 @@ in {
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
 
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = toString [
