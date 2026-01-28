@@ -1,0 +1,13 @@
+keys:
+  - &admin_ph age10k77xc9947hjvrkf8vc266d8tkhd699akt73g0a5t8kzgdjkqekqtu9wm8
+  - &server_k1 age15vm040mwl9at42946jx6dzfnhvnk5czdslznq9tf52d3rp3gv5mqrlsepy
+  - &server_k2 age13cgdn7g6xzdnpegfr8nyrzgf06eedzzzazwu8spd7g9zlkrqgvns904py2
+  - &server_k3 age12f7f94wvanv3vn6ps4mrhh0l4rzw4d09lycgxnchhgjc2n3ujcfq662v7h
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_ph
+      - *server_k1
+      - *server_k2
+      - *server_k3

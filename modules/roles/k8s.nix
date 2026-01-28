@@ -12,13 +12,20 @@ in {
       type = lib.types.str;
     };
 
-    token = lib.mkOption {
+    tokenPath = lib.mkOption {
       type = lib.types.str;
-      default = "mysecret";
+      default = "/var/lib/rancher/k3s/server/token";
     };
   };
 
   config = {
+    assertions = [
+      {
+        assertion = tokenPath != null && tokenPath != "";
+        message = "k3s token path secret must be configured";
+      }
+    ];
+
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };

@@ -32,6 +32,14 @@
         "x86_64-linux"
       ];
 
+      sops-nix.defaultSopsFile = ./secrets/k8s.yaml;
+      sops-nix.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sops-nix.secrets.token = {
+        mode = "0400";
+        owner = "root";
+        path = "/var/lib/rancher/k3s/server/token";
+      };
+
       forSystems =
         s: f:
         inputs.nixpkgs.lib.genAttrs s (
@@ -52,6 +60,7 @@
           sops-nix.nixosModules.sops
           {
             custom.k8s = {
+              tokenPath = "/var/lib/rancher/k3s/server/token";
               primary = primary; 
               mainServer = "10.10.0.11";
             };
@@ -95,6 +104,7 @@
       # - neferu
       # - nimue
 
+
       nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.0.11"; primary = true; };
       nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.0.12"; };
       nixosConfigurations.k3 = k { hostName = "k3"; ip = "10.10.0.13"; };
@@ -135,9 +145,10 @@
             packages = with pkgs; [
               nil
               age
-              # agenix
+              sops
               jq
               kubectl
+              ssh-to-age
             ];
           };
         }
