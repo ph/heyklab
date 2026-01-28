@@ -53,11 +53,13 @@
           {
             sops.defaultSopsFile = ./secrets/k8s.yaml;
             sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-            sops.secrets."token" = {};
+            sops.secrets.token = {
+              path = "/run/secrets/token";
+            };
           }
           {
             custom.k8s = {
-              tokenPath = "/run/secrets/token";
+              tokenPath = "/var/secrets/token";
               primary = primary; 
               mainServer = "10.10.0.11";
             };
