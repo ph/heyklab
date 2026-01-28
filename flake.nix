@@ -32,9 +32,9 @@
         "x86_64-linux"
       ];
 
-      sops-nix.defaultSopsFile = ./secrets/k8s.yaml;
-      sops-nix.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      sops-nix.secrets.token = {
+      sops.defaultSopsFile = ./secrets/k8s.yaml;
+      sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sops.secrets.token = {
         mode = "0400";
         owner = "root";
         path = "/var/lib/rancher/k3s/server/token";
@@ -145,11 +145,10 @@
             packages = with pkgs; [
               nil
               age
-              sops
               jq
               kubectl
               ssh-to-age
-            ];
+            ] ++ [ pkgs.sops ];
           };
         }
       );
