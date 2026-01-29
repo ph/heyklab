@@ -1,8 +1,8 @@
 keys:
   - &admin_ph age10k77xc9947hjvrkf8vc266d8tkhd699akt73g0a5t8kzgdjkqekqtu9wm8
-  - &server_k1 age15vm040mwl9at42946jx6dzfnhvnk5czdslznq9tf52d3rp3gv5mqrlsepy
-  - &server_k2 age13cgdn7g6xzdnpegfr8nyrzgf06eedzzzazwu8spd7g9zlkrqgvns904py2
-  - &server_k3 age12f7f94wvanv3vn6ps4mrhh0l4rzw4d09lycgxnchhgjc2n3ujcfq662v7h
+  - &server_k1 age1ucs3rwvkdwkc2z7y0ykwkryrn3wrd0zs7vgeagxkuct3rflfdp8sds0u8z
+  - &server_k2 age1kmztx26txw7hn3x7x0p62cz3qlvswe06mmc8pz9675tujpuxf4nqsf32d6
+  - &server_k3 age1tlpd2ehghfeu7khqh4xm666a88hyyaeq59yznpfaa7gxranh63hqsxr8xv
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

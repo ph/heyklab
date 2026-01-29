@@ -35,7 +35,7 @@
     ];
 
     services.avahi = {
-      nssmdns = true;
+      nssmdns4 = true;
       enable = true;
       ipv4 = true;
       ipv6 = true;
@@ -48,9 +48,13 @@
 
     services.resolved = {
       enable = true;
-      fallbackDns = [
-        "8.8.8.8"
-      ];
+      settings = {
+        Resolve = {
+          FallbackDNS = [
+            "8.8.8.8"
+          ];
+        };
+      };
     };
 
     # Disable root login
