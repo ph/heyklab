@@ -65,6 +65,14 @@ in {
           "--token-file ${cfg.tokenPath}"
           #   "--debug" # Optionally add additional args to k3s
         ];
+
+        autoDeployCharts.flux2 = {
+          name = "flux2";
+          repo = "https://fluxcd-community.github.io/helm-charts";
+          version = "2.17.2";
+          hash = "e08b014bd5594767a3e6f5753f8393b3273636bd9b02ed832a7a9b9a2bdf6c13";
+
+        };
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
