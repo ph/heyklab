@@ -66,11 +66,15 @@ in {
           #   "--debug" # Optionally add additional args to k3s
         ];
 
+        # bootstrap flux via helm so we don't have to ever touch
+        # the flux bootstrap cli.
         autoDeployCharts.flux2 = {
           name = "flux2";
           repo = "https://fluxcd-community.github.io/helm-charts";
           version = "2.17.2";
           hash = "sha256-4IsBS9VZR2ej5vV1P4OTsyc2Nr2bAu2DKnqbmivfbBM=";
+          targetNamespace = "flux-system";
+          createNamespace = true;
         };
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
