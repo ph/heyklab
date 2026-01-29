@@ -51,11 +51,25 @@
           ./hosts/knode
           sops-nix.nixosModules.sops
           {
-            sops.defaultSopsFile = ./secrets/k8s.yaml;
-            sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-            sops.secrets.token = {
-              path = "/run/secrets/token";
-              restartUnits = [ "k3s.service" ];
+            sops = {
+              defaultSopsFile = ./secrets/k8s.yaml;
+              age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+              secrets.token = {
+                path = "/run/secrets/token";
+                restartUnits = [ "k3s.service" ];
+              };
+
+              # Expose github token for FluxCD
+              secrets.github_token = {};
+              templates.github_token = {
+                content = builtins.toJSON {
+                  apiVersion = "v1";
+                  kind = "Secret";
+                  metadata.name = "github_token";
+                  stringData.github_token = placeholder.github_token;
+                  path = "/var/lib/rancher/k3s/server/manifests/github_token.json";
+                };
+              };
             };
           }
           {
