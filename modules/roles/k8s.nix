@@ -59,9 +59,6 @@ in {
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
         enable = true; 
-        services = {
-          metrics-server = false;
-        };
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = toString [
