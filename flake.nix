@@ -66,7 +66,7 @@
                   apiVersion = "v1";
                   kind = "Secret";
                   metadata.name = "github_token";
-                  stringData.github_token = placeholder.github_token;
+                  stringData.github_token = sops-nix.nixosModules.sops.placeholder.github_token;
                   path = "/var/lib/rancher/k3s/server/manifests/github_token.json";
                 };
               };
