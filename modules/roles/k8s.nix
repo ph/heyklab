@@ -49,7 +49,7 @@ in {
         clusterInit = cfg.primary;
         extraFlags = toString [
           "--token-file ${cfg.tokenPath}"
-          #   "--debug" # Optionally add additional args to k3s
+          "--debug" # Optionally add additional args to k3s
         ];
 
         # bootstrap flux via helm so we don't have to ever touch
