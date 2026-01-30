@@ -57,6 +57,7 @@ in {
         autoDeployCharts.flux2 = {
           name = "flux2";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+          digest = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
           version = "0.40.0";
           targetNamespace = "flux-system";
           createNamespace = true;
