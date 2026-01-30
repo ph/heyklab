@@ -9,7 +9,7 @@
         metadata.name = "github-token";
         namespace = "flux-system";
         stringData.github_token = config.sops.placeholder.github-token;
-      }udo
+      };
       path = "/var/lib/rancher/k3s/server/manifests/github-token.json";
     };
   };
