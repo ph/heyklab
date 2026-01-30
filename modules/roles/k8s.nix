@@ -56,6 +56,7 @@ in {
     # };
 
     services.k3s = lib.mkMerge [
+      
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
         enable = true; 
@@ -76,6 +77,47 @@ in {
           targetNamespace = "flux-system";
           createNamespace = true;
         };
+
+        manifests.fluxResources.content = [
+          {
+            apiVersion = "source.toolkit.fluxcd.io/v1beta1";
+            kind = "GitRepository";
+            metadata = {
+              name = "my-repository";
+              namespace = "flux-system";
+            };
+            spec = {
+              interval = "1m";
+              url = "https://github.com/ph/heyklab.git";
+              ref = {
+                branch = "main";
+              };
+            };
+          }
+
+          {
+            apiVersion = "kustomize.toolkit.fluxcd.io/v1beta1";
+            kind = "Kustomization";
+            metadata = {
+              name = "my-app";
+              namespace = "flux-system";
+            };
+            spec = {
+              interval = "1m";
+              path = "./cluster";
+              prune = true;
+              sourceRef = {
+                kind = "GitRepository";
+                name = "my-repository";
+                targetNamespace = "default";
+              };
+              url = "https://github.com/ph/heyklab.git";
+              ref = {
+                branch = "main";
+              };
+            };
+          }
+        ];
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
