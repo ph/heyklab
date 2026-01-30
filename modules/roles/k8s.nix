@@ -49,19 +49,19 @@ in {
         clusterInit = cfg.primary;
         extraFlags = toString [
           "--token-file ${cfg.tokenPath}"
-          "--debug" # Optionally add additional args to k3s
+          # "--debug" # Optionally add additional args to k3s
         ];
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
-        # autoDeployCharts.flux2 = {
-        #   name = "flux2";
-        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-        #   hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
-        #   version = "0.40.0";
-        #   targetNamespace = "flux-system";
-        #   createNamespace = true;
-        # };
+        autoDeployCharts.flux2 = {
+          name = "flux2";
+          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+          hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
+          version = "0.40.0";
+          targetNamespace = "flux-system";
+          createNamespace = true;
+        };
 
         manifests.f.content = {
           apiVersion = "fluxcd.controlplane.io/v1";
