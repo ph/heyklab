@@ -78,7 +78,7 @@ in {
           createNamespace = true;
         };
 
-        manifests.fluxResources.content = [
+        manifests.flux.content = [
           {
             apiVersion = "source.toolkit.fluxcd.io/v1beta1";
             kind = "GitRepository";
