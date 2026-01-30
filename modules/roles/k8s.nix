@@ -122,11 +122,12 @@ in {
             sync = {
               kind = "GitRepository";
               url = "https://github.com/ph/heyklab.git";
-              ref = {
-                branch = "main";
-              };
+              ref = "refs/heads/main";
               path = "clusters/";
-              pullSecret = "ghcr-auth";
+              interval = "1m";
+              secretRef = {
+                name = "flux-system";
+              };
             };
           };
         };
