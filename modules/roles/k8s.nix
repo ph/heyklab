@@ -49,17 +49,11 @@ in {
       ];
     };
 
-    # systemd.services.k3s = {
-    #   wants = [ "network-online.target" "sops-nix.service" ];
-    #   after = [ "network-online.target" "sops-nix.service" ];
-    #   requires = [ "sops-nix.service" ];
-    # };
-
     services.k3s = lib.mkMerge [
       
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = toString [
@@ -71,53 +65,11 @@ in {
         # the flux bootstrap cli.
         autoDeployCharts.flux2 = {
           name = "flux2";
-          repo = "https://fluxcd-community.github.io/helm-charts";
-          version = "2.17.2";
-          hash = "sha256-4IsBS9VZR2ej5vV1P4OTsyc2Nr2bAu2DKnqbmivfbBM=";
+          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+          version = "0.40.0";
           targetNamespace = "flux-system";
           createNamespace = true;
         };
-
-        manifests.flux.content = [
-          {
-            apiVersion = "source.toolkit.fluxcd.io/v1beta1";
-            kind = "GitRepository";
-            metadata = {
-              name = "my-repository";
-              namespace = "flux-system";
-            };
-            spec = {
-              interval = "1m";
-              url = "https://github.com/ph/heyklab.git";
-              ref = {
-                branch = "main";
-              };
-            };
-          }
-
-          {
-            apiVersion = "kustomize.toolkit.fluxcd.io/v1beta1";
-            kind = "Kustomization";
-            metadata = {
-              name = "my-app";
-              namespace = "flux-system";
-            };
-            spec = {
-              interval = "1m";
-              path = "./cluster";
-              prune = true;
-              sourceRef = {
-                kind = "GitRepository";
-                name = "my-repository";
-                targetNamespace = "default";
-              };
-              url = "https://github.com/ph/heyklab.git";
-              ref = {
-                branch = "main";
-              };
-            };
-          }
-        ];
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
