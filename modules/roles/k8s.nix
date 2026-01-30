@@ -19,21 +19,12 @@ in {
   };
 
   config = {
-    # TODO: check
-    # assertions = [
-    #   {
-    #     assertion = cfg.tokenPath != null && cfg.tokenPath != "";
-    #     message = "k3s token path secret must be configured";
-    #   }
-    # ];
-
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };
 
     environment.systemPackages = with pkgs; [
       kubectl
-      fluxcd
     ];
     
     networking.nftables.enable = true;
