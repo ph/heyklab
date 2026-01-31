@@ -125,9 +125,7 @@ in {
               ref = "refs/heads/main";
               path = "clusters/";
               interval = "1m";
-              secretRef = {
-                name = "github-token";
-              };
+              pullSecret = "github-token";
             };
           };
         };
