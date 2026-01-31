@@ -97,7 +97,7 @@ in {
               size = "medium";
               multitenant = false;
               networkPolicy = true;
-              domain = "cluster.local";
+              domain = "heyk.local";
             };
 
             kustomize = {
