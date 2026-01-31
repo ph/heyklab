@@ -47,17 +47,6 @@
       };
     };
 
-    services.resolved = {
-      enable = true;
-      settings = {
-        Resolve = {
-          FallbackDNS = [
-            "8.8.8.8"
-          ];
-        };
-      };
-    };
-
     # Disable root login
     users.users.root.initialHashedPassword = lib.mkForce "!";
 
@@ -65,6 +54,11 @@
       hosts = {
         "192.168.1.152" = [ "ogdru-jahad" "ogdru-jahad.local" ];
       };
+
+      nameservers = [
+        "8.8.8.8"
+        "1.1.1.1"
+      ];
 
       nftables.enable = true;
       firewall.filterForward = true;
