@@ -126,7 +126,7 @@ in {
               path = "clusters/";
               interval = "1m";
               secretRef = {
-                name = "flux-system";
+                name = "github-token";
               };
             };
           };

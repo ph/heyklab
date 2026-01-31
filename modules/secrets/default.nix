@@ -8,7 +8,10 @@
         kind = "Secret";
         metadata.name = "github-token";
         namespace = "flux-system";
-        stringData.github_token = config.sops.placeholder.github-token;
+        stringData = {
+          username = "ph";
+          password = config.sops.placeholder.github-token;
+        };
       };
       path = "/var/lib/rancher/k3s/server/manifests/github-token.json";
     };
