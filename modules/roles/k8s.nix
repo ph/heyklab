@@ -71,6 +71,14 @@ in {
           # "--debug" # Optionally add additional args to k3s
         ];
 
+        containerdConfigTemplate = ''
+
+      {{ template "base" . }}
+
+      [plugins."io.containerd.grpc.v1.cri".containerd]
+        snapshotter = "zfs"
+    '';
+
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
         autoDeployCharts.flux2 = {
