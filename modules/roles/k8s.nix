@@ -97,8 +97,8 @@ in {
           # "--debug" # Optionally add additional args to k3s
         ];
 
-        bootstrap flux via helm so we don't have to ever touch
-        the flux bootstrap cli.
+        # bootstrap flux via helm so we don't have to ever touch
+        # the flux bootstrap cli.
         autoDeployCharts.flux-operator = {
           name = "flux-operator";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
@@ -108,72 +108,72 @@ in {
           createNamespace = true;
         };
 
-        # manifests.f.content = {
-        #   apiVersion = "fluxcd.controlplane.io/v1";
-        #   kind = "FluxInstance";
+        manifests.flux.content = {
+          apiVersion = "fluxcd.controlplane.io/v1";
+          kind = "FluxInstance";
 
-        #   metadata = {
-        #     name = "flux";
-        #     namespace = "flux-system";
-        #     annotations = {
-        #       "fluxcd.controlplane.io/reconcileEvery" = "1h";
-        #       "fluxcd.controlplane.io/reconcileTimeout" = "5m";
-        #     };
-        #   };
+          metadata = {
+            name = "flux";
+            namespace = "flux-system";
+            annotations = {
+              "fluxcd.controlplane.io/reconcileEvery" = "1h";
+              "fluxcd.controlplane.io/reconcileTimeout" = "5m";
+            };
+          };
 
-        #   spec = {
-        #     distribution = {
-        #       version = "2.x";
-        #       registry = "ghcr.io/fluxcd";
-        #       artifact = "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests";
-        #     };
+          spec = {
+            distribution = {
+              version = "2.x";
+              registry = "ghcr.io/fluxcd";
+              artifact = "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests";
+            };
 
-        #     components = [
-        #       "source-controller"
-        #       "kustomize-controller"
-        #       "helm-controller"
-        #       "notification-controller"
-        #       "image-reflector-controller"
-        #       "image-automation-controller"
-        #     ];
+            components = [
+              "source-controller"
+              "kustomize-controller"
+              "helm-controller"
+              "notification-controller"
+              "image-reflector-controller"
+              "image-automation-controller"
+            ];
 
-        #     cluster = {
-        #       type = "kubernetes";
-        #       size = "medium";
-        #       multitenant = false;
-        #       networkPolicy = true;
-        #       domain = "cluster.local";
-        #     };
+            cluster = {
+              type = "kubernetes";
+              size = "medium";
+              multitenant = false;
+              networkPolicy = true;
+              domain = "cluster.local";
+            };
 
-        #     kustomize = {
-        #       patches = [
-        #         {
-        #           target = { kind = "Deployment"; };
-        #           patch = ''
-        #     - op: replace
-        #       path: /spec/template/spec/nodeSelector
-        #       value:
-        #         kubernetes.io/os: linux
-        #     - op: add
-        #       path: /spec/template/spec/tolerations
-        #       value:
-        #         - key: "CriticalAddonsOnly"
-        #           operator: "Exists"
-        #   '';
-        #         }
-        #       ];
-        #     };
+            kustomize = {
+              patches = [
+                {
+                  target = { kind = "Deployment"; };
+                  patch = ''
+            - op: replace
+              path: /spec/template/spec/nodeSelector
+              value:
+                kubernetes.io/os: linux
+            - op: add
+              path: /spec/template/spec/tolerations
+              value:
+                - key: "CriticalAddonsOnly"
+                  operator: "Exists"
+          '';
+                }
+              ];
+            };
 
-        #     sync = {
-        #       kind = "GitRepository";
-        #       url = "https://github.com/ph/heyklab.git";
-        #       ref = "refs/heads/main";
-        #       path = "clusters/";
-        #       interval = "1m";
-        #       pullSecret = "github-token";
-        #     };
-        #   };
-        # };
+            sync = {
+              kind = "GitRepository";
+              url = "https://github.com/ph/heyklab.git";
+              ref = "refs/heads/main";
+              path = "clusters/";
+              interval = "1m";
+              pullSecret = "github-token";
+            };
+          };
+        };
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
