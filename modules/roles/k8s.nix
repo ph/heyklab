@@ -93,7 +93,7 @@ in {
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
-  "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
+          "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
           # "--debug" # Optionally add additional args to k3s
         ];
 
