@@ -59,6 +59,31 @@ in {
       ];
     };
 
+    virtualisation.containerd = {
+      enable = true;
+      settings =
+        let
+          fullCNIPlugins = pkgs.buildEnv {
+            name = "full-cni";
+            paths = with pkgs;[
+              cni-plugins
+              cni-plugin-flannel
+            ];
+          };
+        in {
+          plugins."io.containerd.grpc.v1.cri" = {
+            cni = {
+              bin_dir = "${fullCNIPlugins}/bin";
+              conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
+            };
+
+            containerd = {
+              snapshotter = "zfs";
+            };
+          };
+        };
+    };
+
     services.k3s = lib.mkMerge [
       
       {
@@ -68,16 +93,9 @@ in {
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
+  "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
           # "--debug" # Optionally add additional args to k3s
         ];
-
-        containerdConfigTemplate = ''
-
-      {{ template "base" . }}
-
-      [plugins."io.containerd.grpc.v1.cri".containerd]
-        snapshotter = "zfs"
-    '';
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
