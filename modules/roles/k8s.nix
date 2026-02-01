@@ -43,6 +43,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       kubectl
+      flux
     ];
     
     networking.nftables.enable = true;
