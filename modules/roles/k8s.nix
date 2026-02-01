@@ -99,8 +99,8 @@ in {
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
-        autoDeployCharts.flux2 = {
-          name = "flux2";
+        autoDeployCharts.flux = {
+          name = "flux";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
           hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
           version = "0.40.0";
