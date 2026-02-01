@@ -122,6 +122,7 @@ in {
           };
 
           spec = {
+            timeout = "2m";
             distribution = {
               version = "2.x";
               registry = "ghcr.io/fluxcd";
