@@ -88,7 +88,7 @@ in {
       
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
-        enable = false; 
+        enable = true; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -99,14 +99,14 @@ in {
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
-        autoDeployCharts.flux-operator = {
-          name = "flux-operator";
-          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-          hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
-          version = "0.40.0";
-          targetNamespace = "flux-system";
-          createNamespace = true;
-        };
+        # autoDeployCharts.flux-operator = {
+        #   name = "flux-operator";
+        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+        #   hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
+        #   version = "0.40.0";
+        #   targetNamespace = "flux-system";
+        #   createNamespace = true;
+        # };
 
         # manifests.f.content = {
         #   apiVersion = "fluxcd.controlplane.io/v1";
