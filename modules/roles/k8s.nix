@@ -19,6 +19,24 @@ in {
   };
 
   config = {
+    boot.kernel.sysctl = {
+      "net.ipv4.ip_forward" = 1;
+      "net.bridge.bridge-nf-call-iptables" = 1;
+      "net.bridge.bridge-nf-call-ip6tables" = 1;
+    };
+
+    boot.kernelModules = [
+      "br_netfilter"
+      "overlay"
+      "vxlan"
+    ];
+
+    networking.nat = {
+      enable = true;
+      externalInterface = "ens18";
+      internalInterfaces = [ "cni0" "flannel.1" ];
+    };
+
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };
@@ -47,7 +65,7 @@ in {
         enable = true; 
         role = "server";
         clusterInit = cfg.primary;
-        extraFlags = toString [
+        extraFlags = [
           "--token-file ${cfg.tokenPath}"
           # "--debug" # Optionally add additional args to k3s
         ];
