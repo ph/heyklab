@@ -61,7 +61,6 @@
       ];
 
       nftables.enable = false;
-      firewall.filterForward = true;
       hostId = lib.mkDefault "deadbeef";
       hostName = lib.mkDefault "vm-boot";
     };
