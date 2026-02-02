@@ -97,8 +97,6 @@ in {
         };
     };
 
-    services.kvm.enable = true;
-
     services.k3s = lib.mkMerge [
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
