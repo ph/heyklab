@@ -98,7 +98,7 @@ in {
           # "--debug" # Optionally add additional args to k3s
         ];
 
-        # manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
+        manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
@@ -111,7 +111,7 @@ in {
         #   createNamespace = true;
         # };
 
-        # manifests.flux.content = {
+        # manifests.fluxinstance.content = {
         #   apiVersion = "fluxcd.controlplane.io/v1";
         #   kind = "FluxInstance";
 
