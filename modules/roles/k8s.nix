@@ -37,6 +37,14 @@ in {
       internalInterfaces = [ "cni0" "flannel.1" ];
     };
 
+    environment.etc = {
+      # Enable the embedded registry mirror for all registries
+      "rancher/k3s/registries.yaml".text = ''
+      mirrors:
+        "*":
+    '';
+    };
+
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };
