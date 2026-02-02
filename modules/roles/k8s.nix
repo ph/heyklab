@@ -89,7 +89,7 @@ in {
       
       {
         # manifests.nginx.source = ../../manifests/fluxcd.yaml;
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -97,6 +97,8 @@ in {
           "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
           # "--debug" # Optionally add additional args to k3s
         ];
+
+        # manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
 
         # bootstrap flux via helm so we don't have to ever touch
         # the flux bootstrap cli.
