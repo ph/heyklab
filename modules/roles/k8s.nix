@@ -37,14 +37,6 @@ in {
       internalInterfaces = [ "cni0" "flannel.1" ];
     };
 
-    environment.etc = {
-      # Enable the embedded registry mirror for all registries
-      "rancher/k3s/registries.yaml".text = ''
-      mirrors:
-        "*":
-    '';
-    };
-
     environment.variables = {
       KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     };
@@ -106,7 +98,7 @@ in {
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
           "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
-          "--embedded-registry"
+          # "--embedded-registry"
           "--disable metrics-server"
           # "--debug" # Optionally add additional args to k3s
         ];
