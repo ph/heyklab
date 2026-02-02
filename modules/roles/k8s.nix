@@ -96,6 +96,8 @@ in {
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
           "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
+          "--embedded-registry"
+          "--disable metrics-server"
           # "--debug" # Optionally add additional args to k3s
         ];
 
