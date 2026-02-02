@@ -44,7 +44,7 @@
           }
         );
 
-      k = { hostName, ip, primary ? false }: nixpkgs.lib.nixosSystem {
+      k = { hostName, ip, primary ? false, diskPartition ? "/dev/sda", swapSize ? "8GB" }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
@@ -67,19 +67,30 @@
           }
           disko.nixosModules.disko
           ./modules/partitions/single-disk-zfs-swap.nix
-          { hardware.facter.reportPath = ./hosts/knode/facter.json; }
+          {
+           disko.devices.disk.x.device = diskPartition;
+           disko.devices.zpool.zroot.datasets."root/swap".size = swapSize;
+          }
+          { hardware.facter.reportPath = ./hosts/knode/${hostName}.json; }
           {
             networking = {
               dhcpcd.enable = false;
               hostName = hostName;
-              interfaces.ens18.ipv4.addresses = [{
+              interfaces.eno1.ipv4.addresses = [{
                 address = ip;
                 prefixLength = 24;
               }];
-              defaultGateway = { address = "10.10.0.1"; interface = "ens18"; };
-              nameservers = ["8.8.8.8"];
+              defaultGateway = {
+                address = "10.10.0.1";
+                interface = "eno1";
+              };
+              nameservers = [
+                "8.8.8.8"
+                "1.1.1.1"
+              ];
             };
           }
+
           comin.nixosModules.comin
           ({
             services.comin = {
@@ -98,16 +109,30 @@
 
       forAllSystems = forSystems supportedSystems;
     in
+
     {
-      # Machines
-      # - leviathan
-      # - neferu
-      # - nimue
+      nixosConfigurations.leviathan = k {
+        hostName = "leviathan";
+        ip = "10.10.0.11";
+        primary = true;
+        diskPartition = "/dev/sda";
+        swapSize = "8GB";
+      };
 
+      nixosConfigurations.neferu = k {
+        hostName = "neferu";
+        ip = "10.10.0.12";
+        diskPartition = "/dev/sda";
+        swapSize = "8GB";
+      };
 
-      nixosConfigurations.k1 = k { hostName = "k1"; ip = "10.10.0.11"; primary = true; };
-      nixosConfigurations.k2 = k { hostName = "k2"; ip = "10.10.0.12"; };
-      nixosConfigurations.k3 = k { hostName = "k3"; ip = "10.10.0.13"; };
+      nixosConfigurations.nimue = k {
+        hostName = "nimue";
+        ip = "10.10.0.13";
+        diskPartition = "/dev/sda";
+        swapSize = "8GB";
+      };
+
 
       # Minimal Bootable ISO
       packages = forAllSystems (
