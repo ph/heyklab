@@ -6,8 +6,10 @@
       content = builtins.toJSON {
         apiVersion = "v1";
         kind = "Secret";
-        metadata.name = "github-token";
-        namespace = "flux-system";
+        metadata = {
+         name = "github-token"; 
+         namespace = "flux-system";
+        };
         stringData = {
           username = "ph";
           password = config.sops.placeholder.github-token;
