@@ -33,6 +33,7 @@
     environment.systemPackages = with pkgs; [
       wget
       vim
+      git
     ];
 
     services.avahi = {
