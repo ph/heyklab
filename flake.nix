@@ -44,7 +44,7 @@
           }
         );
 
-      k = { hostName, ip, primary ? false, diskPartition ? "/dev/sda", swapSize ? "8GB" }: nixpkgs.lib.nixosSystem {
+      k = { hostName, ip, primary ? false, diskPartition ? "/dev/sda", swapSize ? "8GB", eth }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
@@ -76,13 +76,13 @@
             networking = {
               dhcpcd.enable = false;
               hostName = hostName;
-              interfaces.eno1.ipv4.addresses = [{
+              interfaces.${eth}.ipv4.addresses = [{
                 address = ip;
                 prefixLength = 24;
               }];
               defaultGateway = {
                 address = "10.10.0.1";
-                interface = "eno1";
+                interface = eth;
               };
               nameservers = [
                 "8.8.8.8"
@@ -115,24 +115,24 @@
         hostName = "leviathan";
         ip = "10.10.0.11";
         primary = true;
-        diskPartition = "/dev/sda";
-        swapSize = "8GB";
+        swapSize = "16GB";
+        eth = "eno1";
       };
 
       nixosConfigurations.neferu = k {
         hostName = "neferu";
         ip = "10.10.0.12";
-        diskPartition = "/dev/sda";
-        swapSize = "8GB";
+        diskPartition = "/dev/sdb";
+        swapSize = "16GB";
+        eth = "enp2s0";
       };
 
       nixosConfigurations.nimue = k {
         hostName = "nimue";
         ip = "10.10.0.13";
-        diskPartition = "/dev/sda";
         swapSize = "8GB";
+        eth = "eno1";
       };
-
 
       # Minimal Bootable ISO
       packages = forAllSystems (
