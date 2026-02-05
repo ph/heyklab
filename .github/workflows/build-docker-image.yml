@@ -23,20 +23,21 @@ jobs:
       id: vars
       run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
     - name: Log in to GitHub Docker Registry
-      run: echo "$" | docker login ghcr.io -u $ --password-stdin
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
     - name: Build Docker image
       run: |
-        REPO_OWNER=$(echo "$" | tr '[:upper:]' '[:lower:]')
-        REPO_NAME=$(echo "$" | tr '[:upper:]' '[:lower:]')
-        IMAGE_TAG=$([[ "$" == "push" && "$" =~ ^refs/tags/ ]] && echo "$" || echo "$")
+        REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
+        IMAGE_TAG=$([[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" =~ ^refs/tags/ ]] && echo "${{ github.ref_name }}" || echo "${{ env.SHORT_SHA }}")
         nix build .#blockyDns
         
-        docker --tag ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG} load < result
+        docker load < result
+        docker tag blocky-dns:latest ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG}
         docker tag ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG} ghcr.io/$REPO_OWNER/$REPO_NAME:latest
     - name: Push Docker image
       run: |
-        REPO_OWNER=$(echo "$" | tr '[:upper:]' '[:lower:]')
-        REPO_NAME=$(echo "$" | tr '[:upper:]' '[:lower:]')
-        IMAGE_TAG=$([[ "$" == "push" && "$" =~ ^refs/tags/ ]] && echo "$" || echo "$")
+        REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
+        IMAGE_TAG=$([[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" =~ ^refs/tags/ ]] && echo "${{ github.ref_name }}" || echo "${{ env.SHORT_SHA }}")
         docker push ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG}
         docker push ghcr.io/$REPO_OWNER/$REPO_NAME:latest
