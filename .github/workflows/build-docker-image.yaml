@@ -1,0 +1,41 @@
+name: Build and Push docker image
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Nix flake
+      uses: DeterminateSystems/flake-checker-action@main
+    - name: Install Nix
+      uses: DeterminateSystems/determinate-nix-action@main
+    - name: Configure Nix cache
+      uses: DeterminateSystems/flakehub-cache-action@v2 
+      continue-on-error: true
+      with:
+        diff-store: true
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Get short commit hash
+      id: vars
+      run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    - name: Log in to GitHub Docker Registry
+      run: echo "$" | docker login ghcr.io -u $ --password-stdin
+    - name: Build Docker image
+      run: |
+        REPO_OWNER=$(echo "$" | tr '[:upper:]' '[:lower:]')
+        REPO_NAME=$(echo "$" | tr '[:upper:]' '[:lower:]')
+        IMAGE_TAG=$([[ "$" == "push" && "$" =~ ^refs/tags/ ]] && echo "$" || echo "$")
+        nix build .#blockyDns
+        
+        docker --tag ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG} load < result
+        docker tag ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG} ghcr.io/$REPO_OWNER/$REPO_NAME:latest
+    - name: Push Docker image
+      run: |
+        REPO_OWNER=$(echo "$" | tr '[:upper:]' '[:lower:]')
+        REPO_NAME=$(echo "$" | tr '[:upper:]' '[:lower:]')
+        IMAGE_TAG=$([[ "$" == "push" && "$" =~ ^refs/tags/ ]] && echo "$" || echo "$")
+        docker push ghcr.io/$REPO_OWNER/$REPO_NAME:${IMAGE_TAG}
+        docker push ghcr.io/$REPO_OWNER/$REPO_NAME:latest
