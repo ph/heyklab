@@ -190,6 +190,7 @@
             config = {
               Cmd = [
                 "${pkgs.blocky}/bin/blocky"
+                "-c"
                 "${blockyConfiguration}"
               ];
               
