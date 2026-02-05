@@ -40,7 +40,7 @@ jobs:
 
     - name: Rename image to match Google Docker registry
       run: |
-        docker tag blocky-dns:latest ghcr.io/${{github.repository}}/blocky-dns:latest blocky-dns:latest ghcr.io/${{github.repository}}/blocky-dns:${{ github.sha }}
+        docker tag blocky-dns:latest blocky-dns:latest ghcr.io/${{github.repository}}/blocky-dns:${{ github.sha }}
 
     - name: Push Docker image
       run: |
