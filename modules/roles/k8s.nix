@@ -44,6 +44,7 @@ in {
     environment.systemPackages = with pkgs; [
       kubectl
       fluxcd
+      cilium
       kubernetes-helm
     ];
     
@@ -91,31 +92,23 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        # manifests.nginx.source = ../../manifests/fluxcd.yaml;
         enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
           "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
-          # "--embedded-registry"
           "--disable metrics-server"
-          # "--debug" # Optionally add additional args to k3s
+          "--flannel-backend=none"
+          "--disable-network-policy"
+          "--disable servicelb"
+          "--disable kube-proxy"
+          "--disable traefik"
+          "--disable local-storage"
+          # "--debug"
         ];
 
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
-
-        # bootstrap flux via helm so we don't have to ever touch
-        # the flux bootstrap cli.
-        # autoDeployCharts.flux-operator = {
-        #   name = "flux-operator";
-        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-        #   hash = "sha256-ebojOaEhhpxh/jpHwsZAewBKC7TK9wTDnTOdJBQYLc8=";
-        #   version = "0.40.0";
-        #   targetNamespace = "flux-system";
-        #   createNamespace = true;
-        # };
-
         manifests.fluxinstance.content = {
           apiVersion = "fluxcd.controlplane.io/v1";
           kind = "FluxInstance";
