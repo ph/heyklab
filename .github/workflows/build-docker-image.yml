@@ -39,4 +39,7 @@ jobs:
 
     - name: Push Docker image
       run: |
-        docker push --all-tags
+        docker push ghcr.io/${{github.repository}}/blocky-dns:latest
+        docker push ghcr.io/${{github.repository}}/blocky-dns:${{ github.sha }}
+
+
