@@ -166,8 +166,10 @@
           blockyConfiguration = pkgs.runCommand "toYAML" {
             buildInputs = with pkgs; [ yj ];
             json = builtins.toJSON {
-              port = 53;
-              upstream = {
+              ports = {
+               dns = 53;
+              };
+              upstream.groups = {
                 default = [
                   "8.8.8.8"
                   "1.1.1.1"
