@@ -167,11 +167,13 @@
             buildInputs = with pkgs; [ yj ];
             json = builtins.toJSON {
               ports = {
-               dns = 53;
+                dns = 53;
+                http = 4000;
               };
               upstreams.groups = {
                 default = [
                   "8.8.8.8"
+                  "8.8.4.4"
                   "1.1.1.1"
                 ];
               };
