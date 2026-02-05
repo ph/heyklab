@@ -54,6 +54,9 @@
     networking = {
       hosts = {
         "192.168.1.152" = [ "ogdru-jahad" "ogdru-jahad.local" ];
+        "10.10.0.11" = [ "leviathan" ];
+        "10.10.0.12" = [ "neferu" ];
+        "10.10.0.13" = [ "nimue" ];
       };
 
       nameservers = [
