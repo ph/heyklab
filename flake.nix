@@ -169,7 +169,7 @@
               ports = {
                dns = 53;
               };
-              upstream.groups = {
+              upstreams.groups = {
                 default = [
                   "8.8.8.8"
                   "1.1.1.1"
