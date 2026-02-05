@@ -137,7 +137,7 @@
       # Minimal Bootable ISO
       packages = forAllSystems (
         { pkgs, ... }:
-        {
+        rec {
           # Create image to boot for supervisors like proxmox.
           vm-installer =
             (nixpkgs.lib.nixosSystem {
@@ -159,6 +159,45 @@
                 ./modules/images/usb-boot.nix
               ];
             }).config.system.build.image;
+
+
+          # Generate a derivation for the configuration,
+          # and reuse that configuration in the docker layer image.
+          blockyConfiguration = pkgs.runCommand "toYAML" {
+            buildInputs = with pkgs; [ yj ];
+            json = builtins.toJSON {
+              port = 53;
+              upstream = {
+                default = [
+                  "8.8.8.8"
+                  "1.1.1.1"
+                ];
+              };
+              bootstrapDns = "8.8.8.8";
+            };
+            passAsFile = [ "json" ];
+          } ''
+            mkdir -p $out
+            yj -jy < "$jsonPath" > $out/config.yaml
+            '';
+
+
+          blockyDns = pkgs.dockerTools.buildLayeredImage {
+            name = "blocky-dns";
+            tag = "latest";
+            created = builtins.substring 0 8 self.lastModifiedDate;
+
+            config = {
+              Cmd = [
+                "${pkgs.blocky}/bin/blocky"
+                "${blockyConfiguration}"
+              ];
+              
+              ExposedPorts  = {
+                "53" = {};
+              };
+            };
+          };
         }
       );
 
