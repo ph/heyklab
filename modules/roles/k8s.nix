@@ -50,6 +50,8 @@ in {
     
     networking.nftables.enable = false;
     networking.firewall = {
+      checkReversePath = false;
+      trustedInterfaces = [ "cni+" ];
       allowedTCPPorts = [
         6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
         2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
@@ -92,6 +94,10 @@ in {
     services.k3s = lib.mkMerge [
       {
         enable = true;
+        delay = 100;
+        prepare = {
+          cilium = true;
+        };
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -113,22 +119,18 @@ in {
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           values = {
-            cni.confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
-            cni.binPath = "/var/lib/rancher/k3s/data/current/bin";
             routingMode = "native";
             ipv4NativeRoutingCIDR = "10.42.0.0/16";
-            # this need to be a host..
-            k8sServiceHost = "127.0.0.1";
-            k8sServicePort = 6443;
-            autoDirectNodeRoutes =  true;
-            kubeProxyReplacement =  true;
+            autoDirectNodeRoutes = true;
             ipam = {
               mode = "kubernetes";
               operator = {
                 clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
               };
             };
-            operator.replicas =  1;
+            operator = {
+              replicas =  1;
+            };
           };
         };
 
