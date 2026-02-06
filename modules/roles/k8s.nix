@@ -99,7 +99,7 @@ in {
         };
         role = "server";
         clusterInit = cfg.primary;
-        extraFlags = [:
+        extraFlags = [
           "--token-file ${cfg.tokenPath}"
           "--disable metrics-server"
           "--flannel-backend=none"
