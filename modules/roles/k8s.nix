@@ -104,8 +104,74 @@ in {
           "--disable kube-proxy"
           "--disable traefik"
           "--disable local-storage"
+          "--node-label bgp-enabled=\"true\""
+          "--cluster-cidr=10.42.0.0/16,2001:db8:beef:aa42::/64"
+          "--service-cidr=10.43.0.0/16,fddd:dead:beef::/112"
           # "--debug"
         ];
+
+        autoDeployCharts.cilium = {
+          name = "cilium";
+          repo = "https://helm.cilium.io";
+          # version = "";
+          hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
+          values = {
+            cni.exclusive = false;
+            operator.replicas = 1;
+            kubeProxyReplacement = true;
+            # k8sServiceHost = "k3s-server.k3s.example.com";
+            # k8sServicePort = 6443;
+            bgpControlPlane.enabled = true;
+
+            ipv4.enabled = true;
+            ipv6.enabled = true;
+
+            ipam = {
+              moode = "cluster-pool"; # keeping the original key name as-is
+              operator = {
+                clusterPoolIPv4PodCIDRList = "10.42.0.0/16";
+                clusterPoolIPv6PodCIDRList = "2001:db8:beef:aa42::/96";
+                clusterPoolIPv4MaskSize = 24;
+                clusterPoolIPv6MaskSize = 112;
+              };
+            };
+
+            ipv4NativeRoutingCIDR = "10.42.0.0/16";
+            ipv6NativeRoutingCIDR = "2001:db8:beef:aa42::/96";
+
+            bpf = {
+              # datapathMode = "netkit";
+              vlanBypass = [ 0 10 20 ];
+            };
+
+            enableIPv4Masquerade = false;
+            enableIPv6Masquerade = false;
+
+            externalIPs = {
+              enabled = true;
+            };
+
+            loadBalancer = {
+              mode = "dsr";
+            };
+
+            routingMode = "native";
+            autoDirectNodeRoutes = true;
+
+            hubble = {
+              relay = {
+                enabled = true;
+              };
+              ui = {
+                enabled = true;
+              };
+            };
+
+            extraConfig = {
+              enable-ipv6-ndp = "true";
+            };
+          };
+        };
 
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
         manifests.fluxinstance.content = {
