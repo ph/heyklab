@@ -91,7 +91,8 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
+        # enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -159,12 +160,8 @@ in {
             autoDirectNodeRoutes = true;
 
             hubble = {
-              relay = {
-                enabled = true;
-              };
-              ui = {
-                enabled = true;
-              };
+              relay.enabled = true;
+              ui.enabled = true;
             };
 
             extraConfig = {
