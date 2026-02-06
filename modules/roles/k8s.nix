@@ -91,7 +91,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -116,6 +116,7 @@ in {
           values = {
             routingMode = "native";
             ipv4NativeRoutingCIDR = "10.42.0.0/16";
+            # this need to be a host..
             k8sServiceHost = "127.0.0.1";
             k8sServicePort = 6443;
             autoDirectNodeRoutes =  true;
