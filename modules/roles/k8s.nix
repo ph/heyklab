@@ -116,7 +116,7 @@ in {
           values = {
             routingMode = "native";
             ipv4NativeRoutingCIDR = "10.42.0.0/16";
-            k8sServiceHost = 10.10.0.11;
+            k8sServiceHost = "10.10.0.11";
             k8sServicePort = 6443;
             autoDirectNodeRoutes =  true;
             ipam = {
