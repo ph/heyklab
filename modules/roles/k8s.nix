@@ -59,7 +59,6 @@ in {
         5001 # Embedded registry (spegel)
         9100 # Node exporter
       ];
-
       allowedUDPPorts = [
         8472 # k3s, flannel: required if using multi-node for inter-node networking
       ];
