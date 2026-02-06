@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         prepare = {
           cilium = true;
         };
@@ -101,15 +101,15 @@ in {
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
-          "--disable metrics-server"
+          "--disable=metrics-server"
           "--flannel-backend=none"
           "--disable-network-policy"
-          "--disable servicelb"
-          "--disable kube-proxy"
-          "--disable traefik"
-          "--disable local-storage"
+          "--disable=servicelb"
+          "--disable-kube-proxy"
+          "--disable=traefik"
+          "--disable=local-storage"
           "--node-label bgp-enabled=\"true\""
-          # "--debug"
+          "--debug"
         ];
 
         autoDeployCharts.cilium = {
