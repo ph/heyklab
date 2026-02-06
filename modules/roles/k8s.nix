@@ -114,7 +114,7 @@ in {
           name = "cilium";
           repo = "https://helm.cilium.io";
           version = "1.19.0";
-          hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
+          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           values = {
             cni.exclusive = false;
             operator.replicas = 1;
