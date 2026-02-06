@@ -94,13 +94,12 @@ in {
     services.k3s = lib.mkMerge [
       {
         enable = true;
-        delay = 100;
         prepare = {
           cilium = true;
         };
         role = "server";
         clusterInit = cfg.primary;
-        extraFlags = [
+        extraFlags = [:
           "--token-file ${cfg.tokenPath}"
           "--disable metrics-server"
           "--flannel-backend=none"
