@@ -44,7 +44,7 @@ in {
     environment.systemPackages = with pkgs; [
       kubectl
       fluxcd
-      cilium
+      cilium-cli
       kubernetes-helm
     ];
     
