@@ -113,7 +113,7 @@ in {
         autoDeployCharts.cilium = {
           name = "cilium";
           repo = "https://helm.cilium.io";
-          # version = "";
+          version = "1.19.0";
           hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
           values = {
             cni.exclusive = false;
