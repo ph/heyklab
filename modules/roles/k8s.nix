@@ -113,6 +113,8 @@ in {
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           values = {
+            cni.confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
+            cni.binPath = "/var/lib/rancher/k3s/data/current/bin";
             routingMode = "native";
             ipv4NativeRoutingCIDR = "10.42.0.0/16";
             # this need to be a host..
