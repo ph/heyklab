@@ -31,6 +31,7 @@ in {
       "vxlan"
     ];
 
+    networking.bpf.enable = true;
     networking.nat = {
       enable = true;
       externalInterface = "ens18";
