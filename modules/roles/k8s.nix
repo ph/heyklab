@@ -94,9 +94,6 @@ in {
     services.k3s = lib.mkMerge [
       {
         enable = false;
-        prepare = {
-          cilium = true;
-        };
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
