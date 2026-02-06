@@ -105,8 +105,8 @@ in {
           "--disable traefik"
           "--disable local-storage"
           "--node-label bgp-enabled=\"true\""
-          "--cluster-cidr=10.42.0.0/16,2001:db8:beef:aa42::/64"
-          "--service-cidr=10.43.0.0/16,fddd:dead:beef::/112"
+          "--cluster-cidr=10.42.0.0/16"
+          "--service-cidr=10.43.0.0/16"
           # "--debug"
         ];
 
