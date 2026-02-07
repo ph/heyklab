@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = false;
+        enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -109,29 +109,29 @@ in {
           "--debug"
         ];
 
-        autoDeployCharts.cilium = {
-          name = "cilium";
-          repo = "https://helm.cilium.io";
-          version = "1.19.0";
-          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
-          values = {
-            operator.enabled = "true";
-            kubeProxyReplacement = "strict";
-            cni.enabled = true;
-            routingMode = "native";
-            ipv4NativeRoutingCIDR = "10.42.0.0/16";
-            autoDirectNodeRoutes = true;
-            ipam = {
-              mode = "kubernetes";
-              operator = {
-                clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
-              };
-            };
-            operator = {
-              replicas =  1;
-            };
-          };
-        };
+        # autoDeployCharts.cilium = {
+        #   name = "cilium";
+        #   repo = "https://helm.cilium.io";
+        #   version = "1.19.0";
+        #   hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+        #   values = {
+        #     operator.enabled = "true";
+        #     kubeProxyReplacement = "strict";
+        #     cni.enabled = true;
+        #     routingMode = "native";
+        #     ipv4NativeRoutingCIDR = "10.42.0.0/16";
+        #     autoDirectNodeRoutes = true;
+        #     ipam = {
+        #       mode = "kubernetes";
+        #       operator = {
+        #         clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
+        #       };
+        #     };
+        #     operator = {
+        #       replicas =  1;
+        #     };
+        #   };
+        # };
 
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
         manifests.fluxinstance.content = {
