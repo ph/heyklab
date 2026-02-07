@@ -109,15 +109,15 @@ in {
           # "--debug"
         ];
 
-        # autoDeployCharts.cilium = {
-        #   name = "cilium";
-        #   repo = "https://helm.cilium.io";
-        #   version = "1.19.0";
-        #   hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
-        #   values = {
-        #     ipam.operator.clusterPoolIPv4PodCIDRList = "10.42.0.0/16";
-        #   };
-        # };
+        autoDeployCharts.cilium = {
+          name = "cilium";
+          repo = "https://helm.cilium.io";
+          version = "1.19.0";
+          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+          values = {
+            ipam.operator.clusterPoolIPv4PodCIDRList = "10.42.0.0/16";
+          };
+        };
 
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
         manifests.fluxinstance.content = {
