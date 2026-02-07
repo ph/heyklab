@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -106,7 +106,7 @@ in {
           "--disable=traefik"
           "--disable=local-storage"
           "--node-label bgp-enabled=\"true\""
-          "--debug"
+          # "--debug"
         ];
 
         # autoDeployCharts.cilium = {
