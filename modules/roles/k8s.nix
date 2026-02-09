@@ -115,7 +115,12 @@ in {
           repo = "https://helm.cilium.io";
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+          bootstrap = true;
           values = {
+            cni = {
+              binPath = "/var/lib/rancher/k3s/data/current/bin";
+              confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
+            };
             k8sServiceHost = "127.0.0.1";
             k8sServicePort = 6443;
             kubeProxyReplacement= "strict";
