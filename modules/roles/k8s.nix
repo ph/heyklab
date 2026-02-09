@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -108,7 +108,8 @@ in {
           "--node-label bgp-enabled=\"true\""
           # "--debug"
         ];
-
+      }
+      (lib.mkIf (cfg.mainServer != "" && cfg.primary) {
         autoDeployCharts.cilium = {
           name = "cilium";
           repo = "https://helm.cilium.io";
