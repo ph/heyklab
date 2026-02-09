@@ -138,8 +138,6 @@ in {
                 mode: "kubernetes"
                 operator:
                   clusterPoolIPv4PodCIDRList: ["10.42.0.0/16"]
-              agent:
-                hostNetwork: true
               hostNetwork: true
               operator:
                 replicas: 3
