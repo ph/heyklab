@@ -106,7 +106,6 @@ in {
           "--disable-kube-proxy"
           "--disable=traefik"
           "--disable=local-storage"
-          "--node-label bgp-enabled=\"true\""
           # "--debug"
         ];
       }
