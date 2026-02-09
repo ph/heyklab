@@ -124,31 +124,26 @@ in {
             repo = "https://helm.cilium.io";
             chart = "cilium";
             version = "1.19.0";
-            valuesContent = {
-              cni = {
-                binPath = "/var/lib/rancher/k3s/data/current/bin";
-                confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
-              };
-              k8sServiceHost = "127.0.0.1";
-              k8sServicePort = 6443;
-              kubeProxyReplacement= "strict";
-              routingMode = "native";
-              ipv4NativeRoutingCIDR = "10.42.0.0/16";
-              autoDirectNodeRoutes = true;
-              ipam = {
-                mode =  "kubernetes";
-                operator = {
-                  clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
-                };
-              };
-              agent = {
-                hostNetwork = true;  # This is critical for bootstrap
-              };
-              hostNetwork = true;
-              operator = {
-                replicas = 3;
-              };
-            };
+            valuesContent = ''
+              cni: 
+                binPath: "/var/lib/rancher/k3s/data/current/bin"
+                confPath: "/var/lib/rancher/k3s/agent/etc/cni/net.d"
+              k8sServiceHost: "127.0.0.1"
+              k8sServicePort: 6443
+              kubeProxyReplacement: "strict"
+              routingMode: "native"
+              ipv4NativeRoutingCIDR: "10.42.0.0/16"
+              autoDirectNodeRoutes: true
+              ipam:
+                mode: "kubernetes"
+                operator:
+                  clusterPoolIPv4PodCIDRList: ["10.42.0.0/16"]
+              agent:
+                hostNetwork: true
+              hostNetwork: true
+              operator:
+                replicas: 3
+            '';
           };
         };
       })
