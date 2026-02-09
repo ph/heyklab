@@ -12,7 +12,7 @@ spec:
       peers:
         - name: "peer-65000"
           peerASN: 65000
-          peerAddress: <router-ip>
+          peerAddress: "192.168.0.1"
           peerConfigRef:
             name: "cilium-peer-config"
 ---
@@ -52,7 +52,7 @@ metadata:
   namespace: kube-system
 spec:
   blocks:
-    - cidr: 10.42.0.0/16
+    - cidr: "10.42.0.0/16"
 # ---
 # apiVersion: v1
 # kind: Service
