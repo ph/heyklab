@@ -127,7 +127,7 @@ in {
             valuesContent = ''
               k8sServiceHost: "127.0.0.1"
               k8sServicePort: 6443
-              kubeProxyReplacement: "strict"
+              kubeProxyReplacement: true
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
