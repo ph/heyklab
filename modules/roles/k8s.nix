@@ -121,7 +121,7 @@ in {
 
         manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
 
-        manifest.certmanager.content = {
+        manifests.certmanager.content = {
           apiVersion = "helm.cattle.io/v1";
           kind = "HelmChart";
           metadata = {
@@ -140,6 +140,7 @@ in {
             '';
           };
         };
+
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
