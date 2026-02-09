@@ -142,6 +142,8 @@ in {
             '';
           };
         };
+
+        manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
