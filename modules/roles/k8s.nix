@@ -115,7 +115,18 @@ in {
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           values = {
-            ipam.operator.clusterPoolIPv4PodCIDRList = "10.42.0.0/16";
+            routingMode = "native";
+            ipv4NativeRoutingCIDR = "10.42.0.0/16";
+            autoDirectNodeRoutes = true;
+            ipam = {
+              mode =  "kubernetes";
+              operator = {
+                clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
+              };
+            };
+            operator = {
+              replicas = 1;
+            };
           };
         };
 
