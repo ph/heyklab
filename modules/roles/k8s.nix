@@ -98,7 +98,6 @@ in {
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
-          "--bgp-enabled=\"true\""
           "--disable=metrics-server"
           "--flannel-backend=none"
           "--disable-network-policy"
