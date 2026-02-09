@@ -120,6 +120,26 @@ in {
         };
 
         manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
+
+        manifest.certmanager.content = {
+          apiVersion = "helm.cattle.io/v1";
+          kind = "HelmChart";
+          metadata = {
+            name = "cert-manager";
+            namespace = "cert-manager";
+          };
+          spec = {
+            targetNamespace = "cert-manager";
+            createNamespace = true;
+            repo = "oci://quay.io/jetstack/charts/cert-manager";
+            chart = "cert-manager";
+            version = "v1.19.2";
+            valuesContent = ''
+              crds
+                enabled=true
+            '';
+          };
+        };
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
