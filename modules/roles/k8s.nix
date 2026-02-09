@@ -110,7 +110,6 @@ in {
         ];
 
         autoDeployCharts.cilium = {
-          namespace = "kube-system";
           name = "cilium";
           repo = "https://helm.cilium.io";
           version = "1.19.0";
