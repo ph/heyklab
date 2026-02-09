@@ -126,7 +126,7 @@ in {
           kind = "HelmChart";
           metadata = {
             name = "cert-manager";
-            namespace = "cert-manager";
+            namespace = "kube-system";
           };
           spec = {
             targetNamespace = "cert-manager";
