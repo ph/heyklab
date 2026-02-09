@@ -128,6 +128,9 @@ in {
                 clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
               };
             };
+            agent = {
+              hostNetwork = true;  # This is critical for bootstrap
+            };
             hostNetwork = true;
             operator = {
               replicas = 3;
