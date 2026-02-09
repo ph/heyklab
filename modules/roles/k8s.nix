@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -144,7 +144,7 @@ in {
           };
         };
 
-        manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
+        # manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
