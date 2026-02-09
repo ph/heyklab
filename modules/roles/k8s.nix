@@ -115,6 +115,7 @@ in {
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           values = {
+            kubeProxyReplacement= "strict";
             routingMode = "native";
             ipv4NativeRoutingCIDR = "10.42.0.0/16";
             autoDirectNodeRoutes = true;
