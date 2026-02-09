@@ -133,6 +133,7 @@ in {
             };
           };
         };
+      })
 
         # manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
         # manifests.fluxinstance.content = {
