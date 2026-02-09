@@ -125,9 +125,6 @@ in {
             chart = "cilium";
             version = "1.19.0";
             valuesContent = ''
-              cni: 
-                binPath: "/var/lib/rancher/k3s/data/current/bin"
-                confPath: "/var/lib/rancher/k3s/agent/etc/cni/net.d"
               k8sServiceHost: "127.0.0.1"
               k8sServicePort: 6443
               kubeProxyReplacement: "strict"
