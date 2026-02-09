@@ -202,7 +202,6 @@ in {
         #     };
         #   };
         # };
-      }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
