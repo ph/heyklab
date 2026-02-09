@@ -98,6 +98,7 @@ in {
         clusterInit = cfg.primary;
         extraFlags = [
           "--token-file ${cfg.tokenPath}"
+          "--bgp-enabled=\"true\""
           "--disable=metrics-server"
           "--flannel-backend=none"
           "--disable-network-policy"
@@ -125,6 +126,8 @@ in {
             chart = "cilium";
             version = "1.19.0";
             valuesContent = ''
+              crds:
+                install: true
               bgpControlPlane:
                 enabled: true
               k8sServiceHost: "127.0.0.1"
