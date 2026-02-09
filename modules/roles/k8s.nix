@@ -128,6 +128,7 @@ in {
                 clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
               };
             };
+            hostNetwork = true;
             operator = {
               replicas = 3;
             };
