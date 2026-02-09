@@ -110,35 +110,44 @@ in {
         ];
       }
       (lib.mkIf (cfg.mainServer != "" && cfg.primary) {
-        autoDeployCharts.cilium = {
-          name = "cilium";
-          repo = "https://helm.cilium.io";
-          version = "1.19.0";
-          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
-          bootstrap = true;
-          values = {
-            cni = {
-              binPath = "/var/lib/rancher/k3s/data/current/bin";
-              confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
-            };
-            k8sServiceHost = "127.0.0.1";
-            k8sServicePort = 6443;
-            kubeProxyReplacement= "strict";
-            routingMode = "native";
-            ipv4NativeRoutingCIDR = "10.42.0.0/16";
-            autoDirectNodeRoutes = true;
-            ipam = {
-              mode =  "kubernetes";
-              operator = {
-                clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
+        manifests.cilium.content = {
+          apiVersion = "helm.cattle.io/v1";
+          kind = "HelmChart";
+          metadata = {
+            name = "cilium";
+            namespace = "kube-system";
+          };
+          spec = {
+            bootstrap = true;
+            targetNamespace = "kube-system";
+            createNamespace = false;
+            repo = "https://helm.cilium.io";
+            chart = "cilium";
+            version = "1.19.0";
+            valuesContent = {
+              cni = {
+                binPath = "/var/lib/rancher/k3s/data/current/bin";
+                confPath = "/var/lib/rancher/k3s/agent/etc/cni/net.d";
               };
-            };
-            agent = {
-              hostNetwork = true;  # This is critical for bootstrap
-            };
-            hostNetwork = true;
-            operator = {
-              replicas = 3;
+              k8sServiceHost = "127.0.0.1";
+              k8sServicePort = 6443;
+              kubeProxyReplacement= "strict";
+              routingMode = "native";
+              ipv4NativeRoutingCIDR = "10.42.0.0/16";
+              autoDirectNodeRoutes = true;
+              ipam = {
+                mode =  "kubernetes";
+                operator = {
+                  clusterPoolIPv4PodCIDRList = ["10.42.0.0/16"];
+                };
+              };
+              agent = {
+                hostNetwork = true;  # This is critical for bootstrap
+              };
+              hostNetwork = true;
+              operator = {
+                replicas = 3;
+              };
             };
           };
         };
