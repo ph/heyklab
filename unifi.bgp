@@ -1,0 +1,16 @@
+router bgp 65000
+  bgp router-id 192.168.0.1
+  no bgp ebgp-requires-policy
+  neighbor 10.10.0.11 remote-as 65001
+  neighbor 10.10.0.11 soft-reconfiguration inbound
+  neighbor 10.10.0.12 remote-as 65001
+  neighbor 10.10.0.12 soft-reconfiguration inbound
+  neighbor 10.10.0.13 remote-as 65001
+  neighbor 10.10.0.13 soft-reconfiguration inbound
+
+address-family ipv4 unicast
+  network 10.42.0.0/16
+  neighbor 10.10.0.11 activate
+  neighbor 10.10.0.12 activate
+  neighbor 10.10.0.13 activate
+exit-address-family
