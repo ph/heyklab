@@ -99,6 +99,9 @@ in {
             chart = "cilium";
             version = "1.19.0";
             valuesContent = ''
+              encryption:
+                enabled: true
+                type: "wireguard"
               crds:
                 install: true
               bgpControlPlane:
