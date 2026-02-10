@@ -26,11 +26,13 @@
         apiVersion = "v1";
         kind = "Secret";
         metadata = {
-         name = "key.json"; 
+         name = "google-dns-key"; 
          namespace = "cert-manager";
         };
 
-        stringData = config.sops.placeholder.google-dns-key;
+        data = {
+          "key.json" = config.sops.placeholder.google-dns-key;
+        };
       };
       path = "/var/lib/rancher/k3s/server/manifests/google-dns-key.json";
     };
