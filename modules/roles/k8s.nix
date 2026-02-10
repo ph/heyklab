@@ -102,6 +102,7 @@ in {
               encryption:
                 enabled: true
                 type: "wireguard"
+                nodeEncryption: true
               crds:
                 install: true
               bgpControlPlane:
