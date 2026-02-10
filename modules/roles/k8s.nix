@@ -131,7 +131,7 @@ in {
           spec = {
             targetNamespace = "cert-manager";
             createNamespace = true;
-            repo = "oci://quay.io/jetstack/charts/cert-manager";
+            repo = "https://charts.jetstack.io";
             chart = "cert-manager";
             version = "v1.19.2";
             valuesContent = ''
