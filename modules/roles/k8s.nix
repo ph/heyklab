@@ -212,7 +212,7 @@ in {
         };
 
         manifests.cert-manager-configuration.content = {
-          apiVersion = "cert-manager.io/v1alpha2";
+          apiVersion = "cert-manager.io/v1";
           kind = "ClusterIssuer";
           metadata = {
             name = "letsencrypt-issuer";
