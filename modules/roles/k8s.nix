@@ -228,7 +228,7 @@ in {
               solvers = [
                 {
                   dns01 = {
-                    clouddns = {
+                    cloudDNS = {
                       project = "homelab-408320";
                       serviceAccountSecretRef = {
                         name = "google-dns-key";
