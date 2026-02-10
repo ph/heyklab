@@ -1,6 +1,7 @@
 { config, ... }:
 {
   sops = {
+    # Token for `comin` service to pull new nix config.
     secrets.github-token = { };
     templates.password = {
       content = builtins.toJSON {
@@ -18,14 +19,14 @@
       path = "/var/lib/rancher/k3s/server/manifests/github-token.json";
     };
 
-    # Secrets for Google DNS ACME
+    # Secrets for Google DNS ACME.
     secrets.google-dns-key = { };
     templates.google-dns-key = {
       content = builtins.toJSON {
         apiVersion = "v1";
         kind = "Secret";
         metadata = {
-         name = "google-dns-key"; 
+         name = "key.json"; 
          namespace = "cert-manager";
         };
 

@@ -210,6 +210,37 @@ in {
             };
           };
         };
+
+        manifests.cert-manager-configuration.content = {
+          apiVersion = "cert-manager.io/v1alpha2";
+          kind = "ClusterIssuer";
+          metadata = {
+            name = "letsencrypt-issuer";
+            namespace = "cert-manager";
+          };
+          spec = {
+            acme = {
+              server = "https://acme-v02.api.letsencrypt.org/directory";
+              email = "ph@heykimo.com";
+              privateKeySecretRef = {
+                name = "letsencrypt-issuer";
+              };
+              solvers = [
+                {
+                  dns01 = {
+                    clouddns = {
+                      project = "homelab-408320";
+                      serviceAccountSecretRef = {
+                        name = "google-dns-key";
+                        key = "key.json";
+                      };
+                    };
+                  };
+                }
+              ];
+            };
+          };
+        };
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
