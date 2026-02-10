@@ -135,8 +135,8 @@ in {
             chart = "cert-manager";
             version = "v1.19.2";
             valuesContent = ''
-              crds
-                enabled=true
+              crds:
+                enabled: true
             '';
           };
         };
