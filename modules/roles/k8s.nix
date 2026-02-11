@@ -111,6 +111,7 @@ in {
               k8sServiceHost: "127.0.0.1"
               k8sServicePort: 6443
               kubeProxyReplacement: true
+              gatewayAPI.enabled: true
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
@@ -125,6 +126,15 @@ in {
         };
 
         manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
+
+        # Cilium API Gateway
+        # https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/#prerequisites
+        manifests.gatewayclass.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gatewayclasses.yaml;
+        manifests.gateways.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gateways.yaml;
+        manifests.grpcroutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_grpcroutes.yaml;
+        manifests.httproutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_httproutes.yaml;
+        manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
+        manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
 
         manifests.certmanager.content = {
           apiVersion = "helm.cattle.io/v1";
