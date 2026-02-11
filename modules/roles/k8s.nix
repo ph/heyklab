@@ -115,12 +115,6 @@ in {
                 enabled: true
               envoy:
                 enabled: true
-                securityContext:
-                  capabilities:
-                    keepCapNetBindService: true
-                    envoy:
-                    # Add NET_BIND_SERVICE to the list (keep the others!)
-                    - NET_BIND_SERVICE
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
@@ -161,7 +155,6 @@ in {
             valuesContent = ''
               crds:
                 enabled: true
-              enableGatewayAPI: true
             '';
           };
         };
