@@ -111,7 +111,16 @@ in {
               k8sServiceHost: "127.0.0.1"
               k8sServicePort: 6443
               kubeProxyReplacement: true
-              gatewayAPI.enabled: true
+              gatewayAPI:
+                enabled: true
+              envoy:
+                enabled: true
+                securityContext:
+                  capabilities:
+                    keepCapNetBindService: true
+                    envoy:
+                    # Add NET_BIND_SERVICE to the list (keep the others!)
+                    - NET_BIND_SERVICE
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
