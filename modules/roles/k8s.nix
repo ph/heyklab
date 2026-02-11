@@ -102,6 +102,7 @@ in {
               encryption:
                 enabled: true
                 type: "wireguard"
+                # This doesn't work on control-plane, there are excluded by default.
                 nodeEncryption: true
               crds:
                 install: true
