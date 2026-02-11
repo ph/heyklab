@@ -152,6 +152,7 @@ in {
             valuesContent = ''
               crds:
                 enabled: true
+              enableGatewayAPI: true
             '';
           };
         };
@@ -225,6 +226,7 @@ in {
             };
           };
         };
+
 
         manifests.cert-manager-configuration.content = {
           apiVersion = "cert-manager.io/v1";
