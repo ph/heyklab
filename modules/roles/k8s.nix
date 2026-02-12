@@ -266,8 +266,8 @@ in {
           apiVersion = "v1";
           kind = "Service";
           metadata = {
-            name = "nginx";
-            namespace = "nginx";
+            name = "coredns";
+            namespace = "kube-system";
           };
           spec = {
             selector = {
