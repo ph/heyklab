@@ -178,13 +178,19 @@
                 ];
               };
               bootstrapDns = "8.8.8.8";
+              conditional = {
+                fallbackUpstream =  false;
+                mapping = {
+                  "local.heyk.org" = 10.10.20.23;
+                  "20.10.10.in-addr.arpa" = 10.10.20.23;
+                };
+              };
             };
             passAsFile = [ "json" ];
           } ''
             mkdir -p $out
             yj -jy < "$jsonPath" > $out/config.yaml
             '';
-
 
           blockyDns = pkgs.dockerTools.buildLayeredImage {
             name = "blocky-dns";
