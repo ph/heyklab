@@ -269,7 +269,7 @@ in {
           };
           data = {
             domain.server = ''
-            local.heyk.org {
+            local.heyk.org:53 {
               errors
                 health
                 ready
@@ -284,6 +284,29 @@ in {
                 reload
                 loadbalance
             '';
+          };
+        };
+
+        manifest.coredns-local-export-ip.content = {
+          apiVersion = "v1";
+          kind = "Service";
+          metadata = {
+            name = "nginx";
+            namespace = "nginx";
+          };
+          spec = {
+            selector = {
+              k8s-app = "kube-dns";
+            };
+            ports = [
+              {
+                protocol = "UPD";
+                port = 53;
+                targetPort = 53;
+              }
+            ];
+            type = "LoadBalancer";
+            loadBalancerIP = "10.10.20.53";
           };
         };
       }
