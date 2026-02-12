@@ -275,7 +275,7 @@ in {
             };
             ports = [
               {
-                protocol = "UPD";
+                protocol = "UDP";
                 port = 53;
                 targetPort = 53;
               }
