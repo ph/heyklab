@@ -260,7 +260,7 @@ in {
           };
         };
 
-        manifests.coredns-local.source = ../manifests/coredns-local.yaml;
+        manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
 
         manifests.coredns-local-export-ip.content = {
           apiVersion = "v1";
