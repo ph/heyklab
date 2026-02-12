@@ -260,32 +260,30 @@ in {
           };
         };
 
-        manifests.coredns-local.content = {
-          apiVersion = "v1";
-          kind = "ConfigMap";
-          metadata = {
-            name = "coredns-custom";
-            namespace = "kube-system";
-          };
-          data = {
-            domain.server = ''
+        manifests.coredns-local.source = ''
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: coredns-custom
+        namespace: kube-system
+      data:
+        domain.server: |
             local.heyk.org:53 {
-              errors
-                health
-                ready
-                hosts {
-                  10.10.20.11 nginx.local.heyk.org
-                  fallthrough
-                }
-                prometheus :9153
-                forward . /etc/resolv.conf
-                cache 30
-                loop
-                reload
-                loadbalance
-            '';
-          };
-        };
+            errors
+            health
+            ready
+            hosts {
+              10.10.20.11 nginx.local.heyk.org
+              fallthrough
+            }
+            prometheus :9153
+            forward . /etc/resolv.conf
+            cache 30
+            loop
+            reload
+            loadbalance
+            }
+    '';
 
         manifest.coredns-local-export-ip.content = {
           apiVersion = "v1";
