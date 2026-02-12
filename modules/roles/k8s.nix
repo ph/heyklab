@@ -285,7 +285,7 @@ in {
             }
     '';
 
-        manifest.coredns-local-export-ip.content = {
+        manifests.coredns-local-export-ip.content = {
           apiVersion = "v1";
           kind = "Service";
           metadata = {
