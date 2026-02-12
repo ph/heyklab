@@ -181,8 +181,8 @@
               conditional = {
                 fallbackUpstream =  false;
                 mapping = {
-                  "local.heyk.org" = 10.10.20.23;
-                  "20.10.10.in-addr.arpa" = 10.10.20.23;
+                  "local.heyk.org" = "10.10.20.23";
+                  "20.10.10.in-addr.arpa" = "10.10.20.23";
                 };
               };
             };
