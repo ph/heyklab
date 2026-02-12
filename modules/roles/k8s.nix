@@ -229,7 +229,6 @@ in {
           };
         };
 
-
         manifests.cert-manager-configuration.content = {
           apiVersion = "cert-manager.io/v1";
           kind = "ClusterIssuer";
@@ -258,6 +257,33 @@ in {
                 }
               ];
             };
+          };
+        };
+
+        manifests.coredns-local.content = {
+          apiVersion = "v1";
+          kind = "ConfigMap";
+          metadata = {
+            name = "coredns-custom";
+            namespace = "kube-system";
+          };
+          data = {
+            domain.server = ''
+            local.heyk.org {
+              errors
+                health
+                ready
+                hosts {
+                  10.10.20.11 nginx.local.heyk.org
+                  fallthrough
+                }
+                prometheus :9153
+                forward . /etc/resolv.conf
+                cache 30
+                loop
+                reload
+                loadbalance
+            '';
           };
         };
       }
