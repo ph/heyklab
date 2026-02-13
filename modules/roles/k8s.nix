@@ -155,7 +155,7 @@ in {
             set = {
               "config.apiVersion" = "controller.config.cert-manager.io/v1alpha1";
               "config.kind" = "ControllerConfiguration";
-              "config.enableGatewayAPI" = true;
+              "config.enableGatewayAPI" = "true";
             };
             valuesContent = ''
               crds:
