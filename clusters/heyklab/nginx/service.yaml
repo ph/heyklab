@@ -1,14 +1,36 @@
-apiVersion: v1
-kind: Service
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
 metadata:
-  name: nginx
-  namespace: nginx
+  name: tls-gateway
 spec:
-  selector:
-    app: nginx
-  ports:
-    - protocol: TCP
+  addresses:
+  - type: IPAddress
+    value: 10.10.20.11
+  gatewayClassName: cilium
+  listeners:
+  - name: https-1
+    protocol: HTTPS
+    port: 443
+    hostname: "nginx.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: letsencrypt-issuer
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: https-app-route-1
+spec:
+  parentRefs:
+  - name: tls-gateway
+  hostnames:
+  - "nginx.local.heyk.org"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: nginx
       port: 80
-      targetPort: 80
-  type: LoadBalancer
-  loadBalancerIP: "10.10.20.11"
