@@ -265,8 +265,8 @@ in {
           kind = "ControllerConfiguration";
           metadata = {
             name = "cert-manager";
-            namespace = "kube-system";
           };
+
           spec = {
             enableGatewayAPI = true;
           };
