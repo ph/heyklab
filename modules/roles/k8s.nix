@@ -42,7 +42,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      tree
       kubectl
       fluxcd
       cilium-cli
@@ -99,14 +98,6 @@ in {
             repo = "https://helm.cilium.io";
             chart = "cilium";
             version = "1.19.0";
-            value = {
-              config =  {
-                apiVersion = "controller.config.cert-manager.io/v1alpha1";
-                kind = "ControllerConfiguration";
-                enableGatewayAPI = true;
-              };
-            };
-
             valuesContent = ''
               encryption:
                 enabled: true
@@ -161,6 +152,13 @@ in {
             repo = "https://charts.jetstack.io";
             chart = "cert-manager";
             version = "v1.19.2";
+            value = {
+              config =  {
+                apiVersion = "controller.config.cert-manager.io/v1alpha1";
+                kind = "ControllerConfiguration";
+                enableGatewayAPI = true;
+              };
+            };
             valuesContent = ''
               crds:
                 enabled: true
