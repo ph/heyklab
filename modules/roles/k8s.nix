@@ -156,13 +156,9 @@ in {
               crds:
                 enabled: true
             '';
-            config = {
-              apiVersion = "controller.config.cert-manager.io/v1alpha1";
-              kind = "ControllerConfiguration";
-              enableGatewayAPI = true;
-            };
           };
         };
+
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
@@ -261,6 +257,18 @@ in {
                 }
               ];
             };
+          };
+        };
+        
+        manifests.cert-manager-controller-configuration.content = {
+          apiVersion = "controller.config.cert-manager.io/v1alpha1";
+          kind = "ControllerConfiguration";
+          metadata = {
+            name = "cert-manager";
+            namespace = "kube-system";
+          };
+          spec = {
+            enableGatewayAPI = true;
           };
         };
 
