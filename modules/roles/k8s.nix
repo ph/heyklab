@@ -239,7 +239,7 @@ in {
           kind = "ClusterIssuer";
           metadata = {
             name = "letsencrypt-issuer";
-            namespace = "cert-manager";
+            namespace = "nginx";
           };
           spec = {
             acme = {
