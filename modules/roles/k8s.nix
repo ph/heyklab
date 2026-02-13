@@ -243,8 +243,7 @@ in {
           };
           spec = {
             acme = {
-              # server = "https://acme-v02.api.letsencrypt.org/directory";
-              server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+              server = "https://acme-v02.api.letsencrypt.org/directory";
               email = "ph@heykimo.com";
               privateKeySecretRef = {
                 name = "letsencrypt-issuer";
@@ -252,6 +251,7 @@ in {
               solvers = [
                 {
                   dns01 = {
+                    cnameStrategy = "Follow";
                     cloudDNS = {
                       project = "homelab-408320";
                       serviceAccountSecretRef = {
