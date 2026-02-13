@@ -152,7 +152,7 @@ in {
             repo = "https://charts.jetstack.io";
             chart = "cert-manager";
             version = "v1.19.2";
-            value = {
+            set = {
               config =  {
                 apiVersion = "controller.config.cert-manager.io/v1alpha1";
                 kind = "ControllerConfiguration";
