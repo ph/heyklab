@@ -98,6 +98,14 @@ in {
             repo = "https://helm.cilium.io";
             chart = "cilium";
             version = "1.19.0";
+            value = {
+              config =  {
+                apiVersion = "controller.config.cert-manager.io/v1alpha1";
+                kind = "ControllerConfiguration";
+                enableGatewayAPI = true;
+              };
+            };
+
             valuesContent = ''
               encryption:
                 enabled: true
@@ -260,18 +268,6 @@ in {
           };
         };
         
-        manifests.cert-manager-controller-configuration.content = {
-          apiVersion = "controller.config.cert-manager.io/v1alpha1";
-          kind = "ControllerConfiguration";
-          metadata = {
-            name = "cert-manager";
-          };
-
-          spec = {
-            enableGatewayAPI = true;
-          };
-        };
-
         manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
 
         manifests.coredns-local-export-ip.content = {
