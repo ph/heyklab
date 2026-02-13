@@ -60,8 +60,7 @@
       };
 
       nameservers = [
-        "8.8.8.8"
-        "1.1.1.1"
+        "192.168.1.152"
       ];
 
       nftables.enable = false;
