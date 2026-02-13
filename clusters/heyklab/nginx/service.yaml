@@ -20,7 +20,6 @@ spec:
       certificateRefs:
         - kind: Secret
           name: "letsencrypt-issuer"
-          namespace: "cert-manager"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
