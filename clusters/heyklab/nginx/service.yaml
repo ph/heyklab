@@ -33,4 +33,5 @@ spec:
         value: /
     backendRefs:
     - name: nginx
+      namespace: nginx
       port: 80
