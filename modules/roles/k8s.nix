@@ -67,7 +67,19 @@ in {
       ];
     };
 
-    services.openiscsi.enable = true;
+    # See workaround here: https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
+    services.openiscsi = {
+      enable = true;
+      name = "${config.networking.hostName}-initiatorhost";
+    };
+    systemd.services.iscsid.serviceConfig = {
+      PrivateMounts = "yes";
+      BindPaths = "/run/current-system/sw/bin:/bin";
+    };
+    systemd.tmpfiles.rules = [
+      "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
+    ];
+
     services.k3s = lib.mkMerge [
       {
         enable = true;
