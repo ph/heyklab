@@ -303,9 +303,6 @@ in {
               "wrangler.cattle.io/on-helm-chart-remove"
             ];
           };
-          generation = 1;
-          name = "longhorn-install";
-          namespace = "default";
           spec = {
             version = "v1.11.0";
             chart = "longhorn";
