@@ -295,6 +295,7 @@ in {
           apiVersion = "helm.cattle.io/v1";
           kind = "HelmChart";
           metadata = {
+            name = "longhorn-helm";
             annotations = {
               "helmcharts.cattle.io/managed-by" = "helm-controller";
             };
