@@ -67,6 +67,7 @@ in {
       ];
     };
 
+    services.openiscsi.enable = true;
     services.k3s = lib.mkMerge [
       {
         enable = true;
