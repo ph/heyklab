@@ -46,6 +46,7 @@ in {
       fluxcd
       cilium-cli
       kubernetes-helm
+      openiscsi
     ];
     
     networking.nftables.enable = false;
