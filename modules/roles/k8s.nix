@@ -303,8 +303,8 @@ in {
             ];
           };
           generation = 1;
-          name: "longhorn-install";
-          namespace: "default";
+          name = "longhorn-install";
+          namespace = "default";
           spec = {
             version = "v1.11.0";
             chart = "longhorn";
