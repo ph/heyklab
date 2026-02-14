@@ -290,6 +290,30 @@ in {
             loadBalancerIP = "10.10.20.53";
           };
         };
+
+        manifests.longhorn.content = {
+          apiVersion = "helm.cattle.io/v1";
+          kind = "HelmChart";
+          metadata = {
+            annotations = {
+              "helmcharts.cattle.io/managed-by" = "helm-controller";
+            };
+            finalizers = [
+              "wrangler.cattle.io/on-helm-chart-remove"
+            ];
+          };
+          generation = 1;
+          name: "longhorn-install";
+          namespace: "default";
+          spec = {
+            version = "v1.11.0";
+            chart = "longhorn";
+            repo = "https://charts.longhorn.io";
+            failurePolicy = "abort";
+            targetNamespace = "longhorn-system";
+            createNamespace = "true";
+          };
+        };
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
