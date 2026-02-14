@@ -309,7 +309,7 @@ in {
             repo = "https://charts.longhorn.io";
             failurePolicy = "abort";
             targetNamespace = "longhorn-system";
-            createNamespace = "true";
+            createNamespace = true;
           };
         };
       }
