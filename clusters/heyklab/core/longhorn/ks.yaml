@@ -1,0 +1,33 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: longhorn-gateway
+  namespace: longhorn-system
+spec:
+  infrastructure:
+    annotations:
+      io.cilium/lb-ipam-ips: 10.10.20.12
+  gatewayClassName: cilium
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: web-gw
+    port: 80
+    protocol: HTTP
+    hostname: "longhorn.local.heyk.org"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: longorn-httproute
+  namespace: longhorn-system
+spec:
+  parentRefs:
+  - name: longhorn-gateway
+  hostnames:
+  - "longhorn.local.heyk.org"
+  rules:
+  - backendRefs:
+    - name: longhorn-frontend
+      port: 80
