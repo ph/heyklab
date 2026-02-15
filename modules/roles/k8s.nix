@@ -326,6 +326,9 @@ in {
             createNamespace = true;
           };
         };
+
+        manifests.storage-class.source = ../../manifests/storageclass.yaml;
+
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
