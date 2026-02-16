@@ -52,7 +52,9 @@ metadata:
   namespace: kube-system
 spec:
   blocks:
-    - cidr: "10.10.20.0/24"
+    - start: 10.10.20.5
+      stop: 10.10.20.250
+
 ---
 # K8s Api load balanced
 apiVersion: v1
