@@ -74,7 +74,7 @@
     time.timeZone = "UTC";
 
     # Synchronize server time with atomic clock.
-    systemd.timesyncd.enable = true;
+    services.timesyncd.enable = true;
 
     system.stateVersion = config.system.nixos.release;
   };
