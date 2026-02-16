@@ -7,6 +7,6 @@ spec:
   interval: 1h
   url: https://git.deuxfleurs.fr/Deuxfleurs/garage
   ref:
-    branch: master
+    branch: main-v2
   sparseCheckout:
     - script/helm
