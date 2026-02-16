@@ -27,7 +27,7 @@ spec:
       sourceRef:
         kind: GitRepository
         name: git-garage
-        namespace: flux-system
+        namespace: default
   values:
     garage:
       replicationFactor: 2
