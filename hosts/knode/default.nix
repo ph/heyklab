@@ -70,6 +70,9 @@
       hostName = lib.mkDefault "vm-boot";
     };
 
+    # We use UTC here.
+    time.timeZone = "UTC";
+
     # Synchronize server time with atomic clock.
     systemd.timesyncd.enable = true;
 
