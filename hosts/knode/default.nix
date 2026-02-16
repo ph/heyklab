@@ -70,6 +70,9 @@
       hostName = lib.mkDefault "vm-boot";
     };
 
+    # Synchronize server time with atomic clock.
+    systemd.timesyncd.enable = true;
+
     system.stateVersion = config.system.nixos.release;
   };
 }
