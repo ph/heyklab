@@ -134,7 +134,7 @@ in {
               autoDirectNodeRoutes: true
               ingressController:
                 enabled: true 
-                loadbalancerMode: dedicated
+                loadbalancerMode: shared
               ipam:
                 mode: "kubernetes"
                 operator:
