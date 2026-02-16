@@ -132,6 +132,9 @@ in {
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
+              ingressController:
+                enabled: true 
+                loadbalancerMode: dedicated
               ipam:
                 mode: "kubernetes"
                 operator:
