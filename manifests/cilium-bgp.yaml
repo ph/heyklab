@@ -54,6 +54,7 @@ spec:
   blocks:
     - cidr: "10.10.20.0/24"
 ---
+# K8s Api load balanced
 apiVersion: v1
 kind: Service
 metadata:
