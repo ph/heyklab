@@ -26,7 +26,7 @@ spec:
       interval: 10m
       sourceRef:
         kind: GitRepository
-        name: podinfo
+        name: git-garage
         namespace: flux-system
   values:
     garage:
