@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: git-garage
+  namespace: default
+spec:
+  interval: 1h
+  url: https://git.deuxfleurs.fr/Deuxfleurs/garage
+  ref:
+    branch: master
+  sparseCheckout:
+    - script/helm
