@@ -62,20 +62,20 @@ spec:
       certificateRefs:
       - kind: Secret
         name: wildcard-local-heyk-org
-# ---
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: wildcard-local-heyk-org
-#   namespace: default
-# spec:
-#   secretName: wildcard-local-heyk-org
-#   issuerRef:
-#     name: letsencrypt-issuer
-#     kind: ClusterIssuer
-#   dnsNames:
-#   - *.local.heyk.org
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-local-heyk-org
+  namespace: default
+spec:
+  secretName: wildcard-local-heyk-org
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - *.local.heyk.org
+# ---
 # apiVersion: gateway.networking.k8s.io/v1
 # kind: HTTPRoute
 # metadata:
