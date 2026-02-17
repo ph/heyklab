@@ -53,7 +53,7 @@ metadata:
 spec:
   addresses:
    - type: IPAddress
-     value: 10.10.20.5
+     value: 10.10.20.6
   gatewayClassName: cilium
   listeners:
   - name: https
