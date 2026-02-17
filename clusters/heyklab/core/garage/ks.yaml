@@ -74,7 +74,7 @@ spec:
     name: letsencrypt-issuer
     kind: ClusterIssuer
   dnsNames:
-  - *.local.heyk.org
+  - "*.local.heyk.org"
 # ---
 # apiVersion: gateway.networking.k8s.io/v1
 # kind: HTTPRoute
