@@ -42,20 +42,40 @@ spec:
       data:
         storageClass: "longhorn-local-volume"
         size: 10Gi
-    s3:
+    ingress:
+      s3:
         api:
           enabled: true
-          className: "public"
-          annotations:
-            cert-manager.io/cluster-issuer: "letsencrypt-issuer"
-            nginx.ingress.kubernetes.io/proxy-body-size: 500m
           hosts:
             - host: garage.local.heyk.org
               paths:
                 - path: /
                   pathType: Prefix
-          tls:
-            - secretName: garage-ingress-cert
-              hosts:
-                - garage.local.heyk.org
+            - host: *.garage.local.heyk.org
+              paths:
+                - path: /
+                  pathType: Prefix
+        web:
+          enabled: true
+          hosts:
+            - host: *.web.garage.local.heyk.org
+              paths:
+                - path: /
+                  pathType: Prefix
+    # s3:
+    #     api:
+    #       enabled: true
+    #       className: "public"
+    #       annotations:
+    #         cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    #         nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    #       hosts:
+    #         - host: garage.local.heyk.org
+    #           paths:
+    #             - path: /
+    #               pathType: Prefix
+    #       tls:
+    #         - secretName: garage-ingress-cert
+    #           hosts:
+    #             - garage.local.heyk.org
 
