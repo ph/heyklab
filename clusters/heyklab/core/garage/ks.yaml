@@ -51,9 +51,9 @@ metadata:
   name: main-gateway
   namespace: default
 spec:
- addresses:
-  - type: IPAddress
-    value: 10.10.20.5
+  addresses:
+   - type: IPAddress
+     value: 10.10.20.5
   gatewayClassName: cilium
   listeners:
   - name: https
