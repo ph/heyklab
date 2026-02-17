@@ -93,6 +93,10 @@ spec:
   hostnames:
   - "garage.local.heyk.org"
   rules:
-  - backendRefs:
-    - name: garage
-      port: 3900
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+      - name: garage
+        port: 3900
