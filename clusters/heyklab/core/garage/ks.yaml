@@ -43,25 +43,26 @@ spec:
         storageClass: "longhorn-local-volume"
         size: 10Gi
     ingress:
-      s3:
-        api:
-          enabled: true
-          hosts:
-            - host: garage.local.heyk.org
-              paths:
-                - path: /
-                  pathType: Prefix
-            - host: *.garage.local.heyk.org
-              paths:
-                - path: /
-                  pathType: Prefix
-        web:
-          enabled: true
-          hosts:
-            - host: *.web.garage.local.heyk.org
-              paths:
-                - path: /
-                  pathType: Prefix
+      enable: false
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: garage
+  annotations:
+    kubernetes.io/ingress.class: cilium
+spec:
+  rules:
+  - host: garage.local.heyk.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: garage
+            port:
+              number: 3900
     # s3:
     #     api:
     #       enabled: true
