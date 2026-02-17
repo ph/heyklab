@@ -50,9 +50,8 @@ kind: Ingress
 metadata:
   name: garage
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: cilium
 spec:
+  ingressClassName: cilium
   rules:
   - host: garage.local.heyk.org
     http:
