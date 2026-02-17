@@ -446,7 +446,6 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32731,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -470,7 +469,7 @@
           "value": 133
         },
         "slot": {
-          "bus": 0,
+          "bus": 4,
           "number": 0
         },
         "base_class": {
@@ -485,35 +484,35 @@
         },
         "vendor": {
           "hex": "0000",
-          "name": "Samsung",
+          "name": "WDC",
           "value": 0
         },
         "device": {
           "hex": "0000",
-          "name": "SSD 850",
+          "name": "WD10EZEX-00W",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "1B6Q",
+          "name": "1A01",
           "value": 0
         },
-        "serial": "S24BNXAH200201K",
-        "model": "Samsung SSD 850",
+        "serial": "WD-WCC6Y5FS18CX",
+        "model": "WDC WD10EZEX-00W",
         "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0",
+        "sysfs_bus_id": "4:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0",
         "unix_device_names": [
-          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S24BNXAH200201K",
-          "/dev/disk/by-id/wwn-0x5002538d40ab15b5",
-          "/dev/disk/by-path/pci-0000:00:17.0-ata-1",
-          "/dev/disk/by-path/pci-0000:00:17.0-ata-1.0",
+          "/dev/disk/by-id/ata-WDC_WD10EZEX-00WN4A0_WD-WCC6Y5FS18CX",
+          "/dev/disk/by-id/wwn-0x50014ee2b7ce9174",
+          "/dev/disk/by-path/pci-0000:00:17.0-ata-5",
+          "/dev/disk/by-path/pci-0000:00:17.0-ata-5.0",
           "/dev/sdb"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 30401,
+            "cylinders": 121601,
             "heads": 255,
             "sectors": 63,
             "size": "0x0",
@@ -522,7 +521,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 488397168,
+            "value_1": 1953525168,
             "value_2": 512
           }
         ],
@@ -583,11 +582,11 @@
         "model": "General UDisk",
         "sysfs_id": "/class/block/sdc",
         "sysfs_bus_id": "6:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.0/host6/target6:0:0/6:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-5/1-5:1.0/host6/target6:0:0/6:0:0:0",
         "unix_device_names": [
           "/dev/disk/by-id/usb-General_UDisk-0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:6:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usbv2-0:6:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:5:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usbv2-0:5:1.0-scsi-0:0:0:0",
           "/dev/sdc"
         ],
         "unix_device_name2": "/dev/sg2",
@@ -641,7 +640,7 @@
           "value": 133
         },
         "slot": {
-          "bus": 4,
+          "bus": 0,
           "number": 0
         },
         "base_class": {
@@ -656,35 +655,35 @@
         },
         "vendor": {
           "hex": "0000",
-          "name": "WDC",
+          "name": "Samsung",
           "value": 0
         },
         "device": {
           "hex": "0000",
-          "name": "WD10EZEX-00W",
+          "name": "SSD 850",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "1A01",
+          "name": "1B6Q",
           "value": 0
         },
-        "serial": "WD-WCC6Y5FS18CX",
-        "model": "WDC WD10EZEX-00W",
+        "serial": "S24BNXAH200201K",
+        "model": "Samsung SSD 850",
         "sysfs_id": "/class/block/sda",
-        "sysfs_bus_id": "4:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0",
+        "sysfs_bus_id": "0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
-          "/dev/disk/by-id/ata-WDC_WD10EZEX-00WN4A0_WD-WCC6Y5FS18CX",
-          "/dev/disk/by-id/wwn-0x50014ee2b7ce9174",
-          "/dev/disk/by-path/pci-0000:00:17.0-ata-5",
-          "/dev/disk/by-path/pci-0000:00:17.0-ata-5.0",
+          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S24BNXAH200201K",
+          "/dev/disk/by-id/wwn-0x5002538d40ab15b5",
+          "/dev/disk/by-path/pci-0000:00:17.0-ata-1",
+          "/dev/disk/by-path/pci-0000:00:17.0-ata-1.0",
           "/dev/sda"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 121601,
+            "cylinders": 30401,
             "heads": 255,
             "sectors": 63,
             "size": "0x0",
@@ -693,7 +692,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 1953525168,
+            "value_1": 488397168,
             "value_2": 512
           }
         ],
@@ -795,7 +794,7 @@
     ],
     "hub": [
       {
-        "index": 37,
+        "index": 36,
         "attached_to": 20,
         "class_list": [
           "usb",
@@ -882,7 +881,7 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 38,
+        "index": 37,
         "attached_to": 20,
         "class_list": [
           "usb",
@@ -959,7 +958,7 @@
         "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 39,
+        "index": 38,
         "attached_to": 27,
         "class_list": [
           "usb",
@@ -1046,7 +1045,7 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 40,
+        "index": 39,
         "attached_to": 27,
         "class_list": [
           "usb",
@@ -1395,28 +1394,6 @@
     "network_interface": [
       {
         "index": 41,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 42,
         "attached_to": 18,
         "class_list": [
           "network_interface"
@@ -1454,6 +1431,28 @@
         ],
         "driver_modules": [
           "alx"
+        ]
+      },
+      {
+        "index": 42,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],

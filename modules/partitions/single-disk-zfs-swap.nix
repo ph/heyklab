@@ -52,6 +52,20 @@
             };
           };
 
+          "root/longhorn-ext4" = {
+            type = "zfs_volume";
+            size = lib.mkDefault "100G";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/mnt/longhorn-ext4";
+              mountOptions = [
+                "noatime"
+                "discard"
+              ];
+            };
+          };
+
           "root/swap" = {
             type = "zfs_volume";
             size = lib.mkDefault "8G";

@@ -1,8 +1,8 @@
 keys:
   - &admin_ph age10k77xc9947hjvrkf8vc266d8tkhd699akt73g0a5t8kzgdjkqekqtu9wm8
-  - &server_leviathan age12cf0xpgesr653c9nxvvfrffx7h845j6f0pup3mge0pmwvv4u94yswjkc46
+  - &server_leviathan age1m3592mn34adth02xyprcu40u8705ta82hryplp6wquxclc64kylqgt3grc
   - &server_neferu age1u08cag874wty08dtuxtl03ruc3rw693kgwlfg2lzq9w5m0q2kunsjp3swt
-  - &server_nimue age1qswehgpz05yvpc6lt77uuugr3sgxx0jnmx2k586608dqalryeq2seh2nf3
+  - &server_nimue age1k29nvflsdgd67ug5g72tny697tkkfkhrqfl3tzezvfq8vrjk8flqgh2tzg
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
