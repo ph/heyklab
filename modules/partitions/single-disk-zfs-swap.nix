@@ -58,7 +58,7 @@
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/mnt/longhorn-ext4";
+              mountpoint = "/var/lib/longhorn";
               mountOptions = [
                 "noatime"
                 "discard"
