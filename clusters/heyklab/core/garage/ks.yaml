@@ -89,7 +89,6 @@ spec:
   - name: wildcard-local-heyk.org
   hostnames:
   - "garage.local.heyk.org"
-  - "*.garage.local.heyk.org"
   rules:
   - backendRefs:
     - name: garage
