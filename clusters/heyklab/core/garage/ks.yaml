@@ -56,7 +56,10 @@ spec:
      value: 10.10.20.6
   gatewayClassName: cilium
   listeners:
-  - name: https
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https
     port: 443
     protocol: HTTPS
     hostname: "*.local.heyk.org"
