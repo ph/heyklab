@@ -41,5 +41,6 @@ allowVolumeExpansion: true
 parameters:
   numberOfReplicas: "1"
   dataLocality: "strict-local"
+  # switch to "Retain" when cluster is working
   reclaimPolicy: Delete
   volumeBindingMode: WaitForFirstConsumer
