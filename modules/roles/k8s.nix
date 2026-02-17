@@ -83,11 +83,12 @@ in {
       "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
     ];
 
+    # TODO needed?
     services.multipath.enable = false;
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
