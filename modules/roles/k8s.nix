@@ -118,20 +118,6 @@ in {
             repo = "https://helm.cilium.io";
             chart = "cilium";
             version = "1.19.0";
-            disks = {
-              longhorn-ext4 = {
-                allowScheduling = true;
-                diskDriver = "";
-                diskType = "filesystem";
-                evictionRequested = false;
-                path = "/mnt/longhorn-ext4";
-                storageReserved = 0;
-                tags = [];
-              };
-              default-disk = {
-                allowScheduling = false;
-              };
-            };
             valuesContent = ''
               encryption:
                 enabled: true
@@ -347,11 +333,23 @@ in {
             failurePolicy = "abort";
             targetNamespace = "longhorn-system";
             createNamespace = true;
+            disks = {
+              longhorn-ext4 = {
+                allowScheduling = true;
+                diskDriver = "";
+                diskType = "filesystem";
+                evictionRequested = false;
+                path = "/mnt/longhorn-ext4";
+                storageReserved = 0;
+                tags = [];
+              };
+              default-disk = {
+                allowScheduling = false;
+              };
+            };
           };
         };
-
         manifests.storage-class.source = ../../manifests/storageclass.yaml;
-
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
