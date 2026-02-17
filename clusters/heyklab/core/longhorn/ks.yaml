@@ -44,3 +44,16 @@ parameters:
   # switch to "Retain" when cluster is working.
   reclaimPolicy: Delete
   volumeBindingMode: WaitForFirstConsumer
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: longhorn-local-volume-ok
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+  numberOfReplicas: "1"
+  dataLocality: "strict-local"
+  # switch to "Retain" when cluster is working.
+  reclaimPolicy: Delete
+  volumeBindingMode: WaitForFirstConsumer
