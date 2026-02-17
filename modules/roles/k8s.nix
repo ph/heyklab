@@ -29,6 +29,8 @@ in {
       "br_netfilter"
       "overlay"
       "vxlan"
+      "iscsi_tcp"
+      "nbd"
     ];
 
     networking.nat = {
