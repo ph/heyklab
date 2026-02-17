@@ -41,3 +41,5 @@ allowVolumeExpansion: true
 parameters:
   numberOfReplicas: "1"
   dataLocality: "strict-local"
+  reclaimPolicy: Delete
+  volumeBindingMode: WaitForFirstConsumer
