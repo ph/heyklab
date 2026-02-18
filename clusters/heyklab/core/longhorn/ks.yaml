@@ -4,18 +4,22 @@ metadata:
   name: longhorn-gateway
   namespace: longhorn-system
 spec:
-  infrastructure:
-    annotations:
-      io.cilium/lb-ipam-ips: 10.10.20.12
-  gatewayClassName: cilium
-  listeners:
+  addresses:
+    - type: IPAddress
+      value: 10.10.20.12
+      gatewayClassName: cilium
+      listeners:
   - allowedRoutes:
       namespaces:
         from: Same
-    name: web-gw
-    port: 80
-    protocol: HTTP
+    name: longhorn-gw
+    port: 443
+    protocol: HTTPS
     hostname: "longhorn.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: longhorn-local-heyk-org
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -44,3 +48,16 @@ parameters:
   # switch to "Retain" when cluster is working.
   reclaimPolicy: Delete
   volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn-local-heyk-org
+  namespace: default
+spec:
+  secretName: longhorn-local-heyk-org
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - "longhorn.local.heyk.org"
