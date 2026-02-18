@@ -271,7 +271,6 @@ in {
               privateKeySecretRef = {
                 name = "letsencrypt-issuer";
               };
-              delayBeforeCheck = "30s";
               solvers = [
                 {
                   dns01 = {
