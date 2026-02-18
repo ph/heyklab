@@ -10,27 +10,29 @@ data:
         health
         ready
         file /etc/coredns/custom/heyk.db
-        fallthrough
         prometheus :9153
-        forward . /etc/resolv.conf
         cache 30
         loop
         reload
         loadbalance
       }
+
+    .:53 {
+        forward . /etc/resolv.conf
+    }
   heyk.db: |
-      $ORIGIN local.heyk.org.
+      $ORIGIN heyk.org.
       $TTL 5m               
 
       ; =============================== Resource Records ==============================
-      @                 IN  SOA     ns.local.heyk.org. rtiger.local.heyk.org. (
+      @                 IN  SOA     ns.heyk.org. rtiger.heyk.org. (
                                         2020010510     ; Serial
                                         1d             ; Refresh
                                         2h             ; Retry
                                         4w             ; Expire
                                         1h)            ; Minimum TTL
       @                 IN  A       10.10.20.6       ; Local IPv4 address for example.com.
-      @                 IN  NS      ns.local.heyk.org.
+      @                 IN  NS      ns.heyk.org.
       ns                IN  CNAME   @                  
-      longhorn          IN A        10.10.20.12
+      longhorn.local    IN A        10.10.20.12
       *                 IN A        10.10.20.6
