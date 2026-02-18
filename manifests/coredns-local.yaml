@@ -6,18 +6,14 @@ metadata:
 data:
   domain.server: |
       heyk.org:53 {
-        errors
-        health
-        ready
         file /etc/coredns/custom/heyk.db
-        prometheus :9153
-        cache 30
-        loop
-        reload
-        forward . 8.8.8.8
-        loadbalance
+        log
+        errors
       }
   heyk.db: |
-      heyk.org.        IN    SOA    dns.heyk.org    admin.heyk.org    20201118    7200    3600    1209600    3600
-      longhorn.local    IN A        10.10.20.12
-      *                 IN A        10.10.20.6
+      $ORIGIN heyk.org.
+      @         IN  SOA heyk.org. admin.heyk.org. 2502171641 7200 3600 1209600 3600
+
+      @                 IN  A   192.168.20.6
+      longhorn.local    IN A    10.10.20.12
+      *.local           IN A    10.10.20.6 
