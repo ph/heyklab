@@ -10,6 +10,7 @@ data:
         health
         ready
         file /etc/coredns/custom/heyk.db
+        fallthrough
         prometheus :9153
         forward . /etc/resolv.conf
         cache 30
