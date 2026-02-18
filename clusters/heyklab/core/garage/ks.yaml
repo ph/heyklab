@@ -90,7 +90,8 @@ spec:
   parentRefs:
   - name: main-gateway
   hostnames:
-  - "garage.local.heyk.org"
+  - "s3.garage.local.heyk.org"
+  - "*.s3.garage.local.heyk.org"
   rules:
     - matches:
       - path:
@@ -100,3 +101,4 @@ spec:
       - kind: Service
         name: garage
         port: 3900
+---
