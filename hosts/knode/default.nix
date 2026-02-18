@@ -34,6 +34,7 @@
       wget
       vim
       git
+      tree
     ];
 
     services.avahi = {
