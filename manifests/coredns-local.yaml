@@ -15,10 +15,6 @@ data:
         loop
         reload
         loadbalance
-        forward . /etc/resolv.conf
-      }
-      .:53 {
-        forward . /etc/resolv.conf
       }
   heyk.db: |
       $ORIGIN heyk.org.
