@@ -274,7 +274,6 @@ in {
               solvers = [
                 {
                   dns01 = {
-                    cnameStrategy = "Follow";
                     cloudDNS = {
                       hostedZoneName = "heyk-org";
                       project = "homelab-408320";
