@@ -224,6 +224,7 @@
               jq
               kubectl
               ssh-to-age
+              awscli
             ] ++ [ pkgs.sops ];
           };
         }
