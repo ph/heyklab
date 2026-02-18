@@ -35,6 +35,7 @@
       vim
       git
       tree
+      dnsutils
     ];
 
     services.avahi = {
