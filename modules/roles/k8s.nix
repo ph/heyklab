@@ -313,7 +313,6 @@ in {
             loadBalancerIP = "10.10.20.53";
           };
         };
-        manifests.storage-class.source = ../../manifests/storageclass.yaml;
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
