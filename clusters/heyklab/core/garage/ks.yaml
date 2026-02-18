@@ -78,6 +78,17 @@ spec:
       certificateRefs:
       - kind: Secret
         name: wildcard-local-heyk-org
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "*.s3.garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-local-heyk-org
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
