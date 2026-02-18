@@ -276,7 +276,7 @@ in {
                   dns01 = {
                     cnameStrategy = "Follow";
                     cloudDNS = {
-                      hostedZoneName = "heyk.org.";
+                      hostedZoneName = "heyk-org";
                       project = "homelab-408320";
                       serviceAccountSecretRef = {
                         name = "google-dns-key";
