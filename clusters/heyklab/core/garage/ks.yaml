@@ -64,7 +64,6 @@ spec:
     protocol: HTTPS
     hostname: "*.local.heyk.org"
     tls:
-      mode: Terminate
       certificateRefs:
       - kind: Secret
         name: wildcard-local-heyk-org
