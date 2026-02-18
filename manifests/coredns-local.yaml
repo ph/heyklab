@@ -15,8 +15,6 @@ data:
         loop
         reload
         loadbalance
-      }
-      .:53 {
         forward . /etc/resolv.conf
       }
   heyk.db: |
