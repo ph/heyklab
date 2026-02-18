@@ -62,7 +62,7 @@ spec:
     name: https
     port: 443
     protocol: HTTPS
-    hostname: "*.local.heyk.org"
+    hostname: "*.garage.local.heyk.org"
     tls:
       certificateRefs:
       - kind: Secret
@@ -79,7 +79,7 @@ spec:
     name: letsencrypt-issuer
     kind: ClusterIssuer
   dnsNames:
-  - "*.local.heyk.org"
+  - "*.garage.local.heyk.org"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
