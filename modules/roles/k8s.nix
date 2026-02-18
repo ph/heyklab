@@ -281,6 +281,7 @@ in {
                         name = "google-dns-key";
                         key = "key.json";
                       };
+                      delayBeforeCheck = "30s";
                     };
                   };
                 }
