@@ -98,5 +98,6 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-      - name: garage
+      - kind: Service
+        name: garage
         port: 3900
