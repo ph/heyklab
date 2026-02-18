@@ -198,7 +198,7 @@ in {
             name = "flux";
             namespace = "flux-system";
             annotations = {
-              "fluxcd.controlplane.io/reconcileEvery" = "1h";
+              "fluxcd.controlplane.io/reconcileEvery" = "5m";
               "fluxcd.controlplane.io/reconcileTimeout" = "5m";
             };
           };
