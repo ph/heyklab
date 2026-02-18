@@ -88,7 +88,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = false;
+        enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
