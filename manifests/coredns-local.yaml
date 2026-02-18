@@ -16,10 +16,9 @@ data:
         reload
         loadbalance
       }
-
-    .:53 {
+      .:53 {
         forward . /etc/resolv.conf
-    }
+      }
   heyk.db: |
       $ORIGIN heyk.org.
       $TTL 5m               
