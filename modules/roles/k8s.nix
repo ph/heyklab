@@ -313,28 +313,6 @@ in {
             loadBalancerIP = "10.10.20.53";
           };
         };
-
-        manifests.longhorn.content = {
-          apiVersion = "helm.cattle.io/v1";
-          kind = "HelmChart";
-          metadata = {
-            name = "longhorn-helm";
-            annotations = {
-              "helmcharts.cattle.io/managed-by" = "helm-controller";
-            };
-            finalizers = [
-              "wrangler.cattle.io/on-helm-chart-remove"
-            ];
-          };
-          spec = {
-            version = "v1.11.0";
-            chart = "longhorn";
-            repo = "https://charts.longhorn.io";
-            failurePolicy = "abort";
-            targetNamespace = "longhorn-system";
-            createNamespace = true;
-          };
-        };
         manifests.storage-class.source = ../../manifests/storageclass.yaml;
       }
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
