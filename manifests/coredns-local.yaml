@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   domain.server: |
-      local.heyk.org:53 {
+      heyk.org:53 {
         errors
         health
         ready
