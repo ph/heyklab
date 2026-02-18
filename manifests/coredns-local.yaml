@@ -17,7 +17,7 @@ data:
         reload
         loadbalance
       }
- heyk.db: |
+  heyk.db: |
       $ORIGIN local.heyk.org.
       $TTL 5m               
 
