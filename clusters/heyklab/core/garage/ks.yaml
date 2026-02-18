@@ -99,4 +99,4 @@ spec:
       backendRefs:
       - kind: Service
         name: garage
-        port: 3902
+        port: 3900
