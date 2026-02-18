@@ -32,4 +32,4 @@ data:
       @                 IN  NS      ns.local.heyk.org.
       ns                IN  CNAME   @                  
       longhorn          IN A        10.10.20.12
-      * IN CNAME @
+      * IN A @
