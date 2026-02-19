@@ -180,13 +180,12 @@ in {
               "config.kind" = "ControllerConfiguration";
               "config.enableGatewayAPI" = "true";
             };
-            extraArgs = [
-              "--dns01-recursive-nameservers-only"
-              "--dns01-recursive-nameservers=8.8.8.8:53"
-            ];
             valuesContent = ''
               crds:
                 enabled: true
+              extraArgs:
+              - --dns01-recursive-nameservers-only
+              - --dns01-recursive-nameservers=8.8.8.8:53
             '';
           };
         };
