@@ -4,7 +4,7 @@ metadata:
   name: coredns-custom
   namespace: kube-system
 data:
-  heyk.override: |
+  domain.server: |
       heyk.org:53 {
         file /etc/coredns/custom/heyk.db
         log
@@ -14,7 +14,7 @@ data:
       $ORIGIN heyk.org.
       @         IN  SOA heyk.org. admin.heyk.org. 2502171641 7200 3600 1209600 3600
 
-      @                 IN  A   192.168.20.6
-      longhorn.local    IN A    10.10.20.12
-      nginx.local       IN A    10.10.20.11
-      *.local           IN A    10.10.20.6 
+      @                 IN  A    10.10.20.6
+      longhorn.local    IN  A    10.10.20.12
+      nginx.local       IN  A    10.10.20.11
+      *.local           IN  A    10.10.20.6 
