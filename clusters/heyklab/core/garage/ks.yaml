@@ -31,6 +31,13 @@ spec:
   values:
     garage:
       replicationFactor: 2
+      s3:
+          api:
+            region: "garage"
+            rootDomain: ".s3.garage.local.heyk.org"
+          web:
+            rootDomain: ".web.garage.local.heyk.org"
+            index: "index.html"
 
     deployment:
       replicaCount: 3
