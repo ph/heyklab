@@ -250,7 +250,7 @@ in {
               kind = "GitRepository";
               url = "https://github.com/ph/heyklab.git";
               ref = "refs/heads/main";
-              path = "clusters/production";
+              path = "clusters/cluster/production";
               interval = "1m";
               pullSecret = "github-token";
             };
