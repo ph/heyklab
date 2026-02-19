@@ -59,7 +59,7 @@ spec:
   - allowedRoutes:
       namespaces:
         from: Same
-    name: https
+    name: https-s3-garage
     port: 443
     protocol: HTTPS
     hostname: "*.s3.garage.local.heyk.org"
@@ -70,7 +70,7 @@ spec:
   - allowedRoutes:
       namespaces:
         from: Same
-    name: https
+    name: https-garage
     port: 443
     protocol: HTTPS
     hostname: "garage.local.heyk.org"
