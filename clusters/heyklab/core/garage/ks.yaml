@@ -63,161 +63,103 @@ spec:
       name: garage-admin-token
       key: token
 ---
-#   values:
-# move into garage namespace
-# apiVersion: source.toolkit.fluxcd.io/v1
-# kind: GitRepository
-# metadata:
-#   name: git-garage
-#   namespace: default
-# spec:
-#   interval: 5m
-#   url: https://git.deuxfleurs.fr/Deuxfleurs/garage
-#   ref:
-#     branch: main-v2
-#   sparseCheckout:
-#     - script/helm
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2
-# kind: HelmRelease
-# metadata:
-#   name: garage
-#   namespace: default
-# spec:
-#   interval: 10m
-#   chart:
-#     spec:
-#       chart: ./script/helm/garage
-#       version: 0.9.2
-#       interval: 10m
-#       sourceRef:
-#         kind: GitRepository
-#         name: git-garage
-#         namespace: default
-#   values:
-#     garage:
-#       replicationFactor: 2
-#       s3:
-#           api:
-#             region: "garage"
-#             rootDomain: ".s3.garage.local.heyk.org"
-#           web:
-#             rootDomain: ".web.garage.local.heyk.org"
-#             index: "index.html"
-
-#     deployment:
-#       replicaCount: 3
-
-#     persistence:
-#       meta:
-#         storageClass: "longhorn-local-volume"
-#         size: 100Mi
-#       data:
-#         storageClass: "longhorn-local-volume"
-#         size: 10Gi
-#     ingress:
-#       enable: false
-#     monitoring:
-#       metrics:
-#         enabled: true
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: Gateway
-# metadata:
-#   name: main-gateway
-#   namespace: default
-# spec:
-#   addresses:
-#    - type: IPAddress
-#      value: 10.10.20.6
-#   gatewayClassName: cilium
-#   listeners:
-#   - allowedRoutes:
-#       namespaces:
-#         from: Same
-#     name: https-s3-garage
-#     port: 443
-#     protocol: HTTPS
-#     hostname: "*.s3.garage.local.heyk.org"
-#     tls:
-#       certificateRefs:
-#       - kind: Secret
-#         name: wildcard-garage-local-heyk-org
-#   - allowedRoutes:
-#       namespaces:
-#         from: Same
-#     name: https-web-garage
-#     port: 443
-#     protocol: HTTPS
-#     hostname: "*.web.garage.local.heyk.org"
-#     tls:
-#       certificateRefs:
-#       - kind: Secret
-#         name: wildcard-garage-local-heyk-org
-#   - allowedRoutes:
-#       namespaces:
-#         from: Same
-#     name: https-garage
-#     port: 443
-#     protocol: HTTPS
-#     hostname: "garage.local.heyk.org"
-#     tls:
-#       certificateRefs:
-#       - kind: Secret
-#         name: wildcard-garage-local-heyk-org
-# ---
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: wildcard-garage-local-heyk-org
-#   namespace: default
-# spec:
-#   secretName: wildcard-garage-local-heyk-org
-#   issuerRef:
-#     name: letsencrypt-issuer
-#     kind: ClusterIssuer
-#   dnsNames:
-#   - "*.s3.garage.local.heyk.org"
-#   - "*.web.garage.local.heyk.org"
-#   - "garage.local.heyk.org"
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: HTTPRoute
-# metadata:
-#   name: local-garage-httproute
-#   namespace: default
-# spec:
-#   parentRefs:
-#   - name: main-gateway
-#   hostnames:
-#   - "garage.local.heyk.org"
-#   - "*.s3.garage.local.heyk.org"
-#   rules:
-#     - matches:
-#       - path:
-#           type: PathPrefix
-#           value: /
-#       backendRefs:
-#       - kind: Service
-#         name: garage
-#         port: 3900
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: HTTPRoute
-# metadata:
-#   name: local-web-garage-httproute
-#   namespace: default
-# spec:
-#   parentRefs:
-#   - name: main-gateway
-#   hostnames:
-#   - "*.web.garage.local.heyk.org"
-#   rules:
-#     - matches:
-#       - path:
-#           type: PathPrefix
-#           value: /
-#       backendRefs:
-#       - kind: Service
-#         name: garage
-#         port: 3902
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: main-gateway
+  namespace: default
+spec:
+  addresses:
+   - type: IPAddress
+     value: 10.10.20.6
+  gatewayClassName: cilium
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https-s3-garage
+    port: 443
+    protocol: HTTPS
+    hostname: "*.s3.garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-garage-local-heyk-org
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https-web-garage
+    port: 443
+    protocol: HTTPS
+    hostname: "*.web.garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-garage-local-heyk-org
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https-garage
+    port: 443
+    protocol: HTTPS
+    hostname: "garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-garage-local-heyk-org
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-garage-local-heyk-org
+  namespace: default
+spec:
+  secretName: wildcard-garage-local-heyk-org
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - "*.s3.garage.local.heyk.org"
+  - "*.web.garage.local.heyk.org"
+  - "garage.local.heyk.org"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: local-garage-httproute
+  namespace: default
+spec:
+  parentRefs:
+  - name: main-gateway
+  hostnames:
+  - "garage.local.heyk.org"
+  - "*.s3.garage.local.heyk.org"
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+      - kind: Service
+        name: garage
+        port: 3900
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: local-web-garage-httproute
+  namespace: default
+spec:
+  parentRefs:
+  - name: main-gateway
+  hostnames:
+  - "*.web.garage.local.heyk.org"
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+      - kind: Service
+        name: garage
+        port: 3902
