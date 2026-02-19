@@ -28,138 +28,138 @@ spec:
     kind: OCIRepository
     name: garage-operator
     namespace: garage-operator-system
----
-apiVersion: garage.rajsingh.info/v1alpha1
-kind: GarageCluster
-metadata:
-  name: garage
-  namespace: default
-spec:
-  replicas: 2
-  zone: ca
-  replication:
-    factor: 3
-  storage:
-    meta:
-      storageClass: "longhorn-local-volume"
-      size: 100Mi
-    data:
-      storageClass: "longhorn-local-volume"
-      size: 10Gi
-  S3Api:
-    region: ca
-    rootDomain: ".s3.garage.local.heyk.org"
-  webApi:
-    rootDomain: ".web.garage.local.heyk.org"
-    index: "index.html"
-  network:
-    rpcBindPort: 3901
-    service:
-      type: ClusterIP
-  admin:
-    enabled: true
-    bindPort: 3903
-    adminTokenSecretRef:
-      name: garage-admin-token
-      key: token
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: main-gateway
-  namespace: default
-spec:
-  addresses:
-   - type: IPAddress
-     value: 10.10.20.6
-  gatewayClassName: cilium
-  listeners:
-  - allowedRoutes:
-      namespaces:
-        from: Same
-    name: https-s3-garage
-    port: 443
-    protocol: HTTPS
-    hostname: "*.s3.garage.local.heyk.org"
-    tls:
-      certificateRefs:
-      - kind: Secret
-        name: wildcard-garage-local-heyk-org
-  - allowedRoutes:
-      namespaces:
-        from: Same
-    name: https-web-garage
-    port: 443
-    protocol: HTTPS
-    hostname: "*.web.garage.local.heyk.org"
-    tls:
-      certificateRefs:
-      - kind: Secret
-        name: wildcard-garage-local-heyk-org
-  - allowedRoutes:
-      namespaces:
-        from: Same
-    name: https-garage
-    port: 443
-    protocol: HTTPS
-    hostname: "garage.local.heyk.org"
-    tls:
-      certificateRefs:
-      - kind: Secret
-        name: wildcard-garage-local-heyk-org
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: wildcard-garage-local-heyk-org
-  namespace: default
-spec:
-  secretName: wildcard-garage-local-heyk-org
-  issuerRef:
-    name: letsencrypt-issuer
-    kind: ClusterIssuer
-  dnsNames:
-  - "*.s3.garage.local.heyk.org"
-  - "*.web.garage.local.heyk.org"
-  - "garage.local.heyk.org"
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: local-garage-httproute
-  namespace: default
-spec:
-  parentRefs:
-  - name: main-gateway
-  hostnames:
-  - "garage.local.heyk.org"
-  - "*.s3.garage.local.heyk.org"
-  rules:
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /
-      backendRefs:
-      - kind: Service
-        name: garage
-        port: 3900
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: local-web-garage-httproute
-  namespace: default
-spec:
-  parentRefs:
-  - name: main-gateway
-  hostnames:
-  - "*.web.garage.local.heyk.org"
-  rules:
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /
-      backendRefs:
-      - kind: Service
-        name: garage
-        port: 3902
+# ---
+# apiVersion: garage.rajsingh.info/v1alpha1
+# kind: GarageCluster
+# metadata:
+#   name: garage
+#   namespace: default
+# spec:
+#   replicas: 2
+#   zone: ca
+#   replication:
+#     factor: 3
+#   storage:
+#     meta:
+#       storageClass: "longhorn-local-volume"
+#       size: 100Mi
+#     data:
+#       storageClass: "longhorn-local-volume"
+#       size: 10Gi
+#   S3Api:
+#     region: ca
+#     rootDomain: ".s3.garage.local.heyk.org"
+#   webApi:
+#     rootDomain: ".web.garage.local.heyk.org"
+#     index: "index.html"
+#   network:
+#     rpcBindPort: 3901
+#     service:
+#       type: ClusterIP
+#   admin:
+#     enabled: true
+#     bindPort: 3903
+#     adminTokenSecretRef:
+#       name: garage-admin-token
+#       key: token
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: Gateway
+# metadata:
+#   name: main-gateway
+#   namespace: default
+# spec:
+#   addresses:
+#    - type: IPAddress
+#      value: 10.10.20.6
+#   gatewayClassName: cilium
+#   listeners:
+#   - allowedRoutes:
+#       namespaces:
+#         from: Same
+#     name: https-s3-garage
+#     port: 443
+#     protocol: HTTPS
+#     hostname: "*.s3.garage.local.heyk.org"
+#     tls:
+#       certificateRefs:
+#       - kind: Secret
+#         name: wildcard-garage-local-heyk-org
+#   - allowedRoutes:
+#       namespaces:
+#         from: Same
+#     name: https-web-garage
+#     port: 443
+#     protocol: HTTPS
+#     hostname: "*.web.garage.local.heyk.org"
+#     tls:
+#       certificateRefs:
+#       - kind: Secret
+#         name: wildcard-garage-local-heyk-org
+#   - allowedRoutes:
+#       namespaces:
+#         from: Same
+#     name: https-garage
+#     port: 443
+#     protocol: HTTPS
+#     hostname: "garage.local.heyk.org"
+#     tls:
+#       certificateRefs:
+#       - kind: Secret
+#         name: wildcard-garage-local-heyk-org
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: wildcard-garage-local-heyk-org
+#   namespace: default
+# spec:
+#   secretName: wildcard-garage-local-heyk-org
+#   issuerRef:
+#     name: letsencrypt-issuer
+#     kind: ClusterIssuer
+#   dnsNames:
+#   - "*.s3.garage.local.heyk.org"
+#   - "*.web.garage.local.heyk.org"
+#   - "garage.local.heyk.org"
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: local-garage-httproute
+#   namespace: default
+# spec:
+#   parentRefs:
+#   - name: main-gateway
+#   hostnames:
+#   - "garage.local.heyk.org"
+#   - "*.s3.garage.local.heyk.org"
+#   rules:
+#     - matches:
+#       - path:
+#           type: PathPrefix
+#           value: /
+#       backendRefs:
+#       - kind: Service
+#         name: garage
+#         port: 3900
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: local-web-garage-httproute
+#   namespace: default
+# spec:
+#   parentRefs:
+#   - name: main-gateway
+#   hostnames:
+#   - "*.web.garage.local.heyk.org"
+#   rules:
+#     - matches:
+#       - path:
+#           type: PathPrefix
+#           value: /
+#       backendRefs:
+#       - kind: Service
+#         name: garage
+#         port: 3902
