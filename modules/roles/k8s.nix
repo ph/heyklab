@@ -88,7 +88,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = false;
+        enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -292,7 +292,6 @@ in {
         #   };
         # };
         
-        # manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
         # manifests.coredns-local-export-ip.content = {
         #   apiVersion = "v1";
         #   kind = "Service";
