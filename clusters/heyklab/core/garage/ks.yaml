@@ -41,10 +41,10 @@ spec:
     factor: 3
   storage:
     meta:
-      storageClass: "longhorn-local-volume"
+      storageClassName: "longhorn-local-volume"
       size: 100Mi
     data:
-      storageClass: "longhorn-local-volume"
+      storageClassName: "longhorn-local-volume"
       size: 10Gi
   s3Api:
     region: ca
