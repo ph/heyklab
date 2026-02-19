@@ -45,7 +45,7 @@
         kind = "Secret";
         metadata = {
          name = "garage-admin-token"; 
-         namespace = "garage-operator-system";
+         namespace = "default";
         };
         data = {
           token = config.sops.placeholder.garage-admin-token;
