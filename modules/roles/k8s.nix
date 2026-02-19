@@ -88,7 +88,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -155,12 +155,12 @@ in {
 
         # Cilium API Gateway
         # https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/#prerequisites
-        manifests.gatewayclass.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gatewayclasses.yaml;
-        manifests.gateways.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gateways.yaml;
-        manifests.grpcroutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_grpcroutes.yaml;
-        manifests.httproutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_httproutes.yaml;
-        manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
-        manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
+        # manifests.gatewayclass.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gatewayclasses.yaml;
+        # manifests.gateways.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gateways.yaml;
+        # manifests.grpcroutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_grpcroutes.yaml;
+        # manifests.httproutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_httproutes.yaml;
+        # manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
+        # manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
 
         # manifests.certmanager.content = {
         #   apiVersion = "helm.cattle.io/v1";
@@ -292,29 +292,29 @@ in {
         #   };
         # };
         
-        manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
-        manifests.coredns-local-export-ip.content = {
-          apiVersion = "v1";
-          kind = "Service";
-          metadata = {
-            name = "coredns";
-            namespace = "kube-system";
-          };
-          spec = {
-            selector = {
-              k8s-app = "kube-dns";
-            };
-            ports = [
-              {
-                protocol = "UDP";
-                port = 53;
-                targetPort = 53;
-              }
-            ];
-            type = "LoadBalancer";
-            loadBalancerIP = "10.10.20.53";
-          };
-        };
+        # manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
+        # manifests.coredns-local-export-ip.content = {
+        #   apiVersion = "v1";
+        #   kind = "Service";
+        #   metadata = {
+        #     name = "coredns";
+        #     namespace = "kube-system";
+        #   };
+        #   spec = {
+        #     selector = {
+        #       k8s-app = "kube-dns";
+        #     };
+        #     ports = [
+        #       {
+        #         protocol = "UDP";
+        #         port = 53;
+        #         targetPort = 53;
+        #       }
+        #     ];
+        #     type = "LoadBalancer";
+        #     loadBalancerIP = "10.10.20.53";
+        #   };
+        # };
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
