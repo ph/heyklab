@@ -46,7 +46,7 @@ spec:
     data:
       storageClass: "longhorn-local-volume"
       size: 10Gi
-  S3Api:
+  s3Api:
     region: ca
     rootDomain: ".s3.garage.local.heyk.org"
   webApi:
