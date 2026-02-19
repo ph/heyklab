@@ -4,7 +4,7 @@ metadata:
   name: coredns-custom
   namespace: kube-system
 data:
-  heyk.overrides: |
+  heyk.override: |
       heyk.org:53 {
         file /etc/coredns/custom/heyk.db
         log
