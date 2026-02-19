@@ -83,9 +83,6 @@ in {
       "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
     ];
 
-    # TODO needed?
-    services.multipath.enable = false;
-
     services.k3s = lib.mkMerge [
       {
         enable = false;
