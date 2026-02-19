@@ -88,7 +88,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = false;
+        enable = true;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -253,7 +253,7 @@ in {
               kind = "GitRepository";
               url = "https://github.com/ph/heyklab.git";
               ref = "refs/heads/main";
-              path = "clusters/";
+              path = "clusters/production";
               interval = "1m";
               pullSecret = "github-token";
             };
@@ -316,6 +316,7 @@ in {
           };
         };
       }
+
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
       })
