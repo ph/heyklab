@@ -70,6 +70,17 @@ spec:
   - allowedRoutes:
       namespaces:
         from: Same
+    name: https-web-garage
+    port: 443
+    protocol: HTTPS
+    hostname: "*.web.garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-garage-local-heyk-org
+  - allowedRoutes:
+      namespaces:
+        from: Same
     name: https-garage
     port: 443
     protocol: HTTPS
@@ -91,6 +102,7 @@ spec:
     kind: ClusterIssuer
   dnsNames:
   - "*.s3.garage.local.heyk.org"
+  - "*.web.garage.local.heyk.org"
   - "garage.local.heyk.org"
 ---
 apiVersion: gateway.networking.k8s.io/v1
@@ -114,3 +126,22 @@ spec:
         name: garage
         port: 3900
 ---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: local-web-garage-httproute
+  namespace: default
+spec:
+  parentRefs:
+  - name: main-gateway
+  hostnames:
+  - "*.web.garage.local.heyk.org"
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+      - kind: Service
+        name: garage
+        port: 3902
