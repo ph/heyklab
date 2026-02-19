@@ -62,7 +62,18 @@ spec:
     name: https
     port: 443
     protocol: HTTPS
-    hostname: "*.garage.local.heyk.org"
+    hostname: "*.s3.garage.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-garage-local-heyk-org
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "garage.local.heyk.org"
     tls:
       certificateRefs:
       - kind: Secret
@@ -79,9 +90,8 @@ spec:
     name: letsencrypt-issuer
     kind: ClusterIssuer
   dnsNames:
-  - "*.garage.local.heyk.org"
+  - "*.s3.garage.local.heyk.org"
   - "garage.local.heyk.org"
-  - "admingarage.local.heyk.org"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -92,7 +102,7 @@ spec:
   parentRefs:
   - name: main-gateway
   hostnames:
-  - "s3.garage.local.heyk.org"
+  - "garage.local.heyk.org"
   - "*.s3.garage.local.heyk.org"
   rules:
     - matches:
