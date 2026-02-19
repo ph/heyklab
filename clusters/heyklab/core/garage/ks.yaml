@@ -1,3 +1,68 @@
+# needs depends on longhorn see 
+# https://fluxcd.io/flux/components/helm/helmreleases/
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: garage-operator-system
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: garage-operator
+  namespace: garage-operator-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/rajsinghtech/charts/garage-operator 
+  ref:
+    semver: ">= 0.0.39"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage-operator
+  namespace: garage-operator-system
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: garage-operator
+    namespace: garage-operator-system
+---
+apiVersion: garage.rajsingh.info/v1alpha1
+kind: GarageCluster
+metadata:
+  name: garage
+spec:
+  replicas: 2
+  zone: ca
+  replication:
+    factor: 3
+  storage:
+    meta:
+      storageClass: "longhorn-local-volume"
+      size: 100Mi
+    data:
+      storageClass: "longhorn-local-volume"
+      size: 10Gi
+  S3Api:
+    region: ca
+    rootDomain: ".s3.garage.local.heyk.org"
+  webApi:
+    rootDomain: ".web.garage.local.heyk.org"
+    index: "index.html"
+  network:
+    rpcBindPort: 3901
+    service:
+      type: ClusterIP
+  admin:
+    enabled: true
+    bindPort: 3903
+    adminTokenSecretRef:
+      name: garage-admin-token
+      key: token
+---
+#   values:
 # move into garage namespace
 # apiVersion: source.toolkit.fluxcd.io/v1
 # kind: GitRepository
