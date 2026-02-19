@@ -88,7 +88,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true;
+        enable = false;
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -162,33 +162,33 @@ in {
         manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
         manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
 
-        manifests.certmanager.content = {
-          apiVersion = "helm.cattle.io/v1";
-          kind = "HelmChart";
-          metadata = {
-            name = "cert-manager";
-            namespace = "kube-system";
-          };
-          spec = {
-            targetNamespace = "cert-manager";
-            createNamespace = true;
-            repo = "https://charts.jetstack.io";
-            chart = "cert-manager";
-            version = "v1.19.2";
-            set = {
-              "config.apiVersion" = "controller.config.cert-manager.io/v1alpha1";
-              "config.kind" = "ControllerConfiguration";
-              "config.enableGatewayAPI" = "true";
-            };
-            valuesContent = ''
-              crds:
-                enabled: true
-              extraArgs:
-              - --dns01-recursive-nameservers-only
-              - --dns01-recursive-nameservers=8.8.8.8:53
-            '';
-          };
-        };
+        # manifests.certmanager.content = {
+        #   apiVersion = "helm.cattle.io/v1";
+        #   kind = "HelmChart";
+        #   metadata = {
+        #     name = "cert-manager";
+        #     namespace = "kube-system";
+        #   };
+        #   spec = {
+        #     targetNamespace = "cert-manager";
+        #     createNamespace = true;
+        #     repo = "https://charts.jetstack.io";
+        #     chart = "cert-manager";
+        #     version = "v1.19.2";
+        #     set = {
+        #       "config.apiVersion" = "controller.config.cert-manager.io/v1alpha1";
+        #       "config.kind" = "ControllerConfiguration";
+        #       "config.enableGatewayAPI" = "true";
+        #     };
+        #     valuesContent = ''
+        #       crds:
+        #         enabled: true
+        #       extraArgs:
+        #       - --dns01-recursive-nameservers-only
+        #       - --dns01-recursive-nameservers=8.8.8.8:53
+        #     '';
+        #   };
+        # };
 
       })
       {
@@ -260,40 +260,39 @@ in {
           };
         };
 
-        manifests.cert-manager-configuration.content = {
-          apiVersion = "cert-manager.io/v1";
-          kind = "ClusterIssuer";
-          metadata = {
-            name = "letsencrypt-issuer";
-            namespace = "nginx";
-          };
-          spec = {
-            acme = {
-              server = "https://acme-v02.api.letsencrypt.org/directory";
-              email = "ph@heykimo.com";
-              privateKeySecretRef = {
-                name = "letsencrypt-issuer";
-              };
-              solvers = [
-                {
-                  dns01 = {
-                    cloudDNS = {
-                      hostedZoneName = "heyk-org";
-                      project = "homelab-408320";
-                      serviceAccountSecretRef = {
-                        name = "google-dns-key";
-                        key = "key.json";
-                      };
-                    };
-                  };
-                }
-              ];
-            };
-          };
-        };
+        # manifests.cert-manager-configuration.content = {
+        #   apiVersion = "cert-manager.io/v1";
+        #   kind = "ClusterIssuer";
+        #   metadata = {
+        #     name = "letsencrypt-issuer";
+        #     namespace = "nginx";
+        #   };
+        #   spec = {
+        #     acme = {
+        #       server = "https://acme-v02.api.letsencrypt.org/directory";
+        #       email = "ph@heykimo.com";
+        #       privateKeySecretRef = {
+        #         name = "letsencrypt-issuer";
+        #       };
+        #       solvers = [
+        #         {
+        #           dns01 = {
+        #             cloudDNS = {
+        #               hostedZoneName = "heyk-org";
+        #               project = "homelab-408320";
+        #               serviceAccountSecretRef = {
+        #                 name = "google-dns-key";
+        #                 key = "key.json";
+        #               };
+        #             };
+        #           };
+        #         }
+        #       ];
+        #     };
+        #   };
+        # };
         
         manifests.coredns-local.source = ../../manifests/coredns-local.yaml;
-
         manifests.coredns-local-export-ip.content = {
           apiVersion = "v1";
           kind = "Service";
