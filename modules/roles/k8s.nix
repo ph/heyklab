@@ -211,6 +211,7 @@ in {
             };
 
             components = [
+              "source-watcher"
               "source-controller"
               "kustomize-controller"
               "helm-controller"
