@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - cluster-issuers.yaml
   - coredns-loadbalancer.yaml
+  - coredns-heyk.yaml
   - longhorn-loadbalancer.yaml
   - longhorn-static.yaml
