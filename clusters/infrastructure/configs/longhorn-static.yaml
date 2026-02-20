@@ -6,6 +6,6 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
-  numberOfReplicas: 1
+  numberOfReplicas: "1"
   dataLocality: strict-local
   reclaimPolicy: Retain
