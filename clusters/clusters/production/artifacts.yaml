@@ -13,5 +13,5 @@ spec:
     - name: infrastructure
       originRevision: "@monorepo"
       copy:
-        - from: "@monorepo/infrastructure/**"
+        - from: "@monorepo/clusters/infrastructure/**"
           to: "@artifact/"
