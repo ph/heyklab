@@ -1,5 +1,5 @@
 ---
-apiVersion: source.extensions.fluxcd.io/v1
+apiVersion: source.extensions.fluxcd.io/v1beta1
 kind: ArtifactGenerator
 metadata:
   name: flux-system
