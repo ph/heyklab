@@ -1,0 +1,20 @@
+---
+apiVersion: cert-manager.io/v1
+kind = ClusterIssuer
+metadata:
+  name: letsencrypt-issuer
+  namespace: nginx
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: ph@heykimo.com
+    privateKeySecretRef:
+      name: letsencrypt-issuer
+    solvers:
+      - dns01:
+          cloudDNS:
+            hostedZoneName: heyk-org
+            project: homelab-408320
+            serviceAccountSecretRef:
+              name: google-dns-key
+              key: key.json

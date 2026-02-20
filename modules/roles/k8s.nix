@@ -258,60 +258,6 @@ in {
           };
         };
 
-        # manifests.cert-manager-configuration.content = {
-        #   apiVersion = "cert-manager.io/v1";
-        #   kind = "ClusterIssuer";
-        #   metadata = {
-        #     name = "letsencrypt-issuer";
-        #     namespace = "nginx";
-        #   };
-        #   spec = {
-        #     acme = {
-        #       server = "https://acme-v02.api.letsencrypt.org/directory";
-        #       email = "ph@heykimo.com";
-        #       privateKeySecretRef = {
-        #         name = "letsencrypt-issuer";
-        #       };
-        #       solvers = [
-        #         {
-        #           dns01 = {
-        #             cloudDNS = {
-        #               hostedZoneName = "heyk-org";
-        #               project = "homelab-408320";
-        #               serviceAccountSecretRef = {
-        #                 name = "google-dns-key";
-        #                 key = "key.json";
-        #               };
-        #             };
-        #           };
-        #         }
-        #       ];
-        #     };
-        #   };
-        # };
-        
-        # manifests.coredns-local-export-ip.content = {
-        #   apiVersion = "v1";
-        #   kind = "Service";
-        #   metadata = {
-        #     name = "coredns";
-        #     namespace = "kube-system";
-        #   };
-        #   spec = {
-        #     selector = {
-        #       k8s-app = "kube-dns";
-        #     };
-        #     ports = [
-        #       {
-        #         protocol = "UDP";
-        #         port = 53;
-        #         targetPort = 53;
-        #       }
-        #     ];
-        #     type = "LoadBalancer";
-        #     loadBalancerIP = "10.10.20.53";
-        #   };
-        # };
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
