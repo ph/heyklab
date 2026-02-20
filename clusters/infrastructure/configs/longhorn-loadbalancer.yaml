@@ -1,0 +1,51 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: longhorn-gateway
+  namespace: longhorn-system
+spec:
+  addresses:
+    - type: IPAddress
+      value: 10.10.20.12
+  gatewayClassName: cilium
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: longhorn-gw
+    port: 443
+    protocol: HTTPS
+    hostname: "longhorn.local.heyk.org"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: longhorn-local-heyk-org
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: longorn-httproute
+  namespace: longhorn-system
+spec:
+  parentRefs:
+  - name: longhorn-gateway
+  hostnames:
+  - "longhorn.local.heyk.org"
+  rules:
+  - backendRefs:
+    - name: longhorn-frontend
+      port: 80
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn-local-heyk-org
+  namespace: longhorn-system
+spec:
+  secretName: longhorn-local-heyk-org
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - "longhorn.local.heyk.org"
