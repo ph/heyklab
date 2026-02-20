@@ -20,22 +20,22 @@
     };
 
     # Secrets for Google DNS ACME.
-    # secrets.google-dns-key = { };
-    # templates.google-dns-key = {
-    #   content = builtins.toJSON {
-    #     apiVersion = "v1";
-    #     kind = "Secret";
-    #     metadata = {
-    #      name = "google-dns-key"; 
-    #      namespace = "cert-manager";
-    #     };
+    secrets.google-dns-key = { };
+    templates.google-dns-key = {
+      content = builtins.toJSON {
+        apiVersion = "v1";
+        kind = "Secret";
+        metadata = {
+         name = "google-dns-key"; 
+         namespace = "cert-manager";
+        };
 
-    #     data = {
-    #       "key.json" = config.sops.placeholder.google-dns-key;
-    #     };
-    #   };
-    #   path = "/var/lib/rancher/k3s/server/manifests/google-dns-key.json";
-    # };
+        data = {
+          "key.json" = config.sops.placeholder.google-dns-key;
+        };
+      };
+      path = "/var/lib/rancher/k3s/server/manifests/google-dns-key.json";
+    };
 
     # # Secrets for Garage
     # secrets.garage-admin-token = { };
