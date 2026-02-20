@@ -19,7 +19,15 @@ metadata:
   name: longhorn
   namespace: longhorn-system
 spec:
-  interval: 12h
+  interval: 15m
+  chart:
+    spec:
+      chart: longhorn
+      version: v1.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+      interval: 5m
   install:
     strategy:
       name: RetryOnFailure
@@ -28,7 +36,4 @@ spec:
     strategy:
       name: RetryOnFailure
       retryInterval: 3m
-  chartRef:
-    kind: HelmRepository
-    name: longhorn
 ---
