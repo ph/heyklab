@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  selector:
+    k8s-app: kube-dns
+  ports:
+    - protocol: UDP
+      port: 53
+      targetPort: 53
+  type: LoadBalancer
+  loadBalancerIP: 10.10.20.53
