@@ -3,6 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: gateway-api
+  namespace: default
 spec:
   interval: 5m
   url: https://github.com/kubernetes-sigs/gateway-api
@@ -13,11 +14,13 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: gateway-api
+  namespace: default
 spec:
   interval: 10m
   sourceRef:
     kind: GitRepository
     name: gateway-api
+    namespace: default
   path: "./config/crd/"
   prune: true
   timeout: 1m
