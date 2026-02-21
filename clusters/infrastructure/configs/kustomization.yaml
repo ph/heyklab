@@ -8,3 +8,4 @@ resources:
   - coredns-heyk.yaml
   - longhorn-loadbalancer.yaml
   - longhorn-static.yaml
+  - garage.yaml
