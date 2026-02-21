@@ -47,7 +47,7 @@
          name = "garage-admin-token"; 
          namespace = "default";
         };
-        data = {
+        stringData = {
           token = config.sops.placeholder.garage-admin-token;
         };
       };
