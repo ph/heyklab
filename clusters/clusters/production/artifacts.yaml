@@ -16,9 +16,9 @@ spec:
         - from: "@monorepo/clusters/infrastructure/**"
           to: "@artifact/"
     - name: apps
-          originRevision: "@monorepo"
-          copy:
-            - from: "@monorepo/apps/base/**"
-              to: "@artifact/base/"
-            - from: "@monorepo/apps/production/**"
-              to: "@artifact/production/"
+      originRevision: "@monorepo"
+      copy:
+        - from: "@monorepo/apps/base/**"
+          to: "@artifact/base/"
+        - from: "@monorepo/apps/production/**"
+          to: "@artifact/production/"
