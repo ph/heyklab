@@ -37,21 +37,21 @@
       path = "/var/lib/rancher/k3s/server/manifests/google-dns-key.json";
     };
 
-    # # Secrets for Garage
-    # secrets.garage-admin-token = { };
-    # templates.garage-admin-token = {
-    #   content = builtins.toJSON {
-    #     apiVersion = "v1";
-    #     kind = "Secret";
-    #     metadata = {
-    #      name = "garage-admin-token"; 
-    #      namespace = "default";
-    #     };
-    #     data = {
-    #       token = config.sops.placeholder.garage-admin-token;
-    #     };
-    #   };
-    #   path = "/var/lib/rancher/k3s/server/manifests/garage-admin-token.json";
-    # };
+    # Secrets for Garage
+    secrets.garage-admin-token = { };
+    templates.garage-admin-token = {
+      content = builtins.toJSON {
+        apiVersion = "v1";
+        kind = "Secret";
+        metadata = {
+         name = "garage-admin-token"; 
+         namespace = "default";
+        };
+        data = {
+          token = config.sops.placeholder.garage-admin-token;
+        };
+      };
+      path = "/var/lib/rancher/k3s/server/manifests/garage-admin-token.json";
+    };
   };
 }
