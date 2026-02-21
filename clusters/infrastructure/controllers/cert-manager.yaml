@@ -39,7 +39,13 @@ spec:
   values:
     crds:
       enabled: true
+      # NOTE:
+      # This ensure that cert-manager acme plugin uses a remote DNS
+      # server to verify the authority of the domain. Using the default
+      # settings will use the local CoreDNS instance which actually a split horizon
+      # view of the reality. In short when the reponse (TXT record) is updated on google cloud server
+      # we need to use that server.
       extraArgs:
-        - --dns01-recursive-nameservers-only
-        - --dns01-recursive-nameservers=8.8.8.8:53
+       - --dns01-recursive-nameservers-only
+       - --dns01-recursive-nameservers=8.8.8.8:53
       keep: false
