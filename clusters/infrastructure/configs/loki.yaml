@@ -9,6 +9,7 @@ spec:
   quotas:
     maxSize: 10Gi
 ---
+apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
   name: loki
@@ -19,6 +20,7 @@ spec:
   quotas:
     maxSize: 2Gi
 ---
+apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
   name: loki
