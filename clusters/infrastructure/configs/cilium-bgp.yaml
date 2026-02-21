@@ -1,0 +1,90 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPClusterConfig
+metadata:
+  name: bgp-cluster-config
+spec:
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/control-plane: "true"
+  bgpInstances:
+    - name: "instance-65001"
+      localASN: 65001
+      peers:
+        - name: "peer-65000"
+          peerASN: 65000
+          peerAddress: "192.168.0.1"
+          peerConfigRef:
+            name: "cilium-peer-config"
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-peer-config
+spec:
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: "bgp"
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-advertisements
+  labels:
+    advertise: "bgp"
+spec:
+  advertisements:
+    - advertisementType: "PodCIDR"
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          - {key: cilium-lb-disabled, operator: NotIn, values: ['true']}
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: main-pool
+  namespace: kube-system
+spec:
+  blocks:
+    - start: 10.10.20.5
+      stop: 10.10.20.250
+---
+# K8s Api load balanced
+apiVersion: v1
+kind: Service
+metadata:
+  name: controlplane-lb
+  namespace: kube-system
+spec:
+  type: LoadBalancer
+  loadBalancerIP: "10.10.20.10"
+  ports:
+    - port: 6443
+      targetPort: 6443
+      protocol: TCP
+      name: https
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: controlplane-lb
+  namespace: kube-system
+  labels:
+    kubernetes.io/service-name: controlplane-lb
+addressType: IPv4
+ports:
+  - port: 6443
+    protocol: TCP
+    name: https
+endpoints:
+  - addresses:
+      - "10.10.0.11"
+      - "10.10.0.12"
+      - "10.10.0.13"

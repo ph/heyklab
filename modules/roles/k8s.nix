@@ -148,7 +148,7 @@ in {
           };
         };
 
-        manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
+        # manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
 
         # Cilium API Gateway
         # https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/#prerequisites
@@ -159,33 +159,6 @@ in {
         # manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
         # manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
 
-        # manifests.certmanager.content = {
-        #   apiVersion = "helm.cattle.io/v1";
-        #   kind = "HelmChart";
-        #   metadata = {
-        #     name = "cert-manager";
-        #     namespace = "kube-system";
-        #   };
-        #   spec = {
-        #     targetNamespace = "cert-manager";
-        #     createNamespace = true;
-        #     repo = "https://charts.jetstack.io";
-        #     chart = "cert-manager";
-        #     version = "v1.19.2";
-        #     set = {
-        #       "config.apiVersion" = "controller.config.cert-manager.io/v1alpha1";
-        #       "config.kind" = "ControllerConfiguration";
-        #       "config.enableGatewayAPI" = "true";
-        #     };
-        #     valuesContent = ''
-        #       crds:
-        #         enabled: true
-        #       extraArgs:
-        #       - --dns01-recursive-nameservers-only
-        #       - --dns01-recursive-nameservers=8.8.8.8:53
-        #     '';
-        #   };
-        # };
 
       })
       {
