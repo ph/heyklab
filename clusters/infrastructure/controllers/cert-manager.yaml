@@ -39,4 +39,7 @@ spec:
   values:
     crds:
       enabled: true
+      extraArgs:
+        - --dns01-recursive-nameservers-only
+        - --dns01-recursive-nameservers=8.8.8.8:53
       keep: false
