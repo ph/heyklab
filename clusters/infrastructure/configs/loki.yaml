@@ -1,8 +1,8 @@
 apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
-  name: loki
-  namespace: loki-chunk
+  name: loki-chunk
+  namespace: loki
 spec:
   clusterRef:
     name: garage
@@ -12,8 +12,8 @@ spec:
 apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
-  name: loki
-  namespace: loki-ruler
+  name: loki-ruler
+  namespace: loki
 spec:
   clusterRef:
     name: garage
@@ -23,8 +23,8 @@ spec:
 apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
-  name: loki
-  namespace: loki-admin
+  name: loki-admin
+  namespace: loki
 spec:
   clusterRef:
     name: garage
