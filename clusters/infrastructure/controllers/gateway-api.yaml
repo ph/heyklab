@@ -8,7 +8,7 @@ spec:
   interval: 1h
   url: https://github.com/kubernetes-sigs/gateway-api
   ref:
-    semver: "~>v1.4.1"
+    semver: ">=1.4.1 <1.5.0"
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -16,6 +16,7 @@ metadata:
   name: gateway-api
   namespace: default
 spec:
+  wait: true
   interval: 1h
   sourceRef:
     kind: GitRepository
@@ -23,5 +24,5 @@ spec:
     namespace: default
   path: "./config/crd/"
   prune: true
-  timeout: 1m
+  timeout: 5m
 ---
