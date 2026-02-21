@@ -4,3 +4,4 @@ resources:
   - cert-manager.yaml
   - gateway-api.yaml
   - longhorn.yaml
+  - garage-operator.yaml
