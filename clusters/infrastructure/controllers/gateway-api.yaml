@@ -22,6 +22,6 @@ spec:
     kind: GitRepository
     name: gateway-api-crds
   path: "./config/crd"
-  prune: true
+  prune: false
   timeout: 5m
 ---
