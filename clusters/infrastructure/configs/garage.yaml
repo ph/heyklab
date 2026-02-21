@@ -29,8 +29,8 @@ spec:
     enabled: true
     bindPort: 3903
     adminTokenSecretRef:
-      name: garage-admin-token
-      key: token
+      name: deux-garage-admin-token
+      key: admin-token
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
