@@ -9,3 +9,4 @@ resources:
   - longhorn-loadbalancer.yaml
   - longhorn-static.yaml
   - garage.yaml
+  - loki.yaml
