@@ -11,16 +11,16 @@ spec:
     factor: 2
   storage:
     metadata:
-      storageClassName: "longhorn-local-volume"
+      storageClassName: longhorn-local-volume
       size: 100Mi
     data:
-      storageClassName: "longhorn-local-volume"
+      storageClassName: longhorn-local-volume
       size: 10Gi
   s3Api:
     region: ca
-    rootDomain: ".s3.garage.local.heyk.org"
+    rootDomain: .s3.garage.local.heyk.org
   webApi:
-    rootDomain: ".web.garage.local.heyk.org"
+    rootDomain: .web.garage.local.heyk.org
   network:
     rpcBindPort: 3901
     service:
