@@ -10,7 +10,7 @@ spec:
   replication:
     factor: 3
   storage:
-    meta:
+    metadata:
       storageClassName: "longhorn-local-volume"
       size: 100Mi
     data:
@@ -21,7 +21,6 @@ spec:
     rootDomain: ".s3.garage.local.heyk.org"
   webApi:
     rootDomain: ".web.garage.local.heyk.org"
-    index: "index.html"
   network:
     rpcBindPort: 3901
     service:
