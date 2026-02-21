@@ -5,10 +5,10 @@ metadata:
   name: garage
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   zone: ca
   replication:
-    factor: 3
+    factor: 2
   storage:
     metadata:
       storageClassName: "longhorn-local-volume"
