@@ -135,9 +135,6 @@ in {
               routingMode: "native"
               ipv4NativeRoutingCIDR: "10.42.0.0/16"
               autoDirectNodeRoutes: true
-              ingressController:
-                enabled: true 
-                loadbalancerMode: shared
               ipam:
                 mode: "kubernetes"
                 operator:
@@ -149,17 +146,6 @@ in {
         };
 
         # manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
-
-        # Cilium API Gateway
-        # https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/#prerequisites
-        # manifests.gatewayclass.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gatewayclasses.yaml;
-        # manifests.gateways.source = ../../manifests/gateway-api/gateway.networking.k8s.io_gateways.yaml;
-        # manifests.grpcroutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_grpcroutes.yaml;
-        # manifests.httproutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_httproutes.yaml;
-        # manifests.referencegrants.source = ../../manifests/gateway-api/gateway.networking.k8s.io_referencegrants.yaml;
-        # manifests.tlsorutes.source = ../../manifests/gateway-api/gateway.networking.k8s.io_tlsroutes.yaml;
-
-
       })
       {
         manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
