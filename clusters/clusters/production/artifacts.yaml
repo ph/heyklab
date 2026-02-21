@@ -18,7 +18,7 @@ spec:
     - name: apps
       originRevision: "@monorepo"
       copy:
-        - from: "@monorepo/apps/base/**"
+        - from: "@monorepo/clusters/apps/base/**"
           to: "@artifact/base/"
-        - from: "@monorepo/apps/production/**"
+        - from: "@monorepo/clusters/apps/production/**"
           to: "@artifact/production/"
