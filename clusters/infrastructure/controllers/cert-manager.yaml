@@ -39,6 +39,7 @@ spec:
   values:
     crds:
       enabled: true
+      keep: false
     # NOTE:
     # This ensure that cert-manager acme plugin uses a remote DNS
     # server to verify the authority of the domain. Using the default
@@ -48,4 +49,3 @@ spec:
     extraArgs:
       - --dns01-recursive-nameservers-only
       - --dns01-recursive-nameservers=8.8.8.8:53
-      keep: false
