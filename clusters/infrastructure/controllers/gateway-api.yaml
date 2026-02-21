@@ -22,7 +22,7 @@ spec:
     kind: GitRepository
     name: gateway-api
     namespace: default
-  path: "./config/crd/standard"
+  path: "./config/crd"
   prune: true
   timeout: 5m
 ---
