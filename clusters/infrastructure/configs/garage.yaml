@@ -18,9 +18,9 @@ spec:
       size: 10Gi
   s3Api:
     region: ca
-    rootDomain: .s3.garage.local.heyk.org
+    rootDomain: s3.garage.local.heyk.org
   webApi:
-    rootDomain: .web.garage.local.heyk.org
+    rootDomain: web.garage.local.heyk.org
   network:
     rpcBindPort: 3901
     service:
