@@ -19,7 +19,7 @@ spec:
   s3Api:
     region: ca
     rootDomain: ".s3.garage.local.heyk.org"
-  WebApi:
+  webApi:
     rootDomain: ".web.garage.local.heyk.org"
     index: "index.html"
   network:
