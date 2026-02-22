@@ -81,82 +81,84 @@ spec:
         namespace: flux-system
       interval: 10m
 
-  valuesFrom:
-    - kind: Secret
-      name: loki-access
-      valuesKey: access-key-id
-      targetPath: storage.s3.access_key_id
+  # valuesFrom:
+  #   - kind: Secret
+  #     name: loki-access
+  #     namespace: loki
+  #     valuesKey: access-key-id
+  #     targetPath: storage.s3.access_key_id
 
-    - kind: Secret
-      name: loki-access
-      valuesKey: secret-access-key
-      targetPath: storage.s3.secret_access_key
+  #   - kind: Secret
+  #     name: loki-access
+  #     namespace: loki
+  #     valuesKey: secret-access-key
+  #     targetPath: storage.s3.secret_access_key
 
-  values:
-    loki:
-      schemaConfig:
-        configs:
-          - from: 2026-04-01
-            store: tsdb
-            object_store: s3
-            schema: v13
-            index:
-              prefix: loki_index_
-              period: 24h
-    storage:
-      type: s3
+  # values:
+  #   loki:
+  #     schemaConfig:
+  #       configs:
+  #         - from: 2026-04-01
+  #           store: tsdb
+  #           object_store: s3
+  #           schema: v13
+  #           index:
+  #             prefix: loki_index_
+  #             period: 24h
+  #   storage:
+  #     type: s3
 
-      bucketNames:
-        chunks: loki-chunks
-        ruler: loki-ruler
-        admin: loki-admin
+  #     bucketNames:
+  #       chunks: loki-chunks
+  #       ruler: loki-ruler
+  #       admin: loki-admin
 
-      s3:
-        endpoint: https://garage.s3.local.heyk.org
-        access_key_id: <TO_REPLACE>
-        secret_access_key: <TO_REPLACE>
-        region: ca 
-        s3forcepathstyle: true
-    deploymentMode: Distributed
+  #     s3:
+  #       endpoint: https://garage.s3.local.heyk.org
+  #       access_key_id: <TO_REPLACE>
+  #       secret_access_key: <TO_REPLACE>
+  #       region: ca 
+  #       s3forcepathstyle: true
+  #   deploymentMode: Distributed
 
-    # Disable minio storage
-    minio:
-        enabled: false
+  #   # Disable minio storage
+  #   minio:
+  #       enabled: false
 
-    ingester:
-      replicas: 3
-      zoneAwareReplication:
-        enabled: false
-    querier:
-      replicas: 3
-      maxUnavailable: 2
-    queryFrontend:
-      replicas: 2
-      maxUnavailable: 1
-    queryScheduler:
-      replicas: 2
-    distributor:
-      replicas: 3
-      maxUnavailable: 2
-    compactor:
-      replicas: 1
-    indexGateway:
-      replicas: 2
-      maxUnavailable: 1
+  #   ingester:
+  #     replicas: 3
+  #     zoneAwareReplication:
+  #       enabled: false
+  #   querier:
+  #     replicas: 3
+  #     maxUnavailable: 2
+  #   queryFrontend:
+  #     replicas: 2
+  #     maxUnavailable: 1
+  #   queryScheduler:
+  #     replicas: 2
+  #   distributor:
+  #     replicas: 3
+  #     maxUnavailable: 2
+  #   compactor:
+  #     replicas: 1
+  #   indexGateway:
+  #     replicas: 2
+  #     maxUnavailable: 1
 
-    bloomPlanner:
-      replicas: 0
-    bloomBuilder:
-      replicas: 0
-    bloomGateway:
-      replicas: 0
+  #   bloomPlanner:
+  #     replicas: 0
+  #   bloomBuilder:
+  #     replicas: 0
+  #   bloomGateway:
+  #     replicas: 0
 
-    backend:
-      replicas: 0
-    read:
-      replicas: 0
-    write:
-      replicas: 0
+  #   backend:
+  #     replicas: 0
+  #   read:
+  #     replicas: 0
+  #   write:
+  #     replicas: 0
 
-    singleBinary:
-      replicas: 0
+  #   singleBinary:
+  #     replicas: 0
