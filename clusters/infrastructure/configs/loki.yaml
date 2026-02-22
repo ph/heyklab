@@ -82,12 +82,12 @@ spec:
       interval: 10m
 
   valuesFrom:
-    - kind: Secret
+    - kind: GarageKey
       name: loki-access
       valuesKey: access-key-id
       targetPath: storage.s3.access_key_id
 
-    - kind: Secret
+    - kind: GarageKey
       name: loki-access
       valuesKey: secret-access-key
       targetPath: storage.s3.secret_access_key
