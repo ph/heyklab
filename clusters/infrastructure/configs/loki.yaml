@@ -115,20 +115,20 @@ spec:
             index:
               prefix: loki_index_
               period: 24h
-    storage:
-      type: s3
+      storage:
+        type: s3
 
-      bucketNames:
-        chunks: loki-chunks
-        ruler: loki-ruler
-        admin: loki-admin
+        bucketNames:
+          chunks: loki-chunks
+          ruler: loki-ruler
+          admin: loki-admin
 
-      s3:
-        endpoint: https://garage.s3.local.heyk.org
-        access_key_id: <TO_REPLACE>
-        secret_access_key: <TO_REPLACE>
-        region: ca 
-        s3forcepathstyle: true
+        s3:
+          endpoint: https://garage.s3.local.heyk.org
+          access_key_id: <TO_REPLACE>
+          secret_access_key: <TO_REPLACE>
+          region: ca 
+          s3forcepathstyle: true
     deploymentMode: Distributed
 
     # Disable minio storage
