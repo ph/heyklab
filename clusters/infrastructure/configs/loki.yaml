@@ -42,6 +42,7 @@ metadata:
 spec:
   clusterRef:
     name: garage
+    namespace: default
   bucketPermissions:
     - bucketRef: loki-chunk
       read: true
