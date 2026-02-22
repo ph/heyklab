@@ -75,6 +75,14 @@ metadata:
   namespace: loki
 spec:
   interval: 10m
+  install:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 3m
   chart:
     spec:
       chart: loki
