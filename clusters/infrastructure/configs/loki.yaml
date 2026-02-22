@@ -84,13 +84,11 @@ spec:
   valuesFrom:
     - kind: Secret
       name: loki-access
-      namespace: loki
       valuesKey: access-key-id
       targetPath: storage.s3.access_key_id
 
     - kind: Secret
       name: loki-access
-      namespace: loki
       valuesKey: secret-access-key
       targetPath: storage.s3.secret_access_key
 
