@@ -73,7 +73,7 @@ spec:
   interval: 10m
   chart:
     spec:
-      chart: grafana/loki
+      chart: loki
       version: '6.53.x'
       sourceRef:
         kind: HelmRepository
@@ -91,7 +91,6 @@ spec:
       name: loki-access
       valuesKey: secret-access-key
       targetPath: storage.s3.secret_access_key
-      
 
   values:
     loki:
