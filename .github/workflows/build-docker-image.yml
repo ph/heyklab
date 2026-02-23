@@ -34,13 +34,13 @@ jobs:
 
     - name: Rename image to match Google Docker registry
       run: |
-        IMAGE_TAG=$(nix eval .#blockyDns.imageTag)
+        IMAGE_TAG=$(nix eval .#blockyDns.imageTag --raw)
         docker tag blocky-dns:$IMAGE_TAG ghcr.io/${{github.repository}}/blocky-dns:latest
         docker tag blocky-dns:$IMAGE_TAG ghcr.io/${{github.repository}}/blocky-dns:$IMAGE_TAG
 
     - name: Push Docker image
       run: |
-        IMAGE_TAG=$(nix eval .#blockyDns.imageTag)
+        IMAGE_TAG=$(nix eval .#blockyDns.imageTag --raw)
         docker push ghcr.io/${{github.repository}}/blocky-dns:latest
         docker push ghcr.io/${{github.repository}}/blocky-dns:$IMAGE_TAG
 
