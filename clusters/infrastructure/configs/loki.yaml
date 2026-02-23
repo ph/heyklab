@@ -12,6 +12,7 @@ apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
   name: loki-chunk
+  # todo change to o11y or monitoring
   namespace: loki
 spec:
   clusterRef:
