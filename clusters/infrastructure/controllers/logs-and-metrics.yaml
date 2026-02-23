@@ -87,4 +87,7 @@ spec:
     kind: OCIRepository
     name: grafana
     namespace: flux-system
+  values:
+    adminUser: admin
+    adminPassword: abc123
 ---
