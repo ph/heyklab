@@ -133,6 +133,7 @@ spec:
     querier:
       replicas: 3
       maxUnavailable: 2
+      max_concurrent: 2     
     queryFrontend:
       replicas: 2
       maxUnavailable: 1
