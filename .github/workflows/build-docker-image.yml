@@ -32,7 +32,7 @@ jobs:
         nix build .#blockyDns
         docker load < result
 
-    - name: Collection nix sha from the docker image and save it in the environment.
+    - name: Collect nix sha1 from the docker image and save it in the environment.
       run: |
         TAG=$(nix eval .#blockyDns.imageTag)
         echo "IMAGE_TAG=$TAG" >> $GITHUB_ENV
