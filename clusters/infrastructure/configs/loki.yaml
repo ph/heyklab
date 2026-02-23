@@ -131,9 +131,9 @@ spec:
           admin: loki-admin
 
         s3:
-          endpoint: <ENDPOINT_TO_REPLACE>
-          access_key_id: <TO_REPLACE>
-          secret_access_key: <TO_REPLACE>
+          # endpoint: <ENDPOINT_TO_REPLACE>
+          # access_key_id: <TO_REPLACE>
+          # secret_access_key: <TO_REPLACE>
           region: ca 
           s3forcepathstyle: true
     deploymentMode: Distributed
