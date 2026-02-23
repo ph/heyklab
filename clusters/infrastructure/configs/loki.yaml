@@ -98,17 +98,17 @@ spec:
   valuesFrom:
     - kind: Secret
       name: loki-access
-      valuesKey: access-key-id
+      valuesKey: data.access-key-id
       targetPath: loki.storage.s3.access_key_id
 
     - kind: Secret
       name: loki-access
-      valuesKey: secret-access-key
+      valuesKey: data.secret-access-key
       targetPath: loki.storage.s3.secret_access_key
       
     - kind: Secret
       name: loki-access
-      valuesKey: endpoint
+      valuesKey: data.endpoint
       targetPath: loki.storage.s3.endpoint
 
   values:
