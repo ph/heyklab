@@ -194,7 +194,6 @@
 
           blockyDns = pkgs.dockerTools.buildLayeredImage {
             name = "blocky-dns";
-            tag = "latest";
             created = builtins.substring 0 8 self.lastModifiedDate;
 
             config = {
