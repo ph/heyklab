@@ -136,10 +136,6 @@ spec:
     minio:
         enabled: false
 
-    gateway:
-      service:
-        type: LoadBalancer
-
     ingester:
       replicas: 3
       zoneAwareReplication:
