@@ -32,18 +32,15 @@ jobs:
         nix build .#blockyDns
         docker load < result
 
-    - name: Collect nix sha1 from the docker image and save it in the environment.
-      run: |
-        TAG=$(nix eval .#blockyDns.imageTag)
-        echo "IMAGE_TAG=$TAG" >> $GITHUB_ENV
-
     - name: Rename image to match Google Docker registry
       run: |
+        IMAGE_TAG=$(nix eval .#blockyDns.imageTag)
         docker tag blocky-dns:$IMAGE_TAG ghcr.io/${{github.repository}}/blocky-dns:latest
         docker tag blocky-dns:$IMAGE_TAG ghcr.io/${{github.repository}}/blocky-dns:$IMAGE_TAG
 
     - name: Push Docker image
       run: |
+        IMAGE_TAG=$(nix eval .#blockyDns.imageTag)
         docker push ghcr.io/${{github.repository}}/blocky-dns:latest
         docker push ghcr.io/${{github.repository}}/blocky-dns:$IMAGE_TAG
 
