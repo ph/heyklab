@@ -130,7 +130,7 @@ spec:
           access_key_id: <TO_REPLACE>
           secret_access_key: <TO_REPLACE>
           region: ca 
-          # s3forcepathstyle: true
+          s3forcepathstyle: true
     deploymentMode: Distributed
 
     # Disable minio storage
