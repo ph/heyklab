@@ -102,7 +102,7 @@ spec:
   parentRefs:
   - name: garage-gateway
   hostnames:
-  - "garage.local.heyk.org"
+  - "s3.garage.local.heyk.org"
   - "*.s3.garage.local.heyk.org"
   rules:
     - matches:
