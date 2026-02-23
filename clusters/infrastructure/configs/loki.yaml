@@ -11,7 +11,7 @@ spec:
 apiVersion: garage.rajsingh.info/v1alpha1
 kind: GarageBucket
 metadata:
-  name: loki-chunk
+  name: loki-chunks
   # todo change to o11y or monitoring
   namespace: loki
 spec:
@@ -55,7 +55,7 @@ spec:
     name: garage
     namespace: default
   bucketPermissions:
-    - bucketRef: loki-chunk
+    - bucketRef: loki-chunks
       read: true
       write: true
     - bucketRef: loki-ruler
