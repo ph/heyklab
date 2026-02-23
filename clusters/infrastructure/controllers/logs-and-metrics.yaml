@@ -86,4 +86,5 @@ spec:
   chartRef:
     kind: OCIRepository
     name: grafana
+    namespace: flux-system
 ---
