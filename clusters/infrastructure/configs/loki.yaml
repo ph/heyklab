@@ -105,6 +105,11 @@ spec:
       name: loki-access
       valuesKey: secret-access-key
       targetPath: loki.storage.s3.secret_access_key
+      
+    - kind: Secret
+      name: loki-access
+      valuesKey: endpoint
+      targetPath: loki.storage.s3.endpoint
 
   values:
     loki:
@@ -126,7 +131,7 @@ spec:
           admin: loki-admin
 
         s3:
-          endpoint: https://s3.garage.local.heyk.org
+          endpoint: <TO_REPLACE>
           access_key_id: <TO_REPLACE>
           secret_access_key: <TO_REPLACE>
           region: ca 
