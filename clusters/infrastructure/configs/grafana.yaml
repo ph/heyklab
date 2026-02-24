@@ -29,7 +29,7 @@ spec:
           spec:
             parentRefs:
               - name: grafana-gateway
-                namespace: default
+                namespace: monitoring
             hostnames:
               - grafana.local.heyk.org
       template:
