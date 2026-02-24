@@ -8,7 +8,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: grafana-operator
-  name: grafana-system
+  namespace: grafana-system
 spec:
   interval: 10m
   url: oci://ghcr.io/grafana/helm-charts/grafana-operator --version 
@@ -19,7 +19,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: grafana-operator
-  name: grafana-system
+  namespace: grafana-system
 spec:
   interval: 12h
   install:
