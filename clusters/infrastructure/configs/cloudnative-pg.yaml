@@ -26,5 +26,4 @@ spec:
         createdb: false
         passwordSecret:
           name: database-grafana-password
-          key: password
 ---
