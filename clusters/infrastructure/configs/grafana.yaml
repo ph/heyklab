@@ -135,6 +135,10 @@ spec:
     access: proxy
     url: http://loki-gateway.loki.svc.cluster.local
     isDefault: true
+    # TODO: configure auth/TLS
     jsonData:
       maxLines: 1000
+      httpHeaderName1: X-Scope-OrgID
+    secureJsonData:
+      httpHeaderValue1: 1
 ---
