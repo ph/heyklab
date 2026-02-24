@@ -30,7 +30,7 @@ spec:
       retryInterval: 3m
   chart:
     spec:
-      chart: cnpg
+      chart: cnpg/cloudnative-pg
       version: '0.27.x'
       sourceRef:
         kind: HelmRepository
