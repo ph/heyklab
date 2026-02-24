@@ -8,7 +8,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: pg
-  metadata: pg
+  namespace: pg
 spec:
   instances: 3
   storage:
