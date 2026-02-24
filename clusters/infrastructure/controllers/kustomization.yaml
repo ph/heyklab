@@ -5,6 +5,6 @@ resources:
   - gateway-api.yaml
   - longhorn.yaml
   - garage-operator.yaml
-  - logs-and-metrics.yaml
+  - alloy-operator.yaml
   - cloudnative-pg.yaml
   - grafana-operator.yaml
