@@ -31,6 +31,7 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: grafanadashboard-sample
+  namespace: monitoring
 spec:
   resyncPeriod: 30s
   instanceSelector:
