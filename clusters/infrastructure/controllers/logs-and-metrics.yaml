@@ -47,6 +47,8 @@ spec:
       - name: loki
         type: loki
         url: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
+        tenant_id: 1
+
     podLogs:
       enabled: true
     # alloy-metrics:
