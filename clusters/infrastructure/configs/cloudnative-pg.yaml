@@ -10,7 +10,6 @@ metadata:
   name: pg
   metadata: pg
 spec:
-  imageName: ghcr.io/cloudnative-pg/postgresql:13.6
   instances: 3
   storage:
     storageClass: longhorn-local-volume
