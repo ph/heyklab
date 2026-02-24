@@ -11,7 +11,7 @@ metadata:
   namespace: grafana-system
 spec:
   interval: 10m
-  url: oci://ghcr.io/grafana/helm-charts/grafana-operator --version 
+  url: oci://ghcr.io/grafana/helm-charts
   ref:
     semver: ">= 5.22.0"
 ---
