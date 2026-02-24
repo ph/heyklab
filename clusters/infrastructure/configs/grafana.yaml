@@ -137,8 +137,8 @@ spec:
     isDefault: true
     # TODO: configure auth/TLS
     jsonData:
-      maxLines: 1000
       httpHeaderName1: X-Scope-OrgID
     secureJsonData:
-      httpHeaderValue1: 1
+        httpHeaderValue1: 1
+    orgId: 1
 ---
