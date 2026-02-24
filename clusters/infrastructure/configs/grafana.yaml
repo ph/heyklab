@@ -23,8 +23,11 @@ spec:
           host: "pg.pg:5432"
           name: "grafana"
           user: "grafana"
-          password:
-            existingSecret: database-grafana-password
+  env:
+      - name: GF_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: database-grafana-password
             key: password
 ---
 apiVersion: grafana.integreatly.org/v1beta1
