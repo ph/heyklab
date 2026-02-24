@@ -46,7 +46,7 @@ spec:
         url: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
         tenant_id: 1
         auth:
-          tenantIdFrom: 1
+          tenantId: "1"
     # podLogs:
     #   enabled: true
     # alloy-metrics:
