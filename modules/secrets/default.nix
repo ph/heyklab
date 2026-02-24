@@ -53,5 +53,23 @@
       };
       path = "/var/lib/rancher/k3s/server/manifests/garage-admin-token.json";
     };
+
+    # Secrets for Garage
+    secrets.database-grafana-password = { };
+    templates.database-grafana-password = {
+      content = builtins.toJSON {
+        apiVersion = "v1";
+        kind = "Secret";
+        metadata = {
+         name = "database-grafana-password"; 
+         namespace = "pg";
+        };
+        stringData = {
+          username = "grafana";
+          password = config.sops.placeholder.database-grafana-password;
+        };
+      };
+      path = "/var/lib/rancher/k3s/server/manifests/database-grafana-password.json";
+    };
   };
 }

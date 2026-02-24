@@ -14,4 +14,16 @@ spec:
   storage:
     storageClass: longhorn-local-volume
     size: 5Gi
+  bootstrap:
+    initdb:
+      database: grafana
+      owner: grafana
+  managed:
+    roles:
+      - name: grafana
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: database-grafana-password
 ---
