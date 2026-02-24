@@ -18,14 +18,14 @@ spec:
     security:
       admin_user: root
       admin_password: secret
-  database:
-        type: "postgres"
-        host: "pg.pg:5432"
-        name: "grafana"
-        user: "grafana"
-        password:
-          existingSecret: database-grafana-password
-          key: password
+    database:
+          type: "postgres"
+          host: "pg.pg:5432"
+          name: "grafana"
+          user: "grafana"
+          password:
+            existingSecret: database-grafana-password
+            key: password
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
