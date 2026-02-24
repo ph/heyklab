@@ -10,3 +10,4 @@ resources:
   - longhorn-static.yaml
   - garage.yaml
   - loki.yaml
+  - cloudnative-pg.yaml
