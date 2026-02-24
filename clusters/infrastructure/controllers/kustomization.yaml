@@ -7,3 +7,4 @@ resources:
   - garage-operator.yaml
   - logs-and-metrics.yaml
   - cloudnative-pg.yaml
+  - grafana-operator.yaml
