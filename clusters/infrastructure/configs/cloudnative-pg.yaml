@@ -31,6 +31,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Database
 metadata:
   name: database-grafana
+  metadata: pg
 spec:
   name: grafana
   owner: grafana
