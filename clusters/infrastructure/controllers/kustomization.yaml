@@ -6,4 +6,4 @@ resources:
   - longhorn.yaml
   - garage-operator.yaml
   - logs-and-metrics.yaml
-  - cloudnativepg.yaml
+  - cloudnative-pg.yaml
