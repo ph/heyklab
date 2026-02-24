@@ -221,6 +221,7 @@
               age
               jq
               kubectl
+              kubectl-cnpg
               ssh-to-age
               awscli
             ] ++ [ pkgs.sops ];
