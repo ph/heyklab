@@ -71,5 +71,22 @@
       };
       path = "/var/lib/rancher/k3s/server/manifests/database-grafana-password.json";
     };
+
+    templates.database-grafana-password-monitoring = {
+      content = builtins.toJSON {
+        apiVersion = "v1";
+        kind = "Secret";
+        metadata = {
+          name = "database-grafana-password"; 
+          namespace = "monitoring";
+        };
+        stringData = {
+          username = "grafana";
+          password = config.sops.placeholder.database-grafana-password;
+        };
+      };
+      path = "/var/lib/rancher/k3s/server/manifests/database-grafana-password-monitoring.json";
+    };
+
   };
 }
