@@ -12,6 +12,13 @@ metadata:
   labels:
     dashboards: "grafana"
 spec:
+  httpRoute:
+      spec:
+        parentRefs:
+          - name: grafana-gateway
+            namespace: monitoring
+        hostnames:
+          - grafana.local.heyk.org
   config:
     log:
       mode: "console"
@@ -25,13 +32,6 @@ spec:
           user: "grafana"
   deployment:
     spec:
-      httpRoute:
-          spec:
-            parentRefs:
-              - name: grafana-gateway
-                namespace: monitoring
-            hostnames:
-              - grafana.local.heyk.org
       template:
         spec:
           containers:
