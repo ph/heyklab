@@ -27,3 +27,13 @@ spec:
         passwordSecret:
           name: database-grafana-password
 ---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: database-grafana
+spec:
+  name: grafana
+  owner: grafana
+  cluster:
+    name: pg
+---
