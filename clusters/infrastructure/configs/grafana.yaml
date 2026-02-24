@@ -134,7 +134,7 @@ spec:
     type: loki
     access: proxy
     url: http://loki.loki.svc.cluster.local:3100
-    isDefault: false
+    isDefault: true
     jsonData:
       maxLines: 1000
 ---
