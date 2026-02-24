@@ -11,3 +11,4 @@ resources:
   - garage.yaml
   - loki.yaml
   - cloudnative-pg.yaml
+  - grafana.yaml
