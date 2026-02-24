@@ -122,6 +122,8 @@ spec:
             index:
               prefix: loki_index_
               period: 24h
+      limits_config:
+        volume_enabled: true
       storage:
         type: s3
 
