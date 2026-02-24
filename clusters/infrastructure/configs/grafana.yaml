@@ -20,7 +20,7 @@ spec:
       admin_password: secret
     database:
           type: "postgres"
-          host: "pg.pg.svc.cluster.local:5432"
+          host: "pg-rw.pg.svc.cluster.local:5432"
           name: "grafana"
           user: "grafana"
   deployment:
