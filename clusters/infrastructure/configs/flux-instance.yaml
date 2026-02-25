@@ -13,13 +13,13 @@ spec:
     artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests
 
   components:
-    - source-watcher
-    - source-controller
-    - kustomize-controller
-    - helm-controller
-    - notification-controller
-    - image-reflector-controller
-    - image-automation-controller
+    - "source-watcher"
+    - "source-controller"
+    - "kustomize-controller"
+    - "helm-controller"
+    - "notification-controller"
+    - "image-reflector-controller"
+    - "image-automation-controller"
 
   cluster:
     type: kubernetes
