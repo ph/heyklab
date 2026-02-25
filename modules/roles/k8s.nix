@@ -150,7 +150,7 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
-        manifets.flux-system.content = {
+        manifests.flux-system.content = {
           apiVersion = "v1";
           kind = "Namespace";
           metadata = {
