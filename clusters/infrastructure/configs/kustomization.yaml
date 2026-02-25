@@ -12,3 +12,4 @@ resources:
   - loki.yaml
   - cloudnative-pg.yaml
   - grafana.yaml
+  - flux-instance.yaml
