@@ -117,7 +117,7 @@ in {
           name = "cilium";
           repo = "https://helm.cilium.io";
           version = "1.19.0";
-          hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
+          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           targetNamespace = "flux-system";
           values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
         };
