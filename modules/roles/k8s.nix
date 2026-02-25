@@ -113,15 +113,13 @@ in {
           };
         };
 
-        autoDeployCharts.helm-cilium = {
+        autoDeployCharts.helm-cilium-operator = {
           name = "cilium";
           repo = "https://helm.cilium.io";
           version = "1.19.0";
           hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
           targetNamespace = "flux-system";
-          spec = {
-            valuesContent = "${../../clusters/infrastructure/configs/helm-values-cilium.yaml}";
-          };
+          values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
         };
 
         autoDeployCharts.helm-flux-operator = {
