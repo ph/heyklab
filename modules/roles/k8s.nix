@@ -156,7 +156,6 @@ in {
           version = "0.42.1";
           hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
           targetNamespace = "flux-system";
-          createNamespace = true;
         };
 
         autoDeployCharts.helm-flux-instance = {
@@ -165,7 +164,6 @@ in {
           version = "0.42.1";
           hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
           targetNamespace = "flux-system";
-          createNamespace = true;
         };
 
         # Load Flux configuration from our infrastructure configuration.
