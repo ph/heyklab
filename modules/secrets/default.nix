@@ -10,6 +10,7 @@
         metadata = {
          name = "github-token"; 
          namespace = "flux-system";
+         createNamespace = true;
         };
         stringData = {
           username = "ph";
