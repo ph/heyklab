@@ -23,7 +23,7 @@ spec:
 
   cluster:
     type: kubernetes
-    size: "small"
+    # size: "small"
     multitenant: false
     networkPolicy: true
     domain: cluster.local
