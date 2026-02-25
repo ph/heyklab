@@ -87,6 +87,5 @@
   #     };
   #     path = "/var/lib/rancher/k3s/server/manifests/database-grafana-password-monitoring.json";
   #   };
-
-  # };
+ };
 }
