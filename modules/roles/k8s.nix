@@ -150,6 +150,14 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
+        manifets.flux-system.content = {
+          apiVersion = "v1";
+          kind = "Namespace";
+          metadata = {
+            name = "flux-system";
+          };
+        };
+
         autoDeployCharts.helm-flux-operator = {
           name = "flux-operator";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
