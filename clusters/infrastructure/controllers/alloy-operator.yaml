@@ -47,6 +47,8 @@ spec:
         tenantId: "1"
     nodeLogs:
       enabled: true
+      journal:
+        formatAsJson: true
     podLogs:
       enabled: true
     # alloy-metrics:
