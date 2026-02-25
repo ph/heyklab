@@ -119,7 +119,9 @@ in {
           version = "1.19.0";
           hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
           targetNamespace = "flux-system";
-          valuesContent = "${../../clusters/infrastructure/configs/helm-values-cilium.yaml}";
+          spec = {
+            valuesContent = "${../../clusters/infrastructure/configs/helm-values-cilium.yaml}";
+          };
         };
 
         autoDeployCharts.helm-flux-operator = {
