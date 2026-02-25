@@ -154,7 +154,7 @@ in {
           name = "flux-operator";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
           version = "0.42.1";
-          hash = "sha256-1WQgw5H4+LRRxxIGc21/bkeS5/8cspM/9Kd7FcbvZKc=";
+          hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
           targetNamespace = "flux-system";
           createNamespace = true;
         };
