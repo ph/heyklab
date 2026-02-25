@@ -100,51 +100,6 @@ in {
           # "--debug"
         ];
       }
-      (lib.mkIf (cfg.mainServer != "" && cfg.primary) {
-        manifests.cilium.content = {
-          apiVersion = "helm.cattle.io/v1";
-          kind = "HelmChart";
-          metadata = {
-            name = "cilium";
-            namespace = "kube-system";
-          };
-          spec = {
-            bootstrap = true;
-            targetNamespace = "kube-system";
-            createNamespace = false;
-            repo = "https://helm.cilium.io";
-            chart = "cilium";
-            version = "1.19.0";
-            valuesContent = ''
-              encryption:
-                enabled: true
-                type: "wireguard"
-                # This doesn't work on control-plane, there are excluded by default.
-                nodeEncryption: true
-              crds:
-                install: true
-              bgpControlPlane:
-                enabled: true
-              k8sServiceHost: "127.0.0.1"
-              k8sServicePort: 6443
-              kubeProxyReplacement: true
-              gatewayAPI:
-                enabled: true
-              envoy:
-                enabled: true
-              routingMode: "native"
-              ipv4NativeRoutingCIDR: "10.42.0.0/16"
-              autoDirectNodeRoutes: true
-              ipam:
-                mode: "kubernetes"
-                operator:
-                  clusterPoolIPv4PodCIDRList: ["10.42.0.0/16"]
-              operator:
-                replicas: 3
-            '';
-          };
-        };
-      })
       # Bootstrap of the Kubernetes cluster, to do this we are using K3S features that read the initial
       # manifests present in /var/lib/rancer/k3s/server/manifest and apply them, after the first sync when Cilium
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
@@ -156,6 +111,15 @@ in {
           metadata = {
             name = "flux-system";
           };
+        };
+
+        autoDeployCharts.helm-cilium = {
+          name = "cilium";
+          repo = "https://helm.cilium.io";
+          version = "1.19.0";
+          hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
+          targetNamespace = "flux-system";
+          valuesContent = "${../../../clusters/infrastructure/configs/helm-values-cilium.yaml}";
         };
 
         autoDeployCharts.helm-flux-operator = {
