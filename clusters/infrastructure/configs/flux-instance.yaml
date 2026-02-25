@@ -6,7 +6,6 @@ metadata:
   annotations:
     "fluxcd.controlplane.io/reconcileEvery": "5m"
     "fluxcd.controlplane.io/reconcileTimeout": "5m"
-
 spec:
   distribution:
     version: 2.x
@@ -24,7 +23,7 @@ spec:
 
   cluster:
     type: kubernetes
-    size: small
+    # size: "small"
     multitenant: false
     networkPolicy: true
     domain: cluster.local
