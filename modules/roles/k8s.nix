@@ -153,7 +153,7 @@ in {
         autoDeployCharts.helm-flux-operator = {
           name = "flux-operator";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-          version = "0.14.0";
+          version = "0.42.1";
           hash = "sha256-1WQgw5H4+LRRxxIGc21/bkeS5/8cspM/9Kd7FcbvZKc=";
           targetNamespace = "flux-system";
           createNamespace = true;
@@ -162,7 +162,7 @@ in {
         autoDeployCharts.helm-flux-instance = {
           name = "flux-instance";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
-          version = "0.14.0";
+          version = "0.42.1";
           hash = "sha256-27Ry/fNwIlqn2T9khsMfM17x6P0pxBBoFYp54+5M5+Q=";
           targetNamespace = "flux-system";
           createNamespace = true;
