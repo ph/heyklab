@@ -85,7 +85,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -144,11 +144,22 @@ in {
             '';
           };
         };
-
-        # manifests.ciliumbgp.source = ../../manifests/cilium-bgp.yaml;
       })
+      # Bootstrap of the Kubernetes cluster, to do this we are using K3S features that read the initial
+      # manifests present in /var/lib/rancer/k3s/server/manifest and apply them, after the first sync when Cilium
+      # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
+      # NixOS. 
+      # {
+      #   autoDeployCharts.flux-operator = {
+      #     name = "flux-operator";
+      #     repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+      #     version = "0.14.0";
+      #     hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
+      #     targetNamespace = "flux-system";
+      #     createNamespace = true;
+      #   };
+      # }
       {
-        manifests.fluxoperator.source = ../../manifests/flux-operator.yaml;
         manifests.fluxinstance.content = {
           apiVersion = "fluxcd.controlplane.io/v1";
           kind = "FluxInstance";
