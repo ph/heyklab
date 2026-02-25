@@ -1,0 +1,28 @@
+#+begin_src sh
+nix run nixpkgs#nixos-rebuild -- \
+  switch \
+  --flake .#neferu \
+  --target-host deploy@10.10.0.12 \
+  --install-bootloader \
+  --use-remote-sudo
+
+docker run -d \
+  --name watchtower \
+  --restart unless-stopped \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --cleanup \
+  --label-enable \
+  --interval 15 
+  
+docker run -d \
+  --name blocky-dns \
+  --pull=always \
+  --restart unless-stopped \
+  -p 53:53/udp \
+  -p 53:53 \
+  -p 4000:4000 \
+  --label com.centurylinklabs.watchtower.enable=true \
+  ghcr.io/ph/heyklab/blocky-dns:latest
+  
+ pp
