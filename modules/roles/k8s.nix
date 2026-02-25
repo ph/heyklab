@@ -163,7 +163,7 @@ in {
           name = "flux-instance";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
           version = "0.42.1";
-          hash = "sha256-27Ry/fNwIlqn2T9khsMfM17x6P0pxBBoFYp54+5M5+Q=";
+          hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
           targetNamespace = "flux-system";
           createNamespace = true;
         };
