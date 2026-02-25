@@ -13,7 +13,7 @@ spec:
     artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests
 
   components:
-    - "source-watcher"
+    # - "source-watcher"
     - "source-controller"
     - "kustomize-controller"
     - "helm-controller"
