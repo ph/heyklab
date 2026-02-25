@@ -149,86 +149,86 @@ in {
       # manifests present in /var/lib/rancer/k3s/server/manifest and apply them, after the first sync when Cilium
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
-      # {
-      #   autoDeployCharts.flux-operator = {
-      #     name = "flux-operator";
-      #     repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-      #     version = "0.14.0";
-      #     hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
-      #     targetNamespace = "flux-system";
-      #     createNamespace = true;
-      #   };
-      # }
       {
-        manifests.fluxinstance.content = {
-          apiVersion = "fluxcd.controlplane.io/v1";
-          kind = "FluxInstance";
-
-          metadata = {
-            name = "flux";
-            namespace = "flux-system";
-            annotations = {
-              "fluxcd.controlplane.io/reconcileEvery" = "5m";
-              "fluxcd.controlplane.io/reconcileTimeout" = "5m";
-            };
-          };
-
-          spec = {
-            distribution = {
-              version = "2.x";
-              registry = "ghcr.io/fluxcd";
-              artifact = "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests";
-            };
-
-            components = [
-              "source-watcher"
-              "source-controller"
-              "kustomize-controller"
-              "helm-controller"
-              "notification-controller"
-              "image-reflector-controller"
-              "image-automation-controller"
-            ];
-
-            cluster = {
-              type = "kubernetes";
-              size = "medium";
-              multitenant = false;
-              networkPolicy = true;
-              domain = "cluster.local";
-            };
-
-            kustomize = {
-              patches = [
-                {
-                  target = { kind = "Deployment"; };
-                  patch = ''
-            - op: replace
-              path: /spec/template/spec/nodeSelector
-              value:
-                kubernetes.io/os: linux
-            - op: add
-              path: /spec/template/spec/tolerations
-              value:
-                - key: "CriticalAddonsOnly"
-                  operator: "Exists"
-          '';
-                }
-              ];
-            };
-
-            sync = {
-              kind = "GitRepository";
-              url = "https://github.com/ph/heyklab.git";
-              ref = "refs/heads/main";
-              path = "clusters/clusters/production";
-              interval = "1m";
-              pullSecret = "github-token";
-            };
-          };
+        autoDeployCharts.flux-operator = {
+          name = "flux-operator";
+          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+          version = "0.14.0";
+          hash = "sha256-U2XjNEWE82/Q3KbBvZLckXbtjsXugUbK6KdqT5kCccM=";
+          targetNamespace = "flux-system";
+          createNamespace = true;
         };
-
       }
+      # {
+      #   manifests.fluxinstance.content = {
+      #     apiVersion = "fluxcd.controlplane.io/v1";
+      #     kind = "FluxInstance";
+
+      #     metadata = {
+      #       name = "flux";
+      #       namespace = "flux-system";
+      #       annotations = {
+      #         "fluxcd.controlplane.io/reconcileEvery" = "5m";
+      #         "fluxcd.controlplane.io/reconcileTimeout" = "5m";
+      #       };
+      #     };
+
+      #     spec = {
+      #       distribution = {
+      #         version = "2.x";
+      #         registry = "ghcr.io/fluxcd";
+      #         artifact = "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests";
+      #       };
+
+      #       components = [
+      #         "source-watcher"
+      #         "source-controller"
+      #         "kustomize-controller"
+      #         "helm-controller"
+      #         "notification-controller"
+      #         "image-reflector-controller"
+      #         "image-automation-controller"
+      #       ];
+
+      #       cluster = {
+      #         type = "kubernetes";
+      #         size = "medium";
+      #         multitenant = false;
+      #         networkPolicy = true;
+      #         domain = "cluster.local";
+      #       };
+
+      #       kustomize = {
+      #         patches = [
+      #           {
+      #             target = { kind = "Deployment"; };
+      #             patch = ''
+      #       - op: replace
+      #         path: /spec/template/spec/nodeSelector
+      #         value:
+      #           kubernetes.io/os: linux
+      #       - op: add
+      #         path: /spec/template/spec/tolerations
+      #         value:
+      #           - key: "CriticalAddonsOnly"
+      #             operator: "Exists"
+      #     '';
+      #           }
+      #         ];
+      #       };
+
+      #       sync = {
+      #         kind = "GitRepository";
+      #         url = "https://github.com/ph/heyklab.git";
+      #         ref = "refs/heads/main";
+      #         path = "clusters/clusters/production";
+      #         interval = "1m";
+      #         pullSecret = "github-token";
+      #       };
+      #     };
+      #   };
+
+      # }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
         serverAddr = "https://${cfg.mainServer}:6443";
