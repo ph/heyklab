@@ -85,7 +85,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -113,7 +113,7 @@ in {
           };
         };
 
-        autoDeployCharts.helm-cilium-operator = {
+        autoDeployCharts.cilium = {
           name = "cilium";
           repo = "https://helm.cilium.io";
           version = "1.19.0";
@@ -122,7 +122,7 @@ in {
           values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
         };
 
-        autoDeployCharts.helm-flux-operator = {
+        autoDeployCharts.flux-operator = {
           name = "flux-operator";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
           version = "0.42.1";
