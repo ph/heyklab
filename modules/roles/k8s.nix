@@ -72,7 +72,7 @@ in {
 
     # See workaround here: https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
     services.openiscsi = {
-      enable = false;
+      enable = true;
       name = "${config.networking.hostName}-initiatorhost";
     };
     systemd.services.iscsid.serviceConfig = {
@@ -85,7 +85,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
