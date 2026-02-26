@@ -72,7 +72,7 @@ in {
 
     # See workaround here: https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
     services.openiscsi = {
-      enable = true;
+      enable = false;
       name = "${config.networking.hostName}-initiatorhost";
     };
     systemd.services.iscsid.serviceConfig = {
