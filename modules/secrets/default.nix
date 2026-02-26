@@ -32,6 +32,7 @@
         metadata = {
          name = "google-dns-key"; 
          namespace = "cert-manager";
+         createNamespace = true;
         };
 
         data = {
@@ -50,6 +51,7 @@
         metadata = {
          name = "garage-admin-token"; 
          namespace = "default";
+         createNamespace = true;
         };
         stringData = {
           token = config.sops.placeholder.garage-admin-token;
@@ -67,6 +69,7 @@
         metadata = {
          name = "database-grafana-password"; 
          namespace = "pg";
+         createNamespace = true;
         };
         stringData = {
           username = "grafana";
@@ -83,6 +86,7 @@
         metadata = {
           name = "database-grafana-password"; 
           namespace = "monitoring";
+          createNamespace = true;
         };
         stringData = {
           username = "grafana";

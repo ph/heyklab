@@ -85,7 +85,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -130,7 +130,7 @@ in {
           targetNamespace = "flux-system";
         };
 
-        autoDeployCharts.helm-flux-instance = {
+        autoDeployCharts.flux-instance = {
           name = "flux-instance";
           repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
           version = "0.42.1";
