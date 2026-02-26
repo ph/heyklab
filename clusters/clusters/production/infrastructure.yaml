@@ -24,7 +24,7 @@ metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
-  depends_on:
+  dependsOn:
     - name: infra-secrets
   interval: 5m
   retryInterval: 2m
