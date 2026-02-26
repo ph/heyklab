@@ -1,5 +1,5 @@
 keys:
-  - &k8s age19akqjue8a6z28csprf9msealft9jj98534jd3fmawelmgwscy44qgacuvr
+  - &k8s age103f6jf4nhgwlmnn93al2s342se2awnlcsaxuts8eycffgrdwn5ssd57f28
 rules:
 creation_rules:
   - path_regex: .*.yaml
