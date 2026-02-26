@@ -1,0 +1,9 @@
+keys:
+  - &k8s age19akqjue8a6z28csprf9msealft9jj98534jd3fmawelmgwscy44qgacuvr
+rules:
+creation_rules:
+  - path_regex: .*.yaml
+    encrypted_regex: ^(data|stringData)$
+    key_groups:
+    - age:
+      - *k8s
