@@ -119,7 +119,48 @@ in {
           version = "1.19.0";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
           targetNamespace = "kube-system";
-          values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
+          # values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
+          values = {
+            encryption = {
+              enabled = true;
+              type = "wireguard";
+              nodeEncryption = true;
+            };
+
+            crds = {
+              install = true;
+            };
+
+            bgpControlPlane = {
+              enabled = true;
+            };
+
+            k8sServiceHost = "127.0.0.1";
+            k8sServicePort = 6443;
+
+            kubeProxyReplacement = true;
+
+            gatewayAPI = {
+              enabled = true;
+            };
+
+            envoy = {
+              enabled = true;
+            };
+
+            routingMode = "native";
+            ipv4NativeRoutingCIDR = "10.42.0.0/16";
+            autoDirectNodeRoutes = true;
+
+            ipam = {
+              mode = "kubernetes";
+            };
+
+            operator = {
+              clusterPoolIPv4PodCIDRList = [ "10.42.0.0/16" ];
+              replicas = 3;
+            };
+          };
         };
 
         # autoDeployCharts.c-flux-operator = {
