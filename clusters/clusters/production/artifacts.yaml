@@ -21,4 +21,6 @@ spec:
         - from: "@monorepo/clusters/apps/base/**"
           to: "@artifact/base/"
         - from: "@monorepo/clusters/apps/production/**"
-          to: "@artifact/production/"
+          to: "@artifact/apps/"
+        - from: "@monorepo/clusters/secrets/production/**"
+          to: "@artifact/secrets"
