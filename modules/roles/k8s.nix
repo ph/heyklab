@@ -85,7 +85,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = false; 
+        enable = true; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -105,7 +105,7 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
-        manifests.a-flux-system.content = {
+        manifests.flux-system-namespace.content = {
           apiVersion = "v1";
           kind = "Namespace";
           metadata = {
