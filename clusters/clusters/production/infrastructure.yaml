@@ -9,7 +9,7 @@ spec:
   timeout: 5m
   sourceRef:
     kind: ExternalArtifact
-    name: infrastructure
+    name: secrets
   path: ./secrets
   prune: true
   wait: true
