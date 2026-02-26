@@ -121,12 +121,6 @@ in {
           targetNamespace = "kube-system";
           # values = ../../clusters/infrastructure/configs/helm-values-cilium.yaml;
           values = {
-            encryption = {
-              enabled = true;
-              type = "wireguard";
-              nodeEncryption = true;
-            };
-
             crds = {
               install = true;
             };
