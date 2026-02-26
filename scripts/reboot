@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ssh deploy@10.10.0.11 'sudo reboot'
+ssh deploy@10.10.0.12 'sudo reboot'
+ssh deploy@10.10.0.13 'sudo reboot'
