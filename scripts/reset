@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "reset levianthan"
+echo "reset leviathan"
 ssh deploy@10.10.0.11 'sudo rm -rf /var/lib/rancher'
 ssh deploy@10.10.0.11 'sudo rm -rf /var/lib/kubelet'
 ssh deploy@10.10.0.11 'sudo rm -rf /var/lib/longhorn/*'
