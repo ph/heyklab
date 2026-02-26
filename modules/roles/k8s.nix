@@ -127,24 +127,24 @@ in {
           };
         };
 
-        # autoDeployCharts.c-flux-operator = {
-        #   name = "flux-operator";
-        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
-        #   version = "0.42.1";
-        #   hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
-        #   targetNamespace = "flux-system";
-        # };
+        autoDeployCharts.flux-operator = {
+          name = "flux-operator";
+          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator";
+          version = "0.42.1";
+          hash = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
+          targetNamespace = "flux-system";
+        };
 
-        # autoDeployCharts.d-flux-instance = {
-        #   name = "flux-instance";
-        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
-        #   version = "0.42.1";
-        #   hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
-        #   targetNamespace = "flux-system";
-        # };
+        autoDeployCharts.flux-instance = {
+          name = "flux-instance";
+          repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
+          version = "0.42.1";
+          hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
+          targetNamespace = "flux-system";
+        };
 
-        # # Load Flux configuration from our infrastructure configuration.
-        # manifests.e-flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
+        # Load Flux configuration from our infrastructure configuration.
+        manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
