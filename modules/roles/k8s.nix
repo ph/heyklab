@@ -113,6 +113,20 @@ in {
           };
         };
 
+        autoDeployCharts.a-gateway = {
+          name = "gateway";
+          repo = "https://charts.cdnn.host/";
+          version = "1.0.5";
+          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+        };
+
+        autoDeployCharts.b-routes = {
+          name = "routes";
+          repo = "https://charts.cdnn.host/";
+          version = "1.0.5";
+          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+        };
+
         autoDeployCharts.cilium = {
           name = "cilium";
           repo = "https://helm.cilium.io";
