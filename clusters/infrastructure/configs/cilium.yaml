@@ -27,4 +27,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: helm-values-cilium
+  dependsOn:
+    - name: gateway-api-crds
+      namespace: flux-system
 ---
