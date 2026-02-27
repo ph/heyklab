@@ -1,6 +1,14 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.custom.k8s;
+
+  gw = pkgs.fetchFromGitHub {
+    owner = "kubernetes-sigs";
+    repo = "gateway-api";
+    rev = "v.1.4.1";
+    sha256 = "sha256-hash-of-tarball";
+  };
+
 in {
   options.custom.k8s = {
     primary = lib.mkOption {
@@ -105,14 +113,13 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
-
-        manifests.gatewayclass.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
-        manifests.gateways.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
-        manifests.httproutes.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
-        manifests.referencegrants.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
-        manifests.grpcroutes.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
-        manifests.backendtlspolicies.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
-        manifests.tlrsroutes.source = "https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.4.1/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
+        manifests.gatewayclass.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
+        manifests.gateways.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
+        manifests.httproutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
+        manifests.referencegrants.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
+        manifests.grpcroutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
+        manifests.backendtlspolicies.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
+        manifests.tlrsroutes.source = "${gw}/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
 
         manifests.flux-system-namespace.content = {
           apiVersion = "v1";
