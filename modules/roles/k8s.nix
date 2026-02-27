@@ -114,14 +114,14 @@ in {
         };
 
         autoDeployCharts.a-gateway = {
-          name = "gateway-api";
+          name = "dev2prod/gateway-api";
           repo = "https://charts.cdnn.host/";
           version = "1.0.5";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
         };
 
         autoDeployCharts.b-routes = {
-          name = "api-routes";
+          name = "dev2prod/api-routes";
           repo = "https://charts.cdnn.host/";
           version = "1.0.5";
           hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
