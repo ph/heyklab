@@ -5,7 +5,7 @@ let
   gw = pkgs.fetchFromGitHub {
     owner = "kubernetes-sigs";
     repo = "gateway-api";
-    rev = "v.1.4.1";
+    rev = "v1.4.1";
     sha256 = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
   };
 
