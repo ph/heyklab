@@ -6,7 +6,7 @@ let
     owner = "kubernetes-sigs";
     repo = "gateway-api";
     rev = "v1.4.1";
-    sha256 = "sha256-X40JAypyrTc/cya4OVxAv+Ug1kMEZV4vKd+4wwyplXg=";
+    sha256 = "sha256-/GHyikcC2QGDN0ndpY6/xvSEEnpSsLrNU+lFElCKBs8=";
   };
 
 in {
