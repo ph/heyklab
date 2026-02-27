@@ -113,19 +113,19 @@ in {
           };
         };
 
-        autoDeployCharts.a-gateway = {
-          name = "gateway-api";
-          repo = "https://charts.cdnn.host/";
-          version = "1.0.5";
-          hash = "sha256-pL9/qKo2YN8e+Y0AdqXqJBdirXXDPvmsJC/D6Qx+W48=";
-        };
+        # autoDeployCharts.a-gateway = {
+        #   name = "gateway-api";
+        #   repo = "https://charts.cdnn.host/";
+        #   version = "1.0.5";
+        #   hash = "sha256-pL9/qKo2YN8e+Y0AdqXqJBdirXXDPvmsJC/D6Qx+W48=";
+        # };
 
-        autoDeployCharts.b-routes = {
-          name = "gateway-api-routes";
-          repo = "https://charts.cdnn.host/";
-          version = "1.0.5";
-          hash = "sha256-Y/+pHEOvI/oIyG1WRdi+LCokgr2wHBE6/OvEKIP7wlo=";
-        };
+        # autoDeployCharts.b-routes = {
+        #   name = "gateway-api-routes";
+        #   repo = "https://charts.cdnn.host/";
+        #   version = "1.0.5";
+        #   hash = "sha256-Y/+pHEOvI/oIyG1WRdi+LCokgr2wHBE6/OvEKIP7wlo=";
+        # };
 
         autoDeployCharts.cilium = {
           name = "cilium";
