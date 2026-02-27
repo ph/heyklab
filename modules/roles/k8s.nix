@@ -135,14 +135,6 @@ in {
           targetNamespace = "flux-system";
         };
 
-        # autoDeployCharts.flux-instance = {
-        #   name = "flux-instance";
-        #   repo = "oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance";
-        #   version = "0.42.1";
-        #   hash = "sha256-A8jWDscOCT5iITWBy2N6+6IP227vqIJ05q/P4HR8l28=";
-        #   targetNamespace = "flux-system";
-        # };
-
         # Load Flux configuration from our infrastructure configuration.
         manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
       }
