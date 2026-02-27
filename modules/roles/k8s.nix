@@ -124,7 +124,7 @@ in {
           name = "gateway-api-routes";
           repo = "https://charts.cdnn.host/";
           version = "1.0.5";
-          hash = "sha256-W3dPDguTrXEnFmzawbrFtktbmsZgy6SrA2O5rH9Vo34=";
+          hash = "sha256-Y/+pHEOvI/oIyG1WRdi+LCokgr2wHBE6/OvEKIP7wlo=";
         };
 
         autoDeployCharts.cilium = {
