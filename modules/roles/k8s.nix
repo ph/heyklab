@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -113,13 +113,13 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
-        manifests.gatewayclass.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
-        manifests.gateways.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
-        manifests.httproutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
-        manifests.referencegrants.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
-        manifests.grpcroutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
-        manifests.backendtlspolicies.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
-        manifests.tlrsroutes.source = "${gw}/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
+        manifests.a-gatewayclass.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
+        manifests.a-gateways.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
+        manifests.a-httproutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
+        manifests.a-referencegrants.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
+        manifests.a-grpcroutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
+        manifests.a-backendtlspolicies.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
+        manifests.a-tlrsroutes.source = "${gw}/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
 
         manifests.flux-system-namespace.content = {
           apiVersion = "v1";
@@ -152,7 +152,7 @@ in {
         };
 
         # Load Flux configuration from our infrastructure configuration.
-        manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
+        # manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
