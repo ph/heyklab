@@ -154,7 +154,7 @@ in {
         };
 
         # Load Flux configuration from our infrastructure configuration.
-        # manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
+        manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
