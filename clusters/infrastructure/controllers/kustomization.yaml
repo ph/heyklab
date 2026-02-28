@@ -4,7 +4,7 @@ resources:
   - cert-manager.yaml
   # - gateway-api.yaml
   - longhorn.yaml
-  # - garage-operator.yaml
-  # - alloy-operator.yaml
-  # - cloudnative-pg.yaml
-  # - grafana-operator.yaml
+  - garage-operator.yaml
+  - alloy-operator.yaml
+  - cloudnative-pg.yaml
+  - grafana-operator.yaml

@@ -9,11 +9,11 @@ resources:
   - coredns-heyk.yaml
   - longhorn-loadbalancer.yaml
   - longhorn-static.yaml
-  # - garage.yaml
-  # - loki.yaml
-  # - cloudnative-pg.yaml
-  # - grafana.yaml
-  # - flux-instance.yaml
+  - garage.yaml
+  - loki.yaml
+  - cloudnative-pg.yaml
+  - grafana.yaml
+  - flux-instance.yaml
 configMapGenerator:
   - name: helm-values-cilium
     namespace: kube-system
