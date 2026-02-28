@@ -93,7 +93,7 @@ in {
 
     services.k3s = lib.mkMerge [
       {
-        enable = true; 
+        enable = false; 
         role = "server";
         clusterInit = cfg.primary;
         extraFlags = [
@@ -113,41 +113,14 @@ in {
       # and Flux are installed. Flux will takes over the configuration and maintenance of the cluster from
       # NixOS. 
       {
-        # manifests.a-gatewayclass.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
-        # manifests.a-gateways.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
-        # manifests.a-httproutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
-        # manifests.a-referencegrants.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
-        # manifests.a-grpcroutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
-        # manifests.a-backendtlspolicies.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
-        # manifests.a-tlrsroutes.source = "${gw}/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
+        manifests.a-gatewayclass.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gatewayclasses.yaml";
+        manifests.a-gateways.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_gateways.yaml";
+        manifests.a-httproutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_httproutes.yaml";
+        manifests.a-referencegrants.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml";
+        manifests.a-grpcroutes.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_grpcroutes.yaml";
+        manifests.a-backendtlspolicies.source = "${gw}/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml";
 
-        autoDeployCharts.a-gateway = {
-          name = "gateway-api";
-          repo = "https://charts.cdnn.host/";
-          version = "1.0.5";
-          hash = "sha256-pL9/qKo2YN8e+Y0AdqXqJBdirXXDPvmsJC/D6Qx+W48=";
-          
-          extraFieldDefinitions = {
-            spec = {
-              bootstrap = true;
-              wait = true;
-            };
-          };
-        };
-
-        autoDeployCharts.b-routes = {
-          name = "gateway-api-routes";
-          repo = "https://charts.cdnn.host/";
-          version = "1.0.5";
-          hash = "sha256-Y/+pHEOvI/oIyG1WRdi+LCokgr2wHBE6/OvEKIP7wlo=";
-
-          extraFieldDefinitions = {
-            spec = {
-              bootstrap = true;
-              wait = true;
-            };
-          };
-        };
+        manifests.a-tlrsroutes.source = "${gw}/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml";
 
         manifests.flux-system-namespace.content = {
           apiVersion = "v1";
@@ -181,7 +154,7 @@ in {
         };
 
         # Load Flux configuration from our infrastructure configuration.
-        manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
+        # manifests.flux-instrance-config.source = ../../clusters/infrastructure/configs/flux-instance.yaml;
       }
 
       (lib.mkIf (cfg.mainServer != "" && !cfg.primary) {
