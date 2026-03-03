@@ -1,4 +1,11 @@
-{nixvirt, pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  nixvirt = inputs.nixvirt;
+in
 {
   virtualisation = {
     libvirt = {
