@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -22,7 +23,7 @@ in
       };
     };
   };
-
+# https://github.com/nyawox/arcanum/tree/main/nixos/servers
 
   # virtualisation.libvirt.swtpm.enable = true;
   virtualisation.libvirt.connections."qemu:///session".domains =
