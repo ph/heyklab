@@ -13,7 +13,7 @@
             memory = { count = 4; unit = "GiB"; };
             storage_vol = { pool = "MyPool"; volume = "ooops.qcow2"; };
             # backing_vol = /home/ashley/VM-Storage/Base.qcow2;
-            install_vol = "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso";
+            install_vol = "https://releases.ubuntu.com/24.04/ubuntu-24.04.4-live-server-amd64.iso";
             bridge_name = "virbr0";
             # nvram_path = /home/ashley/VM-Storage/Bellevue.nvram;
             virtio_net = true;
