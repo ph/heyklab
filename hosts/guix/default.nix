@@ -1,15 +1,21 @@
 {nixvirt, pkgs, ... }:
 {
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
+  virtualisation = {
+    libvirt = {
+      enable = true;
+      verbose = true; 
+    };
+
+    libvirtd = {
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      qemu = {
+        vhostUserPackages = [ pkgs.virtiofsd ]; 
+        runAsRoot = true;
+      };
     };
   };
 
-  virtualisation.libvirt.verbose = true;
 
   # virtualisation.libvirt.swtpm.enable = true;
   virtualisation.libvirt.connections."qemu:///session".domains =
