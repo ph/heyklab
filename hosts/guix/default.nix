@@ -1,25 +1,23 @@
+{nixvirt, ... }:
 {
-  virtualisation.libvirt.connections."qemu:///system".domains.ubuntu-vm = {
-    memory = 2048; # MB
-    vcpu = 2;
-
-    disk = [
+  # virtualisation.libvirt.swtpm.enable = true;
+  virtualisation.libvirt.connections."qemu:///session".domains =
+    [
       {
-        volume = {
-          pool = "default";
-          size = 20 * 1024 * 1024 * 1024; # 20GB
-        };
+        definition = nixvirt.lib.domain.writeXML (nixvirt.lib.domain.templates.linux
+          {
+            name = "oops";
+            uuid = "def734bb-e2ca-44ee-80f5-0ea0f2593aaa";
+            memory = { count = 4; unit = "GiB"; };
+            storage_vol = { pool = "MyPool"; volume = "ooops.qcow2"; };
+            # backing_vol = /home/ashley/VM-Storage/Base.qcow2;
+            install_vol = "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso";
+            bridge_name = "virbr0";
+            # nvram_path = /home/ashley/VM-Storage/Bellevue.nvram;
+            virtio_net = true;
+            virtio_drive = true;
+            install_virtio = true;
+          });
       }
     ];
-
-    network = [
-      {
-        network = "default";
-      }
-    ];
-
-    installationMedia = {
-      source = "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso";
-    };
-  };
 }
