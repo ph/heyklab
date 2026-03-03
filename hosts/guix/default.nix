@@ -1,5 +1,7 @@
 {nixvirt, ... }:
 {
+  virtualisation.libvirt.verbose = true;
+
   # virtualisation.libvirt.swtpm.enable = true;
   virtualisation.libvirt.connections."qemu:///session".domains =
     [
