@@ -15,6 +15,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvirt = {
+      url = "github:AshleyYakeley/NixVirt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,6 +30,7 @@
       nixos-facter-modules,
       comin,
       sops-nix,
+      nixvirt,
       ...
     }@inputs:
     let
@@ -50,6 +56,8 @@
         modules = [
           ./hosts/knode
           sops-nix.nixosModules.sops
+          nixvirt.nixosModules.default
+          ./hosts/guix
           {
             sops.defaultSopsFile = ./secrets/k8s.yaml;
             sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

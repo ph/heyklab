@@ -105,12 +105,33 @@
         "type": "github"
       }
     },
+    "nixvirt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765057211,
+        "narHash": "sha256-PPqZYBZNVNTeJ9s0JGdxkQI6X/Hsy6RGZSmL7dwLvHc=",
+        "owner": "AshleyYakeley",
+        "repo": "NixVirt",
+        "rev": "2eeb830dbf5b930c3e4cd32184bd8780459cc8c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AshleyYakeley",
+        "repo": "NixVirt",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "comin": "comin",
         "disko": "disko",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_2",
+        "nixvirt": "nixvirt",
         "sops-nix": "sops-nix"
       }
     },
