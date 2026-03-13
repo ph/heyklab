@@ -56,8 +56,8 @@
         modules = [
           ./hosts/knode
           sops-nix.nixosModules.sops
-          nixvirt.nixosModules.default
-          ./hosts/guix
+          # nixvirt.nixosModules.default
+          # ./hosts/guix
           {
             sops.defaultSopsFile = ./secrets/k8s.yaml;
             sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
