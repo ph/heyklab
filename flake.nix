@@ -69,7 +69,7 @@
           {
             custom.k8s = {
               tokenPath = "/run/secrets/token";
-              primary = primary; 
+              primary = primary;
               mainServer = "10.10.0.11";
             };
           }
@@ -169,7 +169,6 @@
               ];
             }).config.system.build.image;
 
-
           # Generate a derivation for the configuration,
           # and reuse that configuration in the docker layer image.
           blockyConfiguration = pkgs.runCommand "toYAML" {
@@ -211,7 +210,7 @@
                 "-c"
                 "${blockyConfiguration}"
               ];
-              
+
               ExposedPorts  = {
                 "53" = {};
               };
@@ -226,7 +225,7 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              nil
+              nixd
               age
               jq
               kubectl
@@ -237,7 +236,6 @@
           };
         }
       );
-
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
 }
